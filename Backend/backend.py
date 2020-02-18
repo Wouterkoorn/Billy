@@ -24,3 +24,4 @@ def vraag_kennisbron_op():
     return jsonify(kennisbronnen), 200, {'ContentType': 'application/json'}
     
 app.run(host='0.0.0.0')
+#blablabla
