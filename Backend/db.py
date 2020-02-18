@@ -12,4 +12,3 @@ def execute_sql(sql):
     result = mydb.execute(sql)
     close_db(mydb)
     return result
-
