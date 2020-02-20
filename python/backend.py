@@ -9,8 +9,7 @@ CORS(app)
 def voeg_kenniskaart_toe():
     """"Voegt kenniskaart toe in de database"""
     data = request.json
-    db.execute_sql(
-        f"""INSERT INTO kenniskaarten(titel, what, why, how, voorbeeld, rol, vaardigheid, hboi, aanmaak_datun, wijzig_datum) 
+    db.execute_sql(f"""INSERT INTO kenniskaarten(titel, what, why, how, voorbeeld, rol, vaardigheid, hboi, aanmaak_datun, wijzig_datum) 
                      VALUES 
                      {data['titel']},
                      {data['what']},
