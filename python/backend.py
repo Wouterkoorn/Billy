@@ -11,7 +11,7 @@ def voeg_kennisbron_toe():
     """"Voegt kennisbron toe in de database"""
     data = request.json
     print(data)
-    #Makkelijk om te editen, verander als je wilt
+    #Makkelijk om te editen, verander als je wilt is gewoon een lange string
     db.execute_sql(f"""INSERT INTO kennisbron(what, why, how, voorbeeld, 1, 2, 3, 4, 5) 
                      VALUES 
                      {data['what']},
@@ -26,6 +26,7 @@ def voeg_kennisbron_toe():
     return jsonify({'success': True}), 200, {'ContentType': 'application/json'}
 
 def check_input():
+    """Voorkomt sql injection"""
     pass
 
 @app.route('/ophalen', methods=['GET'])
