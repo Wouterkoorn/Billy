@@ -1,4 +1,4 @@
-function kennisbron_toevoegen() {
+function kenniskaart_toevoegen() {
 
 	let awhat = document.getElementById('myWhat').value;
 	let awhy = document.getElementById('myWhy').value;

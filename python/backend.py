@@ -14,13 +14,13 @@ def voeg_kennisbron_toe():
     #Makkelijk om te editen, verander als je wilt is gewoon een lange string
     db.execute_sql(f"""INSERT INTO kennisbron(what, why, how, voorbeeld, 1, 2, 3, 4, 5) 
                      VALUES 
+                     {data['titel']},
                      {data['what']},
                      {data['why']}, 
                      {data['how']}, 
                      {data['voorbeeld']},
-                     {data['1']},
-                     {data['2']},
-                     {data['3']},
+                     {data['rol']},
+                     {data['']},
                      {data['4']},
                      {data['5']}""")
     return jsonify({'success': True}), 200, {'ContentType': 'application/json'}
