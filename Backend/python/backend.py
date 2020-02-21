@@ -5,17 +5,20 @@ import db
 app = Flask(__name__)
 CORS(app)
 
+
 @app.route('/toevoegen', methods=['POST'])
 def voeg_kenniskaart_toe():
     """"Voegt kenniskaart toe in de database"""
     data = request.json
-    sql = "INSERT INTO kenniskaarten(titel, what, why, how, voorbeeld, rol, vaardigheid, hboi) VALUES ('{}','{}','{}','{}','{}','{}','{}','{}')".format(data['titel'], data['what'], data['why'], data['how'], data['voorbeeld'], data['rol'], data['vaardigheid'], data['hboi'])
+    sql = f"INSERT INTO kenniskaarten(titel, what, why, how, voorbeeld, rol, vaardigheid, hboi) VALUES ('{data['titel']}','{data['what']}','{data['why']}','{data['how']}','{data['voorbeeld']}','{data['rol']}','{data['vaardigheid']}','{data['hboi']}')"
     db.execute_sql(sql)
-    return jsonify({'success': True}), 200, {'ContentType': 'application/json'}
+    return jsonify({'success': True}), 200
+
 
 def check_input():
     """Voorkomt sql injection"""
     pass
+
 
 @app.route('/ophalen', methods=['GET'])
 def vraag_kenniskaart_op():
@@ -25,7 +28,7 @@ def vraag_kenniskaart_op():
     kenniskaarten = []
     for kenniskaart in billydb:
         kenniskaarten.append(
-             {'titel': kenniskaart['titel'],
+            {'titel': kenniskaart['titel'],
              'what': kenniskaart['what'],
              'why': kenniskaart['why'],
              'how': kenniskaart['how'],
@@ -34,6 +37,7 @@ def vraag_kenniskaart_op():
              'vaardigheid': kenniskaart['vaardigheid'],
              'hboi': kenniskaart['hboi']
              })
-    return jsonify(kenniskaarten), 200, {'ContentType': 'application/json'}
+    return jsonify(kenniskaarten), 200
+
 
 app.run(host='0.0.0.0')  # run host op LAN
