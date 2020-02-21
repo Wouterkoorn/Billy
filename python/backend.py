@@ -35,16 +35,16 @@ def vraag_kenniskaart_op():
     kenniskaarten = []
     for kenniskaart in billydb:
         kenniskaarten.append(
-             {'titel': kenniskaart['what'],
-             'what': kenniskaart['why'],
+             {'titel': kenniskaart['titel'],
+             'what': kenniskaart['what'],
              'why': kenniskaart['why'],
-             'how': kenniskaart['why'],
-             'voorbeeld': kenniskaart['why'],
-             'rol': kenniskaart['why'],
-             'vaardigheid': kenniskaart['why'],
-             'hboi': kenniskaart['how'],
-             'aanmaak_datun': kenniskaart['voorbeeld'],
-             'wijzig_datum': kenniskaart['voorbeeld'],
+             'how': kenniskaart['how'],
+             'voorbeeld': kenniskaart['voorbeeld'],
+             'rol': kenniskaart['rol'],
+             'vaardigheid': kenniskaart['vaardigheden'],
+             'hboi': kenniskaart['hboi'],
+             'aanmaak_datun': kenniskaart['aanmaak_datum'],
+             'wijzig_datum': kenniskaart['wijzig_datum'],
              })
     return jsonify(app), 200, {'ContentType': 'application/json'}
 
