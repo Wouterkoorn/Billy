@@ -5,14 +5,11 @@ import db
 app = Flask(__name__)
 CORS(app)
 
-
 @app.route('/toevoegen', methods=['POST'])
-def voeg_kennisbron_toe():
-    """"Voegt kennisbron toe in de database"""
+def voeg_kenniskaart_toe():
+    """"Voegt kenniskaart toe in de database"""
     data = request.json
-    print(data)
-    #Makkelijk om te editen, verander als je wilt is gewoon een lange string
-    db.execute_sql(f"""INSERT INTO kennisbron(what, why, how, voorbeeld, 1, 2, 3, 4, 5) 
+    db.execute_sql(f"""INSERT INTO kenniskaarten(titel, what, why, how, voorbeeld, rol, vaardigheid, hboi, aanmaak_datun, wijzig_datum) 
                      VALUES 
                      {data['titel']},
                      {data['what']},
@@ -20,9 +17,10 @@ def voeg_kennisbron_toe():
                      {data['how']}, 
                      {data['voorbeeld']},
                      {data['rol']},
-                     {data['']},
-                     {data['4']},
-                     {data['5']}""")
+                     {data['vaardigheid']},
+                     {data['hboi']},
+                     {data['aanmaak_datun']},
+                     {data['wijzig_datum']}""")
     return jsonify({'success': True}), 200, {'ContentType': 'application/json'}
 
 def check_input():
@@ -30,23 +28,24 @@ def check_input():
     pass
 
 @app.route('/ophalen', methods=['GET'])
-def vraag_kennisbron_op():
-    """Returnd alle velden van kennisbron waaronder What Why How"""
-    billydb = db.execute_sql('SELECT * FROM kennisbron')
+def vraag_kenniskaart_op():
+    """Returnd alle velden van kenniskaart waaronder What Why How"""
+    billydb = db.execute_sql('SELECT * FROM kenniskaarten')
 
-    kennisbronnen = []
-    for kennisbron in billydb:
-        kennisbronnen.append(
-                {'what':kennisbron['what'],
-                 'why':kennisbron['why'],
-                 'how':kennisbron['how'],
-                 'voorbeeld':kennisbron['voorbeeld'],
-                 # '': kennisbron[''],
-                 # '': kennisbron[''],
-                 # '': kennisbron[''],
-                 # '': kennisbron[''],
-                 # '': kennisbron['']
-                 })
-    return jsonify(kennisbronnen), 200, {'ContentType': 'application/json'}
+    kenniskaarten = []
+    for kenniskaart in billydb:
+        kenniskaarten.append(
+             {'titel': kenniskaart['titel'],
+             'what': kenniskaart['what'],
+             'why': kenniskaart['why'],
+             'how': kenniskaart['how'],
+             'voorbeeld': kenniskaart['voorbeeld'],
+             'rol': kenniskaart['rol'],
+             'vaardigheid': kenniskaart['vaardigheden'],
+             'hboi': kenniskaart['hboi'],
+             'aanmaak_datun': kenniskaart['aanmaak_datum'],
+             'wijzig_datum': kenniskaart['wijzig_datum'],
+             })
+    return jsonify(app), 200, {'ContentType': 'application/json'}
 
-app.run(host='0.0.0.0') #run host op LAN
+app.run(host='0.0.0.0')  # run host op LAN
