@@ -9,18 +9,8 @@ CORS(app)
 def voeg_kenniskaart_toe():
     """"Voegt kenniskaart toe in de database"""
     data = request.json
-    db.execute_sql(f"""INSERT INTO kenniskaarten(titel, what, why, how, voorbeeld, rol, vaardigheid, hboi, aanmaak_datun, wijzig_datum) 
-                     VALUES 
-                     {data['titel']},
-                     {data['what']},
-                     {data['why']}, 
-                     {data['how']}, 
-                     {data['voorbeeld']},
-                     {data['rol']},
-                     {data['vaardigheid']},
-                     {data['hboi']},
-                     {data['aanmaak_datun']},
-                     {data['wijzig_datum']}""")
+    sql = "INSERT INTO kenniskaarten(titel, what, why, how, voorbeeld, rol, vaardigheid, hboi) VALUES ('{}','{}','{}','{}','{}','{}','{}','{}')".format(data['titel'], data['what'], data['why'], data['how'], data['voorbeeld'], data['rol'], data['vaardigheid'], data['hboi'])
+    db.execute_sql(sql)
     return jsonify({'success': True}), 200, {'ContentType': 'application/json'}
 
 def check_input():
@@ -41,11 +31,9 @@ def vraag_kenniskaart_op():
              'how': kenniskaart['how'],
              'voorbeeld': kenniskaart['voorbeeld'],
              'rol': kenniskaart['rol'],
-             'vaardigheid': kenniskaart['vaardigheden'],
-             'hboi': kenniskaart['hboi'],
-             'aanmaak_datun': kenniskaart['aanmaak_datum'],
-             'wijzig_datum': kenniskaart['wijzig_datum'],
+             'vaardigheid': kenniskaart['vaardigheid'],
+             'hboi': kenniskaart['hboi']
              })
-    return jsonify(app), 200, {'ContentType': 'application/json'}
+    return jsonify(kenniskaarten), 200, {'ContentType': 'application/json'}
 
 app.run(host='0.0.0.0')  # run host op LAN
