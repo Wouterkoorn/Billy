@@ -2,7 +2,7 @@ function kenniskaart_toevoegen() {
 
 	let what = document.getElementById('myWhat').value;
 	let why = document.getElementById('myWhy').value;
-	let how = document.getElementById('myHow1').value;
+	let how = document.getElementById('myHow').value;
 	let titel = document.getElementById('myTitel').value;
 	let hboi = document.getElementById('myHboi').value;
 	let rol = document.getElementById('myRol').value;
