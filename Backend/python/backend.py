@@ -40,4 +40,14 @@ def vraag_kenniskaart_op():
     return jsonify(kenniskaarten), 200
 
 
+@app.route('/aanpassen', methods=['POST'])
+def pas_kenniskaart_aan():
+    pass
+
+
+@app.route('/verwijderen', methods=['POST'])
+def verwijder_kenniskaart():
+    pass
+
+
 app.run(host='0.0.0.0')  # run host op LAN
