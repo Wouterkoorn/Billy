@@ -1,8 +1,8 @@
-body {
-    background-color: lightgreen;
-    margin: 0%;
+*{
+  text-decoration: none;
 }
-.boxje {
+
+/*.boxje {
   box-sizing: border-box;
 }
 
@@ -67,11 +67,82 @@ p {
     margin-block-end: 1em;
     margin-inline-start: 10px;
     margin-inline-end: 10px;
-}
+}*/
 
 /* Mobile first */
 @media only screen and (max-width: 600px) {
-	.boxje, button, input {
+  body {
+    background-color: #f3f3f3;
+    margin: 0%;
+  }
+
+  header {
+    background-color: #fff;
+    width: 100%;
+    height: 100px;
+
+  }
+  header .header-brand {
+    font-family: catamaran;
+    font-size: 24px;
+    font-weight: 900;
+    color: #111;
+    text-shadow: 2px 2px 5px #ddd;
+    text-transform: uppercase;
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px 0;
+  }
+  header nav ul {
+    display: block;
+    margin: 0 auto;
+    width: fit-content;
+  }
+
+  header nav ul li {
+    display: inline-block;
+    float: middle ;
+    list-style: none;
+    padding: 0 16px;
+
+  }
+
+  header nav ul li a {
+    font-family: catamaran;
+    font-size: 16px;
+    color: #111;
+
+  }
+
+  /*INDEX*/
+
+  .index-banner {
+    width: 100%;
+    height: calc(100vh - 100px);
+    background-image: url("banner.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: table;
+  }
+  .vertical-center {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .index-banner h2 {
+    font-family: catamaran;
+    font-size: 60px;
+    font-weight: 900;
+    line-height: 60px;
+    color: #ff0800;
+    text-align: center;
+    text-shadow: 2px 2px 8px #111;
+  }
+
+
+	/*.boxje, button, input {
 		box-sizing: border-box;
     	width: 100%;
 	}
@@ -81,8 +152,8 @@ p {
   	.col-3, .col-9 {
   		width: 100%;
   	}
-  	
-  
+
+
   	.menu li {
   		font-style: oblique;
     	font-weight: bold;
@@ -101,6 +172,6 @@ p {
 	}
 	.column {
 		padding: 20px;
-	}
+	}*/
 
 	}
