@@ -23,18 +23,41 @@ function kenniskaart_toevoegen() {
 	alert(JSON.stringify(data));
 
 	// Uncomment welk ip je wil benutten
-	let ip = 'http://192.168.3.72:5000/toevoegen'
+	// let ip = 'http://192.168.3.72:5000/toevoegen'
 	// var ip = '192.168.3.73:5000/toevoegen'
 
-	fetch(ip, {
+	fetch('http://192.168.3.72:5000/toevoegen', {
 		method: 'POST',
 		body: JSON.stringify(data)
-	    })
-	    .then((response) => {
-		return response.json();
-	    }).then((result)=>{
+	})
+	.then((response) => {
+		return response.json();})
+	.then((result)=>{
 		alert(result['succes']);
-	    });
+	});
+}
+
+function infoOphalen() {
+	let serach1 = document.getElementsByTagName("#mySearch").value;
+	let data = {
+		"bron": search1
+	};
+
+	alert(JSON.stringify(data));
+
+
+	fetch('http://192.168.3.72:5000/toevoegen', {
+		method:'GET',
+		body: JSON.stringify(data)
+	})
+	.then(response => response.json())
+	.then(function (myJson) {
+		for (search of myJson){
+			var searchResult document.createElement("li");
+
+		}
+	})
+
 }
 
 function myFunction() {
