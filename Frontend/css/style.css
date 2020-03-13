@@ -336,7 +336,8 @@ input, select {
 }
 
 
-/* Mobile first */
+/* My code */
+
 *{
   decoration:none;
 }
@@ -352,27 +353,16 @@ header {
   width: 100%;
   height: 100px;
 }
-header .grids {
-  margin: 0 15px 0 15px;
-  padding: 0 20px 0 20px;
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-}
-header .header-brand1, .header-brand2, .header-brand3 {
+
+header .header-brand {
   font-family: catamaran;
   font-size: 24px;
   font-weight: 900;
   text-shadow: 2px 2px 5px #ddd;
   text-transform: uppercase;
-  margin: 0 ;
+  display: block;
   text-align: center;
-  padding: 0 ;
-}
-header .header-brand1 {
-  color: #00D3FF;
-}
-header .header-brand3 {
-  color: #FC0000;
+  padding: 20px 0
 }
 header nav ul {
   display: block;
@@ -416,27 +406,43 @@ header nav ul li a {
   text-shadow: 2px 2px 8px #111;
 }
 
-.index-banner2 {
+/* .index-banner2 {
   width: 100%;
   height: calc(100vh - 100px);
   background-color: #eee;
   display: table;
-}
+} */
 .vertical-center {
   display: table-cell;
   vertical-align: middle;
 }
-.index-links div {
-  margin: 16px 16px 0;
-  width: calc(100% - 32px);
-  height: 100px;
+.index-links {
+  margin: 0 0 0 0;
+  width: 100%;
+  height: 45px;
 }
+.index-links:selection {
+  background-color: green;
+  color: yellow;
+}
+input:hover[type="text"] {
+  background: #aefffb;
+}
+
+.zoekveld {
+  margin: 0px 0px 0px 0px;
+  width: 100%;
+  height: 45px;
+  background-color: #fff;
+}
+
 .mySearch {
   width: 100%;
+  height: 100%;
   font-size: 18px;
-  padding: 11px;
-  border: 1px solid #fff;
-  text-align: center;
+  padding: 10px 0px 10px 10px;
+  border: 0px solid #fff;
+  text-align: left;
 }
 footer {
   width: calc(100% - 80px);
