@@ -40,14 +40,20 @@ def vraag_kenniskaart_op():
     return jsonify(kenniskaarten), 200
 
 
-@app.route('/aanpassen', methods=['POST'])
-def pas_kenniskaart_aan():
-    pass
+    """LET OP
+    Aanpassen functie werkt mogelijk niet. Het is nog niet mogelijk om dit te testen zonder externe database."""
+@app.route('/aanpassen', methods=['PUT'])
+def pas_kenniskaart_aan(id):
+    """Gebruikt put method om de veranderingen aan te passen in de database."""
+    data = request.json
+    sql = f"INSERT INTO kenniskaarten(titel, what, why, how, voorbeeld, rol, vaardigheid, hboi) VALUES ('{data['titel']}','{data['what']}','{data['why']}','{data['how']}','{data['voorbeeld']}','{data['rol']}','{data['vaardigheid']}','{data['hboi']}')"
+    db.execute_sql(sql)
+    return jsonify({'success': True}), 200
 
 
 @app.route('/verwijderen', methods=['POST'])
-def verwijder_kenniskaart():
-    pass
+def verwijder_kenniskaart(id):
+    return db.execute_sql(f'DELETE FROM kenniskaarten WHERE kenniskaart_ID = {id}')
 
 
 app.run(host='0.0.0.0')  # run host op LAN
