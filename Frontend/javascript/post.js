@@ -9,7 +9,7 @@ function kennisbron_toevoegen() {
 
 	alert(JSON.stringify(data));			
 
-	fetch('http://192.168.3.73:5000/toevoegen', {
+	fetch('http://82.72.167.14:5000/toevoegen', {
 		method: 'POST',
 		headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
 		body: JSON.stringify(data)
