@@ -1,5 +1,4 @@
-// var what = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean commodo at orci in hendrerit. Donec et varius nisi, vitae mattis elit. Sed rhoncus odio eget nisl aliquam dignissim. Donec ac auctor dui. Nullam in libero ut ligula gravida rhoncus. Pellentesque rutrum fringilla dictum. Donec imperdiet dictum justo, et hendrerit nisl pharetra eu. Etiam a dignissim libero, consectetur egestas lacus. Curabitur fermentum nisl odio, a sodales turpis pulvinar ac. Mauris lacinia, nibh ut bibendum faucibus, purus odio blandit sapien, eu malesuada velit urna id tortor. Maecenas congue, ex eget malesuada sodales, tellus neque ultrices diam, in consectetur metus quam quis sem. Fusce sodales tempus magna, id varius leo vehicula tempus. Nulla mattis nisi id congue vestibulum. Mauris accumsan viverra urna, ut vulputate dui semper non."
-var testSearchResults =[
+[
   {
     "kenniskaart_ID": 0,
     "titel": "Lerom ipsum",
@@ -79,34 +78,3 @@ var testSearchResults =[
     "tags": ["hoi1", "hoi2", "hoi3", "hoi4"],
   },
 ]
-
-function makeElement(locatie, classnaam, contentInElement, ElementType) {
-  var element = document.createElement(ElementType);
-  element.appendChild(document.createTextNode(contentInElement));
-  element.setAttribute('class', classnaam);
-  locatie.appendChild(element);
-}
-
-function makeImg(locatie, classnaam, imageInDiv) {
-  var img = document.createElement('img');
-  img.setAttribute('src', imageInDiv); //verander value naar imageInDiv
-  img.setAttribute('class', classnaam);
-  locatie.appendChild(img);
-}
-
-function toonkenniskaarten(item, index) {
-  var kenniskaartBestemming = document.getElementsByClassName("kenniskaartencontainer");
-
-  var kenniskaart = document.createElement('div');
-  kenniskaart.setAttribute('class', 'kenniskaart');
-  kenniskaartBestemming[0].appendChild(kenniskaart);
-  var kenniskaartlocatie = document.getElementsByClassName("kenniskaart");
-
-  makeImg(kenniskaartlocatie[index], "kenniskaart-foto", '../css/placeholder.jpeg');
-  makeElement(kenniskaartlocatie[index], "kenniskaart-datum", item["datum"], "div");
-  makeElement(kenniskaartlocatie[index], "kenniskaart-titel", item["titel"], "H3");
-  makeElement(kenniskaartlocatie[index], "kenniskaart-what", item["what"].slice(0, 150) + "...", "div");
-  item["tags"].forEach(function (item) {
-    makeElement(kenniskaartlocatie[index], "kenniskaart-tags", item, "div")
-  });
-}

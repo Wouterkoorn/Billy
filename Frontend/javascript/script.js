@@ -23,11 +23,16 @@ function kenniskaart_toevoegen() {
 	alert(JSON.stringify(data));
 
 	// Uncomment welk ip je wil benutten
+
 	// let ip = 'http://192.168.3.72:5000/toevoegen'
 	// var ip = '192.168.3.73:5000/toevoegen'
+	let ip = 'http://82.72.167.14:56743/toevoegen'
+	// let ip = '192.168.3.73:5000/toevoegen'
+
 
 	fetch('http://82.72.167.14:5000/toevoegen', {
 		method: 'POST',
+		headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
 		body: JSON.stringify(data)
 	})
 	.then((response) => {
@@ -37,6 +42,7 @@ function kenniskaart_toevoegen() {
 	});
 }
 
+/*
 function infoOphalen() {
 	let serach1 = document.getElementsByTagName("#mySearch").value;
 	let data = {
@@ -59,6 +65,7 @@ function infoOphalen() {
 	})
 
 }
+*/
 
 function myFunction() {
   // Declare variables

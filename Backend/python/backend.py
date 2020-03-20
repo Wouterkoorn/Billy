@@ -56,4 +56,4 @@ def verwijder_kenniskaart(id):
     return db.execute_sql(f'DELETE FROM kenniskaarten WHERE kenniskaart_ID = {id}')
 
 
-app.run(host='0.0.0.0')  # run host op LAN
+app.run(host='0.0.0.0')  # run host op www
