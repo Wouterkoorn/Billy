@@ -496,27 +496,28 @@ footer ul li a {
   border-style: solid;
   border-width: 5px;
   border-color: black;
-  margin: auto;
+  margin: 5px;
   padding: 1px 1px 3px 3px;
   width: 95%;
   border: #111111;
   background-color: white;
   box-shadow: 5px 5px 2px lightgray;
-
 }
-.kenniskaart #foto {
+
+.kenniskaart .kenniskaart-foto {
   width: 100%;
   height: 130px;
 }
-.kenniskaart #datum {
+.kenniskaart .kenniskaart-datum {
+  font-family: "Lucida Sans", sans-serif;
   font-size: 13px;
   color: red;
 }
-.kenniskaart #titel {
+.kenniskaart .kenniskaart-titel {
   font-family: "Lucida Sans", sans-serif;
   padding: 3px;
 }
-.kenniskaart #what {
+.kenniskaart .kenniskaart-what {
   word-break: break-word;
   padding: 0px 5px 3px 5px;
 }
