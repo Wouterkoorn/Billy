@@ -35,7 +35,8 @@ def vraag_kenniskaart_op():
              'voorbeeld': kenniskaart['voorbeeld'],
              'rol': kenniskaart['rol'],
              'vaardigheid': kenniskaart['vaardigheid'],
-             'hboi': kenniskaart['hboi']
+             'hboi': kenniskaart['hboi'],
+             'datetime': kenniskaart['datetime']
              })
     return jsonify(kenniskaarten), 200
 
