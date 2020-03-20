@@ -102,7 +102,7 @@ function toonkenniskaarten(item, index) {
   kenniskaartBestemming[0].appendChild(kenniskaart);
   var kenniskaartlocatie = document.getElementsByClassName("kenniskaart");
 
-  makeImg(kenniskaartlocatie[index], "kenniskaart-foto", '../css/placeholder.jpeg');
+  makeImg(kenniskaartlocatie[index], "kenniskaart-foto", '../fotos/placeholder.jpeg');
   makeElement(kenniskaartlocatie[index], "kenniskaart-datum", item["datum"], "div");
   makeElement(kenniskaartlocatie[index], "kenniskaart-titel", item["titel"], "H3");
   makeElement(kenniskaartlocatie[index], "kenniskaart-what", item["what"].slice(0, 150) + "...", "div");

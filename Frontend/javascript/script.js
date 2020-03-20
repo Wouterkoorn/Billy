@@ -30,7 +30,7 @@ function kenniskaart_toevoegen() {
 	// let ip = '192.168.3.73:5000/toevoegen'
 
 
-	fetch('http://82.72.167.14:5000/toevoegen', {
+	fetch(ip, {
 		method: 'POST',
 		headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
 		body: JSON.stringify(data)
@@ -41,6 +41,7 @@ function kenniskaart_toevoegen() {
 		alert(result['succes']);
 	});
 }
+
 
 /*
 function infoOphalen() {
