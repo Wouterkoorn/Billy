@@ -78,7 +78,12 @@ var testSearchResults =[
     "datum": "13 maart 2020",
     "tags": ["hoi1", "hoi2", "hoi3", "hoi4"],
   },
-]
+];
+
+function formatDateTime(unformatedDatum) {
+  var datum = new Date(unformatedDatum);
+  return datum.getDate() + " " + datum.getMonth() + " " + datum.getFullYear()
+}
 
 function makeElement(locatie, classnaam, contentInElement, ElementType) {
   var element = document.createElement(ElementType);
@@ -94,7 +99,7 @@ function makeImg(locatie, classnaam, imageInDiv) {
   locatie.appendChild(img);
 }
 
-function toonkenniskaarten(item, index) {
+function toonZoekResultaten(item, index) {
   var kenniskaartBestemming = document.getElementsByClassName("kenniskaartencontainer");
 
   var kenniskaart = document.createElement('div');
@@ -103,10 +108,27 @@ function toonkenniskaarten(item, index) {
   var kenniskaartlocatie = document.getElementsByClassName("kenniskaart");
 
   makeImg(kenniskaartlocatie[index], "kenniskaart-foto", '../fotos/placeholder.jpeg');
-  makeElement(kenniskaartlocatie[index], "kenniskaart-datum", item["datum"], "div");
+  makeElement(kenniskaartlocatie[index], "kenniskaart-datum", formatDateTime(item["datetime"]), "div");
   makeElement(kenniskaartlocatie[index], "kenniskaart-titel", item["titel"], "H3");
   makeElement(kenniskaartlocatie[index], "kenniskaart-what", item["what"].slice(0, 150) + "...", "div");
-  item["tags"].forEach(function (item) {
-    makeElement(kenniskaartlocatie[index], "kenniskaart-tags", item, "div")
-  });
+  // item["tags"].forEach(function (item) {
+  //   makeElement(kenniskaartlocatie[index], "kenniskaart-tags", item, "div")
+  // });
+}
+
+// testSearchResults.forEach(function(item, index) {toonZoekResultaten(item, index)})
+
+function fetchZoekResultaten() {
+  fetch("http://82.72.167.14:56743/ophalen")
+  .then(
+    function(response) {
+      response.json().then(function (data) {
+        data.forEach(function (item, index) {
+          toonZoekResultaten(item, index);
+        })
+      })
+    })
+  .catch(function(error) {
+    console.log(error);
+  })
 }
