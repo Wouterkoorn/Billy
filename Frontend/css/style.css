@@ -496,7 +496,7 @@ footer ul li a {
   border-style: solid;
   border-width: 5px;
   border-color: black;
-  margin: auto;
+  margin: 2%;
   padding: 1px 1px 3px 3px;
   width: 95%;
   border: #111111;
@@ -504,15 +504,15 @@ footer ul li a {
   box-shadow: 5px 5px 2px lightgray;
 
 }
-.kenniskaart #foto {
+#foto {
   width: 100%;
   height: 130px;
 }
-.kenniskaart #datum {
+#datum {
   font-size: 13px;
   color: red;
 }
-.kenniskaart #titel {
+#titel {
   font-family: "Lucida Sans", sans-serif;
   padding: 3px;
 }
@@ -587,6 +587,25 @@ footer ul li a {
 	padding: 20px;
 } */
 
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
 
 @media only screen and (min-width: 601px) {
   header .grids {
