@@ -5,6 +5,23 @@ import db
 app = Flask(__name__)
 CORS(app)
 
+def lijstmaken(billydb):
+    kenniskaarten = []
+    for kenniskaart in billydb:
+        kenniskaarten.append(
+            {'titel': kenniskaart['titel'],
+             'what': kenniskaart['what'],
+             'why': kenniskaart['why'],
+             'how': kenniskaart['how'],
+             'voorbeeld': kenniskaart['voorbeeld'],
+             'rol': kenniskaart['rol'],
+             'vaardigheid': kenniskaart['vaardigheid'],
+             'hboi': kenniskaart['hboi'],
+             'datetime': kenniskaart['datetime']
+             }
+        )
+    return kenniskaarten
+
 
 @app.route('/toevoegen', methods=['POST'])
 def voeg_kenniskaart_toe():
@@ -22,31 +39,16 @@ def check_input():
 @app.route('/ophalen', methods=['GET'])
 def vraag_kenniskaart_op():
     billydb = db.execute_sql('SELECT * FROM kenniskaarten')
-
-    kenniskaarten = []
-    for kenniskaart in billydb:
-        kenniskaarten.append(
-            {'titel': kenniskaart['titel'],
-             'what': kenniskaart['what'],
-             'why': kenniskaart['why'],
-             'how': kenniskaart['how'],
-             'voorbeeld': kenniskaart['voorbeeld'],
-             'rol': kenniskaart['rol'],
-             'vaardigheid': kenniskaart['vaardigheid'],
-             'hboi': kenniskaart['hboi'],
-             'datetime': kenniskaart['datetime']
-             }
-        )
-    return jsonify(kenniskaarten), 200
+    return jsonify(lijstmaken(billydb)), 200
 
 
 @app.route('/ophalen/<zoekvraag>', methods=['GET'])
 def zoek_kenniskaart(zoekvraag):
     billydb = db.execute_sql('SELECT * FROM kenniskaarten')
-
+    lijstkenniskaarten = lijstmaken(billydb)
     results, kenniskaartentitels = [], []
 
-    for item in billydb:
+    for item in lijstkenniskaarten:
 
         titel = str(item['titel'])
         kenniskaartentitels.append(titel)
@@ -73,7 +75,7 @@ def zoek_kenniskaart(zoekvraag):
         kaarten = []
 
         for i in results:
-            kaarten.append(billydb[kenniskaartentitels.index(i)])
+            kaarten.append(lijstkenniskaarten[kenniskaartentitels.index(i)])
 
         print(results)
 
