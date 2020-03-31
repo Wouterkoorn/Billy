@@ -4,10 +4,10 @@ function kennisbron_toevoegen() {
 	let awhy = document.getElementById('myWhy').value;
 	let ahow = document.getElementById('myHow').value;
 
-
+			
 	let data = {"what": awhat, "why": awhy, "how": ahow};
 
-	alert(JSON.stringify(data));
+	alert(JSON.stringify(data));			
 
 	fetch('http://82.72.167.14:5000/toevoegen', {
 		method: 'POST',
@@ -39,13 +39,13 @@ function kennisbron_toevoegen() {
 		// 		verwijderen.setAttribute("type","button");
 		// 		verwijderen.setAttribute("class", "verwijder");
 		// 		var row = document.createElement("tr")
-
+				
 		// 		lidnummer.appendChild(document.createTextNode(lid.id));
 		// 		lidnaam.appendChild(document.createTextNode(lid.voorletter + " " + lid.tussenvoegsel + " " + lid.achternaam));
 		// 		info.appendChild(document.createTextNode("info opvragen"));
 		// 		verwijderen.appendChild(document.createTextNode("verwijderen"));
-
-
+				
+				
 		// 		info.addEventListener('click', function(){
 		// 			document.getElementById("voorletter").innerHTML = lid.voorletter;
 		// 			document.getElementById("tussenvoegsel").innerHTML = lid.tussenvoegsel;
@@ -60,7 +60,7 @@ function kennisbron_toevoegen() {
 		// 			document.getElementById("telefoon").innerHTML = lid.telefoonnummer;
 		// 			document.getElementById("email").innerHTML = lid.email;
 		// 		});
-
+				
 		// 		verwijderen.addEventListener('click', function() {
 		// 			var gebruiker = lid.gebruikersnaam;
 		// 			fetch('restservices/persoon/verwijderen/'+gebruiker, {method: 'DELETE'})
@@ -68,18 +68,19 @@ function kennisbron_toevoegen() {
 		// 				if (request.ok) {
 		// 					console.log("lid is verwijderd");
 		// 					alert("Lid is verwijderd!")
-		// 				} else {
+		// 				} else { 
 		// 					console.log("Er is iets verkeerd");
 		// 					alert("Er is een fout opgetreden!!");
 		// 				}
 		// 			})
 		// 		});
-
+				
 		// 		row.appendChild(lidnummer);
 		// 		row.appendChild(lidnaam);
 		// 		row.appendChild(info);
 		// 		row.appendChild(verwijderen);
-
+				
 		// 		document.querySelector('#leden').appendChild(row);
 		// 	}
 		// });
+

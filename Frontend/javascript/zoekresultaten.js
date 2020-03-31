@@ -35,7 +35,7 @@ function toonkenniskaarten() {
   var kenniskaart = document.createElement('div');
 
   kenniskaart.setAttribute('class', 'kenniskaart');
-  kenniskaartlocatie.appendChild(kenniskaart);
+  kenniskaartlocatie[0].appendChild(kenniskaart);
 }
 
 

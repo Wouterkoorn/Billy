@@ -10,6 +10,5 @@ CREATE TABLE `kenniskaarten` (
   `rol` Varchar(255),
   `vaardigheid` Varchar(255),
   `hboi` Varchar(255),
-  'datetime' TIMESTAMP,
   PRIMARY KEY (`kenniskaart_ID`)
 );
