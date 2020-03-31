@@ -393,7 +393,7 @@ header nav ul li a {
 .index-banner {
   width: 100%;
   height: calc(100vh - 100px);
-  background-image: url("../css/index-books.jpeg");
+  background-image: url("fotos/index-books.jpeg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
