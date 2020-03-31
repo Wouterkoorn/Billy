@@ -89,9 +89,13 @@ hr {
 }
 
 input, select {
-  vertical-align:middle;
+  vertical-align: middle;
 }
 
+.col-9 {
+  margin-top: 20px;
+  text-align: center;
+}
 
 /* My code */
 
