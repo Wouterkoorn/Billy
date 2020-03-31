@@ -46,6 +46,7 @@ function fetchZoekResultaten() {
   .then(
     function(response) {
       response.json().then(function (data) {
+        data.reverse();
         data.forEach(function (item, index) {
           toonZoekResultaten(item, index);
         })
