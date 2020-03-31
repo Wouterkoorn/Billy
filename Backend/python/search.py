@@ -1,13 +1,13 @@
-# example list for testing this should be the list of things youre searching through, such as all kenniskaarten
-fruit = ['peer', 'sinasappel', 'banaan', 'kiwi', 'appel', 'Aardbei', 'Meloen', 'perzik', 'framboos',
-         'Granaatappel', 'appelmoes', 'Abrikoos', 'ananas', 'braam', 'bes', 'kers', 'nectarine']
+import backend
+
+kenniskaartenList = vraag_kenniskaart_op()
 
 
 def search(request):
     """Vind alle kenniskaarten die overeenkomen met de search querry, 'ba' vind banaan terwijl """
     results = []
     # loop through each item inside the example list
-    for item in fruit:
+    for item in kenniskaartenList:
         def bestResult(resultSort):
             """sorteert alle resulateten op eerst voorkomend, stel je zoekt 'an' dan vind je ananas eerder dan banaan.
             Let er op dat je ook banaan vind ondanks dat er geen 'd' in de search querry zit."""
@@ -29,3 +29,6 @@ def search(request):
 
 
 userInput = input('Zoek: ')
+print(search(userInput))
+
+input('Press Enter to exit...')
