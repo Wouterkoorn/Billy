@@ -125,14 +125,14 @@ header nav ul {
   display: block;
   margin: 0 auto;
   width: fit-content;
+  text-align: center;
 }
 
 header nav ul li {
   display: inline-block;
-  float: middle ;
+  text-align: center;
   list-style: none;
   padding: 0 16px;
-
 }
 
 header nav ul li a {
