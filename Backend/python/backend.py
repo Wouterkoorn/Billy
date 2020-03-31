@@ -8,7 +8,6 @@ CORS(app)
 
 @app.route('/toevoegen', methods=['POST'])
 def voeg_kenniskaart_toe():
-    """"Voegt kenniskaart toe in de database"""
     data = request.json
     sql = f"INSERT INTO kenniskaarten(titel, what, why, how, voorbeeld, rol, vaardigheid, hboi) VALUES ('{data['titel']}','{data['what']}','{data['why']}','{data['how']}','{data['voorbeeld']}','{data['rol']}','{data['vaardigheid']}','{data['hboi']}')"
     db.execute_sql(sql)
@@ -22,7 +21,6 @@ def check_input():
 
 @app.route('/ophalen', methods=['GET'])
 def vraag_kenniskaart_op():
-    """Returnd alle velden van kenniskaart waaronder What Why How"""
     billydb = db.execute_sql('SELECT * FROM kenniskaarten')
 
     kenniskaarten = []
@@ -37,7 +35,51 @@ def vraag_kenniskaart_op():
              'vaardigheid': kenniskaart['vaardigheid'],
              'hboi': kenniskaart['hboi'],
              'datetime': kenniskaart['datetime']
-             })
+             }
+        )
     return jsonify(kenniskaarten), 200
 
-app.run(host='0.0.0.0')  # run host op www
+
+@app.route('/ophalen/<zoekvraag>', methods=['GET'])
+def zoek_kenniskaart(zoekvraag):
+    billydb = db.execute_sql('SELECT * FROM kenniskaarten')
+
+    results, kenniskaartentitels = [], []
+
+    for item in billydb:
+
+        titel = str(item['titel'])
+        kenniskaartentitels.append(titel)
+
+        def bestResult(resultSort):
+            num = resultSort.lower().find(zoekvraag.lower())
+            return num
+
+        if zoekvraag.lower() in titel.lower():
+            results.append(titel)
+            print('1')
+
+        elif titel.lower() in zoekvraag.lower():
+            results.append(titel)
+            print('2')
+
+    if len(results) == 0:
+        print('3')
+        return 'Geen resultaten gevonden.'
+
+    else:
+        sorted(results, key=bestResult, reverse=False)
+
+        kaarten = []
+
+        for i in results:
+            kaarten.append(billydb[kenniskaartentitels.index(i)])
+
+        print(results)
+
+        print(len(kaarten))
+        return jsonify(kaarten), 200
+
+
+app.run(host='0.0.0.0', port='56743')  # run host op www
+
