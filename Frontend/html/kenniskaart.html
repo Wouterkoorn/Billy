@@ -2,7 +2,7 @@
 <html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PROTO</title>
+<title>kenniskaart</title>
 
 <head>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
@@ -33,46 +33,50 @@
 			<div class="zoekveld">
 				<input class="mySearch" type="text" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
 			</div>
+
+			<section class="kenniskaartencontainer">
+				<div id="testknopje">
+					<button type="button" class="bevestigen" id="bevestigen"
+							onclick="toonkenniskaarten()">
+						test</button>
+				</div>
+				<div class="kenniskaart">
+					<img id="foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">
+					<div id="datum">12 maart 2020</div>
+					<H3 id="titel">Lorem Ipsum</H3>
+					<div id="what">test1</div>
+					<div class="kenniskaart-tags">bip</div>
+					<div class="kenniskaart-tags">boop</div>
+					<div class="kenniskaart-tags">beep</div>
+				</div>
+				<div id="testing" class="kenniskaart" onclick="toonkenniskaarten()">
+					<h3>asdasd</h3>
+				</div>
+			</section>
+
 		</section>
 
 		<footer>
 			<ul class="footer-main">
 				<li><a href="#">home</a></li>
 				<li><a href="#">Toevoegen</a></li>
-      	<li><a href="#">Beheren</a></li>
+      			<li><a href="#">Beheren</a></li>
 			</ul>
 			<div class="footer-sm">
 				<a href="#">
-					<img src="D:/Open ICT/EBilly/Frontend/css/facebook-logo.png" alt="facebook icon">
+					<img src="../css/fotos/facebook-logo.png" alt="facebook icon">
 				</a>
 				<a href="#">
-					<img src="D:/Open ICT/EBilly/Frontend/css/hu-logo.png" alt="facebook icon">
+					<img src="../css/fotos/hu-logo.png" alt="facebook icon">
 				</a>
 				<a href="#">
-					<img src="D:/Open ICT/EBilly/Frontend/css/twitter-logo.png" alt="facebook icon">
+					<img src="../css/fotos/twitter-logo.png" alt="facebook icon">
 				</a>
 			</div>
 		</footer>
 	</main>
 
-  		<!-- <div class="col-9">
-    		<div class="column">
-    			<h1 class="h1">Doorzoekbare Billy</h1>
-		    	<p>Huidige Billy content kan niet makkelijk doorzocht worden. Zou ook qua content gestructureerd kunnen zijn, zoals naar HBO-I, Rol en Niveau van de content.</p>
-
-		  		<div class="boxje">
-		  			<label for="search"></label>
-		  			<input placeholder="Zoek kennisbron.." type="search" id="mySearch" name="search"><br><br>
-			  	</div>
-			  	<div class="boxje">
-						<button type="button" class="bevestigen" id="bevestigen">Bevestigen</button>
-					</div>
-				</div>
-	  	</div> -->
-
-
-	</div>
-
+	<script type="text/javascript" src="../javascript/zoekresultaten.js"></script>
 
 </body>
 </html>

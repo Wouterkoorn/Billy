@@ -17,7 +17,7 @@ while True:
             # if an item from the example list contains a part of the search request (all lower case)
             if request.lower() in item.lower():
                 results.append(item)
-            # if the statement above returns false, check the opposite
+            # if the statement above returns false, check te opposite
             elif item.lower() in request.lower():
                 results.append(item)
         if len(results) == 0:# if nothing is found
