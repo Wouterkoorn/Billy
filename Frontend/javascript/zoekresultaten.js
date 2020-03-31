@@ -33,9 +33,9 @@ function makediv(kenniskaart){
 function toonkenniskaarten() {
   var kenniskaartlocatie = document.getElementsByClassName("kenniskaartencontainer");
   var kenniskaart = document.createElement('div');
-
+  
   kenniskaart.setAttribute('class', 'kenniskaart');
-  kenniskaartlocatie[0].appendChild(kenniskaart);
+  kenniskaartlocatie.appendChild(kenniskaart);
 }
 
 
