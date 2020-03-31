@@ -1,6 +1,7 @@
-import backend
+import requests
 
-kenniskaartenList = vraag_kenniskaart_op()
+URL = 'http://82.72.167.14:56743/ophalen'
+kenniskaartenList = requests.get(url=URL)
 
 
 def search(request):
