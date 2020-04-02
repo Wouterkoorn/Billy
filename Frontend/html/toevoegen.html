@@ -2,26 +2,36 @@
 <html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>toevoegen</title>
+<title>kenniskaart</title>
 
 <head>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 
-<body>
-	<div class="header">
-		<h1>E-Billy</h1>
-	</div>
-	<div class="row">
-		<div class="col-3 menu">
-    	<ul>
-    		<li><a href="index.html">Home</a></li>
-		    <li><a href="toevoegen.html">Toevoegen</a></li>
-      	<li><a href="beheren.html">Beheren</a></li>
+
+
+<body onload="fetchZoekResultaten()">
+	<header>
+		<h1 class="header-brand">logo</h1>
+
+		<nav>
+			<ul>
+				<li><a href="index.html">Home</a></li>
+		    	<li><a href="toevoegen.html">Toevoegen</a></li>
+				<li><a href="kenniskaarten.html">Kenniskaarten</a></li>
 			</ul>
+<<<<<<< HEAD
   	</div>
 
   		<div class="col-9">
+=======
+		</nav>
+	</header>
+
+	<main>
+
+		<section class="col-9">
+>>>>>>> 47e45c1410d3f3dfd3091dccf01d09a39848e9f9
     		<div class="column">
 
     			<div>
@@ -53,13 +63,38 @@
 						<button type="button" class="bevestigen" id="bevestigen" onclick="kenniskaart_toevoegen()">Bevestigen</button>
 					</div>
 				</div>
+<<<<<<< HEAD
 	  	</div>
+=======
+			</div>
+	  	</section>
+>>>>>>> 47e45c1410d3f3dfd3091dccf01d09a39848e9f9
 
 
-	</div>
+		<footer>
+			<ul class="footer-main">
+				<li><a href="#">Hogeschool Utrecht</a></li>
+				<li><a href="#">Voltijd</a></li>
+      			<li><a href="#">Meer HU sites</a></li>
+			</ul>
 
-	<script type="text/javascript" src="../javascript/script.js"></script>
+			<!--
+			<div class="footer-sm">
+				<a href="#">
+					<img src="../fotos/facebook-logo.png" alt="facebook icon">
+				</a>
+				<a href="#">
+					<img src="../fotos/hu-logo.png" alt="facebook icon">
+				</a>
+				<a href="#">
+					<img src="../fotos/twitter-logo.png" alt="facebook icon
+				</a>
+			</div>
+			-->
+		</footer>
+	</main>
 
+	<script type="text/javascript" src="../javascript/zoekresultaten.js"></script>
 
 </body>
 </html>
