@@ -8,12 +8,11 @@ function kenniskaart_toevoegen() {
 		"titel": document.getElementById('formTitel').value,
 		"vaardigheid": document.getElementById('formVaardigheid').value,
 		"rol": document.getElementById('formRol').value,
-		"hboi": emptyString.concat(document.getElementById('formHBO-i').value, document.getElementById('formActiviteiten').value, document.getElementById('formNiveau').value),
+		"hboi": emptyString.concat(document.getElementById('formArchitectuurlagen').value, document.getElementById('formActiviteiten').value, document.getElementById('formNiveau').value),
 		"what": document.getElementById('formWhat').value,
 		"why": document.getElementById('formWhy').value,
 		"how": document.getElementById('formHow').value,
 		"voorbeeld": document.getElementById('formVoorbeeld').value,
-
 	};
 	fetch(ip, {//met post method de json data die in dataKenniskaart is gezet
 		method: 'POST',
