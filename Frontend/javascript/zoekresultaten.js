@@ -45,8 +45,8 @@ function fetchResultaten( ) {
   fetch("http://82.72.167.14:56743/ophalen")
   .then(
     function(response) {
-      response.json().then(function (data) {
-        data.reverse();
+      response.json().then(function (data) {//response omzetten in json zodat javascript het kan gebruiken in de functie erna
+        data.reverse();//sorteren op laatst toegevoegd
         data.forEach(function (item, index) {
           toonZoekResultaten(item, index);
         })
