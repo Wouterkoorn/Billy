@@ -6,12 +6,11 @@
 
 <head>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
-	<link rel="stylesheet" type="text/css" href="../css/compatibility.css">
 </head>
 
 
 
-<body onload="fetchResultaten()">
+<body >
 	<header>
 		<h1 class="header-brand">E-Billy</h1>
 
@@ -35,11 +34,9 @@
 				<input class="mySearch" type="text" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
 			</div>
 
-			<section class="kenniskaartencontainer">
+			<div class="kenniskaartencontainer">
 				<div id="testknopje">
-					<button type="button" class="bevestigen" id="bevestigen"
-							onclick="toonkenniskaarten()">
-						test</button>
+					<button type="button" class="bevestigen" id="bevestigen" onclick="toonkenniskaarten()">test</button>
 				</div>
 				<div id="kennis" class="kenniskaart">
 					<img id="foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">
@@ -51,27 +48,28 @@
 					<div class="kenniskaart-tags">Tag me 3</div>
 				</div>
 				<div id="testing" class="kenniskaart" onclick="toonkenniskaarten()">
-					<h3>Test button</h3>
+					<h3>Test kenniskaart</h3>
 				</div>
-			</section>
+			</div>
 		</section>
 
 
 		<!-- Trigger/Open The Modal -->
 		<button id="myBtn">Open Modal</button>
+		<!-- The Modal -->
 		<div id="myModal" class="modal">
-  	<!-- Modal content -->
+  		<!-- Modal content -->
   		<div class="modal-content">
-				<div class="modal-header">
-    			<span class="close">&times;</span>
-    			<h2>Modal Header</h2>
+    		<div class="modal-header">
+      		<span class="close">&times;</span>
+      		<h2>Modal Header</h2>
     		</div>
     		<div class="modal-body">
-					<p>Some text in the Modal Body</p>
-					<p>Some other text...</p>
-  			</div>
-  			<div class="modal-footer">
-    			<h3>Modal Footer</h3>
+      		<p>Some text in the Modal Body</p>
+      		<p>Some other text...</p>
+    		</div>
+    		<div class="modal-footer">
+      		<h3>Modal Footer</h3>
     		</div>
   		</div>
 
@@ -97,6 +95,7 @@
 		</footer>
 	</main>
 
+	<script type="text/javascript" src="../javascript/script.js"></script>
 	<script type="text/javascript" src="../javascript/zoekresultaten.js"></script>
 
 </body>
