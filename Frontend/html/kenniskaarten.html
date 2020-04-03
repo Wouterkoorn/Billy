@@ -6,6 +6,7 @@
 
 <head>
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<link rel="stylesheet" type="text/css" href="../css/compatibility.css">
 </head>
 
 
@@ -18,7 +19,7 @@
 			<ul>
 				<li><a href="index.html">Home</a></li>
 		    <li><a href="toevoegen.html">Toevoegen</a></li>
-      	<li><a href="beheren.html">Beheren</a></li>
+      	<li><a href="kenniskaarten.html">Kenniskaarten</a></li>
 			</ul>
 		</nav>
 	</header>
@@ -40,7 +41,7 @@
 							onclick="toonkenniskaarten()">
 						test</button>
 				</div>
-				<div class="kenniskaart">
+				<div id="kennis" class="kenniskaart">
 					<img id="foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">
 					<div id="datum">12 maart 2020</div>
 					<H3 id="titel">Lorem The tiltel</H3>
@@ -53,14 +54,34 @@
 					<h3>Test button</h3>
 				</div>
 			</section>
-
 		</section>
+
+
+		<!-- Trigger/Open The Modal -->
+		<button id="myBtn">Open Modal</button>
+		<div id="myModal" class="modal">
+  	<!-- Modal content -->
+  		<div class="modal-content">
+				<div class="modal-header">
+    			<span class="close">&times;</span>
+    			<h2>Modal Header</h2>
+    		</div>
+    		<div class="modal-body">
+					<p>Some text in the Modal Body</p>
+					<p>Some other text...</p>
+  			</div>
+  			<div class="modal-footer">
+    			<h3>Modal Footer</h3>
+    		</div>
+  		</div>
+
+		</div>
 
 		<footer>
 			<ul class="footer-main">
 				<li><a href="#">home</a></li>
 				<li><a href="#">Toevoegen</a></li>
-      			<li><a href="#">Beheren</a></li>
+      	<li><a href="#">Beheren</a></li>
 			</ul>
 			<div class="footer-sm">
 				<a href="#">
