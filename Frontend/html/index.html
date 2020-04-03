@@ -10,7 +10,7 @@
 
 
 
-<body onload="fetchZoekResultaten()">
+<body>
 	<header>
 		<h1 class="header-brand">logo</h1>
 
@@ -30,6 +30,7 @@
 		<section class="index-links">
 			<div class="zoekveld">
 				<input class="mySearch" type="text" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+				<button type="submit" onclick="fetchResultaten()">Search</button>
 			</div>
 
 			<!--

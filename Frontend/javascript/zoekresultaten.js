@@ -41,7 +41,7 @@ function toonZoekResultaten(item, index) {
 
 // testSearchResults.forEach(function(item, index) {toonZoekResultaten(item, index)})
 
-function fetchZoekResultaten() {
+function fetchResultaten( ) {
   fetch("http://82.72.167.14:56743/ophalen")
   .then(
     function(response) {
