@@ -59,14 +59,11 @@ def zoek_kenniskaart(zoekvraag):
 
         if zoekvraag.lower() in titel.lower():
             results.append(titel)
-            print('1')
 
         elif titel.lower() in zoekvraag.lower():
             results.append(titel)
-            print('2')
 
     if len(results) == 0:
-        print('3')
         return 'Geen resultaten gevonden.'
 
     else:
@@ -77,11 +74,7 @@ def zoek_kenniskaart(zoekvraag):
         for i in results:
             kaarten.append(lijstkenniskaarten[kenniskaartentitels.index(i)])
 
-        print(results)
-
-        print(len(kaarten))
         return jsonify(kaarten), 200
 
 
 app.run(host='0.0.0.0', port='56743')  # run host op www
-
