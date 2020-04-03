@@ -6,6 +6,9 @@
     text-align: center;
 }
 
+#searchButton {
+    background-image: url("../css/fotos/search-icon.png");
+}
 
 
 
