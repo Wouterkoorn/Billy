@@ -1,4 +1,35 @@
 function kenniskaart_toevoegen() {
+	/*Voegt alle data die is ingevuld bij de template samen in een json variable en verstuurd deze naar de backend.
+	Geeft na een succesvolle operatie een alert dat het gelukt is.
+	*/
+	let ip = 'http://82.72.167.14:56743/toevoegen';
+	let dataKenniskaart = {
+		"titel": document.getElementById('formTitel').value,
+		"vaardigheid": document.getElementById('formVaardigheid').value,
+		"rol": document.getElementById('formRol').value,
+		"hboi": document.getElementById('formHBO-i').value,
+		"what": document.getElementById('formWhat').value,
+		"why": document.getElementById('formWhy').value,
+		"how": document.getElementById('formHow').value,
+		"voorbeeld": document.getElementById('formVoorbeeld').value,
+
+	};
+	fetch(ip, {//met post method de json data die in dataKenniskaart is gezet
+		method: 'POST',
+		headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+		body: JSON.stringify(dataKenniskaart)
+	})
+	.then((response) => {
+		return response.json();
+	})
+	.then((result) => {
+		alert('uw kenniskaartje is toegevoegd');
+	})
+}
+
+
+/*
+function kenniskaart_toevoegen() {
 
 	let what = document.getElementById('myWhat').value;
 	let why = document.getElementById('myWhy').value;
@@ -10,12 +41,12 @@ function kenniskaart_toevoegen() {
 	let vaardigheid = document.getElementById('myVaardigheid').value;
 
 	let data = {
+		"titel": document.getElementById('formTitel').value,
+		"hboi": hboi,
+		"rol": rol,
 		"what": what,
 		"why": why,
 		"how": how,
-		"titel": titel,
-		"hboi": hboi,
-		"rol": rol,
 		"voorbeeld": voorbeeld,
 		"vaardigheid": vaardigheid
 	};
@@ -26,7 +57,7 @@ function kenniskaart_toevoegen() {
 
 	// let ip = 'http://192.168.3.72:5000/toevoegen'
 	// var ip = '192.168.3.73:5000/toevoegen'
-	let ip = 'http://82.72.167.14:56743/toevoegen'
+	let ip = 'http://82.72.167.14:56743/toevoegen';
 	// let ip = '192.168.3.73:5000/toevoegen'
 
 
@@ -41,6 +72,8 @@ function kenniskaart_toevoegen() {
 		alert(result['succes']);
 	});
 }
+*/
+
 
 
 /*
