@@ -12,23 +12,68 @@
 
 <body onload="fetchResultaten()">
 	<header>
-		<h1 class="header-brand">logo</h1>
+		<h1 class="header-brand">E-Billy</h1>
 
 		<nav>
 			<ul>
 				<li><a href="index.html">Home</a></li>
-		    	<li><a href="toevoegen.html">Toevoegen</a></li>
-                <li><a href="kenniskaarten.html">Kenniskaarten</a></li>
+		    <li><a href="toevoegen.html">Toevoegen</a></li>
+      	<li><a href="beheren.html">Beheren</a></li>
 			</ul>
 		</nav>
 	</header>
 
 	<main>
-        <section class="kenniskaartencontainer">
+		<section class="index-banner">
+			<div class="vertical-center">
+				<h2> Welkom <br>bij de <br>E-Billy <br>bronnen weizer</h2>
+			</div>
+		</section>
+		<section class="index-links">
+			<div class="zoekveld">
+				<input class="mySearch" type="text" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
+			</div>
 
+			<section class="kenniskaartencontainer">
+				<div id="testknopje">
+					<button type="button" class="bevestigen" id="bevestigen"
+							onclick="toonkenniskaarten()">
+						test</button>
+				</div>
+				<div class="kenniskaart">
+					<img id="foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">
+					<div id="datum">12 maart 2020</div>
+					<H3 id="titel">Lorem The tiltel</H3>
+					<div id="what">I,m the what</div>
+					<div class="kenniskaart-tags">Tag me 1</div>
+					<div class="kenniskaart-tags">Tang me 2</div>
+					<div class="kenniskaart-tags">Tag me 3</div>
+				</div>
+				<div id="testing" class="kenniskaart" onclick="toonkenniskaarten()">
+					<h3>Test button</h3>
+				</div>
+			</section>
 
+		</section>
 
-        </section>
+		<footer>
+			<ul class="footer-main">
+				<li><a href="#">home</a></li>
+				<li><a href="#">Toevoegen</a></li>
+      			<li><a href="#">Beheren</a></li>
+			</ul>
+			<div class="footer-sm">
+				<a href="#">
+					<img src="../css/fotos/facebook-logo.png" alt="facebook icon">
+				</a>
+				<a href="#">
+					<img src="../css/fotos/hu-logo.png" alt="facebook icon">
+				</a>
+				<a href="#">
+					<img src="../css/fotos/twitter-logo.png" alt="facebook icon">
+				</a>
+			</div>
+		</footer>
 	</main>
 
 	<script type="text/javascript" src="../javascript/zoekresultaten.js"></script>
