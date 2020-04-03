@@ -1,0 +1,18 @@
+.toevoegenFormContainers {
+
+}
+
+#toevoegenForm {
+    text-align: center;
+}
+
+#searchButton {
+    background-image: url("../css/fotos/search-icon.png");
+}
+
+
+
+/* mobile versie */
+@media only screen and (max-width: 600px) {
+
+}
