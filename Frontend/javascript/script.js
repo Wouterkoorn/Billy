@@ -3,11 +3,12 @@ function kenniskaart_toevoegen() {
 	Geeft na een succesvolle operatie een alert dat het gelukt is.
 	*/
 	let ip = 'http://82.72.167.14:56743/toevoegen';
+	var emptyString = '';
 	let dataKenniskaart = {
 		"titel": document.getElementById('formTitel').value,
 		"vaardigheid": document.getElementById('formVaardigheid').value,
 		"rol": document.getElementById('formRol').value,
-		"hboi": document.getElementById('formHBO-i').value,
+		"hboi": emptyString.concat(document.getElementById('formHBO-i').value, document.getElementById('formActiviteiten').value, document.getElementById('formNiveau').value),
 		"what": document.getElementById('formWhat').value,
 		"why": document.getElementById('formWhy').value,
 		"how": document.getElementById('formHow').value,
