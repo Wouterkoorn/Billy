@@ -95,7 +95,7 @@ header nav ul li a {
   width: inherit;
   height: inherit;
   overflow: hidden;
-  display: inline-block;
+  display: flex;
 }
 
 .mySearch {
@@ -105,20 +105,21 @@ header nav ul li a {
 }
 
 #searchBar {
-  width: 90%;
+  padding-left: 15px;
+  width: inherit;
   height: inherit;
-  float: left;
-  display: inline-block;
+  float: right;
 }
 #searchButton {
-  width: 10%;
+  width: auto;
   height: inherit;
-  background-color: lightblue;
+  background-color: white;
   float: left;
-  display: inline-block;
 }
 #searchButton img {
-  height: 100%;
+  display: block;
+  margin: auto;
+  height: 40px;
   width: auto;
   text-align: center;
 }
