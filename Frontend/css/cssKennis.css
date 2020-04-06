@@ -1,7 +1,7 @@
 
 
-/* The Modal (background) */
-.modal {
+/* The kenniskaart (background) */
+.kennis {
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
@@ -16,8 +16,8 @@
 }
 
 
-/* Modal Content */
-.modal-content {
+/* Kenniskaart Content */
+.kennis-content {
   position: relative;
   background-color: #fefefe;
   margin: auto;
@@ -57,15 +57,15 @@
   cursor: pointer;
 }
 
-.modal-header {
+.kennis-header {
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
 }
 
-.modal-body {padding: 2px 16px;}
+.kennis-body {padding: 2px 16px;}
 
-.modal-footer {
+.kennis-footer {
   padding: 2px 16px;
   background-color: #5cb85c;
   color: white;
