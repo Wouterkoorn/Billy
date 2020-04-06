@@ -5,7 +5,7 @@
   display: none; /* Hidden by default */
   position: fixed; /* Stay in place */
   z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  padding-top: 70px; /* Location of the box */
   left: 0;
   top: 0;
   width: 100%; /* Full width */
@@ -19,16 +19,16 @@
 /* Kenniskaart Content */
 .kennis-content {
   position: relative;
-  background-color: #fefefe;
+  background-color: transparent;
   margin: auto;
   padding: 0;
-  border: 1px solid #888;
+  /* border: 1px solid #888; */
   width: 80%;
-  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,1);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;
   animation-name: animatetop;
-  animation-duration: 0.4s
+  animation-duration: 0.4s;
 }
 
 /* Add Animation */
@@ -64,7 +64,7 @@
   background-size: contain;
   display: grid;
   padding: 2px 16px;
-  background-color: #5cb85c;
+  background-color: transparent;
   color: white;
 }
 
@@ -72,4 +72,8 @@
   padding: 2px 16px;
   max-height: calc(100vh - 210px);
   overflow-y: auto;
+  border-width: 1px;
+  border: solid;
+  border-color: #E1E1E1;
+  background-color: aliceblue;
 }
