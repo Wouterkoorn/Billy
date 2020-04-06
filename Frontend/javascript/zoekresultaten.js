@@ -42,20 +42,18 @@ function toonZoekResultaten(item, index) {
 // testSearchResults.forEach(function(item, index) {toonZoekResultaten(item, index)})
 
 function fetchResultaten() {
-  if (event.keyCode === 13) {
-    console.log('zoeken...');
-    fetch("http://82.72.167.14:56743/ophalen/".concat(document.getElementById('searchBar').value))
-        .then(
-            function (response) {
-              response.json().then(function (data) {//response omzetten in json zodat javascript het kan gebruiken in de functie erna
-                // data.reverse();//sorteren op laatst toegevoegd
-                data.forEach(function (item, index) {
-                  toonZoekResultaten(item, index);
-                })
+  console.log('zoeken...');
+  fetch("http://82.72.167.14:56743/ophalen/".concat(document.getElementById('searchBar').value))
+      .then(
+          function (response) {
+            response.json().then(function (data) {//response omzetten in json zodat javascript het kan gebruiken in de functie erna
+              // data.reverse();//sorteren op laatst toegevoegd
+              data.forEach(function (item, index) {
+                toonZoekResultaten(item, index);
               })
             })
-        .catch(function (error) {
-          console.log(error);
-        })
-  }
+          })
+      .catch(function (error) {
+        console.log(error);
+      })
 }
