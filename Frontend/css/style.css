@@ -180,8 +180,8 @@ footer ul li a {
 }
 .kenniskaart {
   border-style: solid;
-  border-width: 5px;
-  border-color: black;
+  border-width: 0.5px;
+  border-color: #E1E1E1;
   margin: 5px 15px 5px 15px;
   padding: 1px 3px 1px 3px;
   /*border: #111111;*/
