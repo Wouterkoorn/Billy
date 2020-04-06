@@ -1,4 +1,35 @@
 function kenniskaart_toevoegen() {
+	/*Voegt alle data die is ingevuld bij de template samen in een json variable en verstuurd deze naar de backend.
+	Geeft na een succesvolle operatie een alert dat het gelukt is.
+	*/
+	let ip = 'http://82.72.167.14:56743/toevoegen';
+	var emptyString = '';
+	let dataKenniskaart = {
+		"titel": document.getElementById('formTitel').value,
+		"vaardigheid": document.getElementById('formVaardigheid').value,
+		"rol": document.getElementById('formRol').value,
+		"hboi": emptyString.concat(document.getElementById('formArchitectuurlagen').value, document.getElementById('formActiviteiten').value, document.getElementById('formNiveau').value),
+		"what": document.getElementById('formWhat').value,
+		"why": document.getElementById('formWhy').value,
+		"how": document.getElementById('formHow').value,
+		"voorbeeld": document.getElementById('formVoorbeeld').value,
+	};
+	fetch(ip, {//met post method de json data die in dataKenniskaart is gezet
+		method: 'POST',
+		headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+		body: JSON.stringify(dataKenniskaart)
+	})
+	.then((response) => {
+		return response.json();
+	})
+	.then((result) => {
+		alert('uw kenniskaartje is toegevoegd');
+	})
+}
+
+
+/*
+function kenniskaart_toevoegen() {
 
 	let what = document.getElementById('myWhat').value;
 	let why = document.getElementById('myWhy').value;
@@ -10,12 +41,12 @@ function kenniskaart_toevoegen() {
 	let vaardigheid = document.getElementById('myVaardigheid').value;
 
 	let data = {
+		"titel": document.getElementById('formTitel').value,
+		"hboi": hboi,
+		"rol": rol,
 		"what": what,
 		"why": why,
 		"how": how,
-		"titel": titel,
-		"hboi": hboi,
-		"rol": rol,
 		"voorbeeld": voorbeeld,
 		"vaardigheid": vaardigheid
 	};
@@ -26,7 +57,7 @@ function kenniskaart_toevoegen() {
 
 	// let ip = 'http://192.168.3.72:5000/toevoegen'
 	// var ip = '192.168.3.73:5000/toevoegen'
-	let ip = 'http://82.72.167.14:56743/toevoegen'
+	let ip = 'http://82.72.167.14:56743/toevoegen';
 	// let ip = '192.168.3.73:5000/toevoegen'
 
 
@@ -41,6 +72,8 @@ function kenniskaart_toevoegen() {
 		alert(result['succes']);
 	});
 }
+*/
+
 
 
 /*
@@ -82,5 +115,40 @@ function myFunction() {
     } else {
       li[i].style.display = "none";
     }
+  }
+}
+
+
+// Get the kenniskaart
+var kennis = document.getElementById("myKennis");
+
+// Get the button that opens the kenniskaart
+var btn = document.getElementById("myBtn");
+
+// Get the div that opens the kenniskaart
+var ken = document.getElementById("kennis");
+
+// Get the <span> element that closes the kenniskaart
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the kenniskaart
+btn.onclick = function() {
+  kennis.style.display = "block";
+}
+
+// When the user clicks on the kenniskaart, open the kenniskaart
+ken.addEventListener('click', function(event) {
+  kennis.style.display = "block";
+});
+
+// When the user clicks on <span> (x), close the kenniskaart
+span.onclick = function() {
+  kennis.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the kenniskaart, close it
+window.onclick = function(event) {
+  if (event.target == kennis) {
+    kennis.style.display = "none";
   }
 }
