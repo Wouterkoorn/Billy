@@ -38,6 +38,15 @@ function toonZoekResultaten(item, index) {
   // });
 }
 
+function cleanupKenniskaarten() {
+  var kenniskaartenSection = document.getElementsByClassName('kenniskaartencontainer');
+  console.log(kenniskaartenSection.firstElementChild);
+  // kenniskaartenSection.innerHTML = '';
+  while(kenniskaartenSection) {
+    var element = document.getElementsByClassName('kenniskaart');
+    kenniskaartenSection.removeChild(element);
+  }
+}
 
 // testSearchResults.forEach(function(item, index) {toonZoekResultaten(item, index)})
 

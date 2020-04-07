@@ -40,12 +40,12 @@
 
 			<form id="toevoegenForm" onsubmit="kenniskaart_toevoegen()">
 				<div class="toevoegenFormContainers">
-					<H4>Titel</H4>
-					<input type="text" class="toevoegenForm" id="formTitel" name="formTitel">
+					<H4 class="toevoegenForm">Titel</H4>
+					<input type="text" id="formTitel" name="formTitel">
 				</div>
 				<div class="toevoegenFormContainers">
 					<H4 class="toevoegenForm">Algemene Vaardigheid</H4>
-					<select class="toevoegenForm" id="formVaardigheid">
+					<select id="formVaardigheid">
 						<option value="Vakbekwaam, juiste kennis ontwikkelen">Vakbekwaam, juiste kennis ontwikkelen</option>
 						<option value="Vakbekwaam, kwalitatief product maken">Vakbekwaam, kwalitatief product maken</option>
 						<option value="Oordeelvormend, creatief werken">Oordeelvormend, creatief werken</option>
@@ -61,7 +61,7 @@
 
 				<div class="toevoegenFormContainers">
 					<h4 class="toevoegenForm">Rol</h4>
-					<select	class="toevoegenForm" id="formRol">
+					<select id="formRol">
 						<option	value="Product owner">Product owner</option>
 						<option value="Business analyst">Business analyst</option>
 						<option value="Front-end developer">Front-end developer</option>
@@ -91,7 +91,7 @@
 				NIET VERWIJDEREN -->
 
 				<div class="toevoegenFormContainers">
-					<H4>HBO-i</H4>
+					<H4 class="toevoegenForm">HBO-i</H4>
 					<select id="formArchitectuurlagen" name="Architectuurlagen">
 						<option value="Gebruikersinteractie">Gebruikersinteractie</option>
 						<option value="Organisatieprocessen">Organisatieprocessen</option>
@@ -115,23 +115,23 @@
 				</div>
 
 				<div class="toevoegenFormContainers">
-					<H4>What</H4>
-					<textarea id="formWhat" name="formWhat" rows="4" cols="60"></textarea>
+					<H4 class="toevoegenForm">What</H4>
+					<textarea id="formWhat" name="formWhat" rows="4" cols="40"></textarea>
 				</div>
 
 				<div class="toevoegenFormContainers">
-					<h4>Why</h4>
-					<textarea id="formWhy" name="formWhy" rows="4" cols="60"></textarea>
+					<h4 class="toevoegenForm">Why</h4>
+					<textarea id="formWhy" name="formWhy" rows="4" cols="40"></textarea>
 				</div>
 
 				<div class="toevoegenFormContainers">
-					<h4>How</h4>
-					<textarea id="formHow" name="formHow" rows="4" cols="60"></textarea>
+					<h4 class="toevoegenForm">How</h4>
+					<textarea id="formHow" name="formHow" rows="4" cols="40"></textarea>
 				</div>
 
 				<div class="toevoegenFormContainers">
-					<h4>Voorbeeld</h4>
-					<textarea id="formVoorbeeld" name="formVoorbeeld" rows="4" cols="60"></textarea>
+					<h4 class="toevoegenForm">Voorbeeld</h4>
+					<textarea id="formVoorbeeld" name="formVoorbeeld" rows="4" cols="40"></textarea>
 				</div>
 
 				<button type="button" onclick="kenniskaart_toevoegen()">Submit</button>
