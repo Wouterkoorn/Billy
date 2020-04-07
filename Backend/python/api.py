@@ -1,6 +1,6 @@
 import sqlalchemy
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import Column, Integer, String, TIMESTAMP
+from sqlalchemy import Column, Integer, String, TIMESTAMP, Table
 from sqlalchemy.ext.declarative import declarative_base
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -18,14 +18,14 @@ class Kennistkaart(Base):
     __tablename__ = 'kenniskaarten'
 
     id = Column(Integer, primary_key=True, autoincrement=True)
-    titel = Column(String)
-    what = Column(String)
-    why = Column(String)
-    how = Column(String)
-    voorbeeld = Column(String)
-    rol = Column(String)
-    vaardigheid = Column(String)
-    hboi = Column(String)
+    titel = Column(String(255))
+    what = Column(String(1023))
+    why = Column(String(1023))
+    how = Column(String(1023))
+    voorbeeld = Column(String(255))
+    rol = Column(String(255))
+    vaardigheid = Column(String(255))
+    hboi = Column(String(255))
     datetime = Column(TIMESTAMP)
 
 # a
