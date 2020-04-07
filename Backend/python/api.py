@@ -29,6 +29,9 @@ class Kennistkaart(Base):
     datetime = Column(TIMESTAMP)
 
 
+Base.metadata.create_all(engine)
+
+
 @app.route('/toevoegen', methods=['POST'])
 def voeg_kenniskaart_toe():
     data = request.json
@@ -53,5 +56,6 @@ def voeg_kenniskaart_toe():
 @app.route('/ophalen', methods=['GET'])
 def vraag_kenniskaart_op():
     return session.query(Kennistkaart).all()
+
 
 app.run(host='0.0.0.0', port='56743')

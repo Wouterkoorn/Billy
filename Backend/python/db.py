@@ -1,6 +1,5 @@
 import sqlalchemy
 
-
 def get_db():
     engine = sqlalchemy.create_engine('mysql+pymysql://python:luca@localhost/billydb')
     return engine.connect()
@@ -15,3 +14,4 @@ def execute_sql(sql):
     result = mydb.execute(sql)
     close_db(mydb)
     return result
+
