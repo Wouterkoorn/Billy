@@ -55,7 +55,7 @@ def voeg_kenniskaart_toe():
 
 @app.route('/ophalen', methods=['GET'])
 def vraag_kenniskaart_op():
-    return session.query(Kennistkaart).all()
+    return jsonify(session.query(Kennistkaart).all())
 
 
 app.run(host='0.0.0.0', port='56743')
