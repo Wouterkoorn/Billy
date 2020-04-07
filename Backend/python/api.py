@@ -28,7 +28,7 @@ class Kennistkaart(Base):
     hboi = Column(String)
     datetime = Column(TIMESTAMP)
 
-
+# a
 Base.metadata.create_all(engine)
 
 
