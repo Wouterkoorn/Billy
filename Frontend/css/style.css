@@ -188,7 +188,7 @@ footer ul li a {
   /*border: #111111;*/
   background-color: white;
   box-shadow: 5px 5px 2px lightgray;
-  
+
 }
 
 .kenniskaart .kenniskaart-foto {
@@ -273,7 +273,7 @@ footer ul li a {
 } */
 
 
-@media only screen and (min-width: 601px) {
+@media only screen and (min-width: 500px) {
   header .grids {
     margin: 0;
     text-align: left;
