@@ -14,70 +14,83 @@
 
 <body >
 	<header>
-		<a class="header-brand" href="#">
+		<a class="header-brand" href="index.html">
 			<img src="../css/fotos/billy-logo.png" alt="facebook icon">
 		</a>
 
 		<nav>
 			<ul>
 				<li><a href="index.html">Home</a></li>
-		    <li><a href="toevoegen.html">Toevoegen</a></li>
-      	<li><a href="kenniskaarten.html">Kenniskaarten</a></li>
+		    	<li><a href="toevoegen.html">Toevoegen</a></li>
+      			<li><a href="kenniskaarten.html">Kenniskaarten</a></li>
 			</ul>
 		</nav>
 	</header>
 
 	<main>
-		<section class="index-banner">
-			<div class="vertical-center">
-				<h2> Welkom <br>bij de <br>E-Billy <br>bronnen weizer</h2>
-			</div>
-		</section>
+<!--		<section class="index-banner">-->
+<!--			<div class="vertical-center">-->
+<!--				<h2> Welkom <br>bij de <br>E-Billy <br>bronnen weizer</h2>-->
+<!--			</div>-->
+<!--		</section>-->
+
+
 		<section class="index-links">
-			<div class="zoekveld">
-				<input class="mySearch" type="text" onkeyup="myFunction()" placeholder="Search.." title="Type in a category">
-			</div>
-
-			<div class="kenniskaartencontainer">
-				<div id="testknopje">
-					<button type="button" class="bevestigen" id="bevestigen" onclick="toonkenniskaarten()">test</button>
-				</div>
-				<div id="kennis" class="kenniskaart">
-					<img id="foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">
-					<div id="datum">12 maart 2020</div>
-					<H3 id="titel">Lorem The tiltel</H3>
-					<div id="what">I,m the what</div>
-					<div class="kenniskaart-tags">Tag me 1</div>
-					<div class="kenniskaart-tags">Tang me 2</div>
-					<div class="kenniskaart-tags">Tag me 3</div>
-				</div>
-				<div id="testing" class="kenniskaart" onclick="toonkenniskaarten()">
-					<h3>Test kenniskaart</h3>
-				</div>
+			<div id="zoekveld">
+				<button class="mySearch" id="searchButton" type="button" onclick="fetchResultaten()"><img src="../css/fotos/search-icon.png"> </button>
+				<input class="mySearch" id="searchBar" type="text" placeholder="Search.." title="Type in a category">
 			</div>
 		</section>
 
 
-		<!-- Trigger/Open The Modal -->
-		<button id="myBtn">Open Modal</button>
-		<!-- The Modal -->
-		<div id="myModal" class="modal">
-  		<!-- Modal content -->
-  		<div class="modal-content">
-    		<div class="modal-header">
+		<section class="kenniskaartencontainer">
+			<div id="kennis" class="kenniskaart">
+				<img id="foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">
+				<div id="datum">12 maart 2020</div>
+				<H3 id="titel">Lorem The tiltel</H3>
+				<div id="what">I,m the what</div>
+				<div class="kenniskaart-tags">Tag me 1</div>
+				<div class="kenniskaart-tags">Tag me 2</div>
+				<div class="kenniskaart-tags">Tag me 3</div>
+			</div>
+			<div id="testing" class="kenniskaart" onclick="toonkenniskaarten()">
+				<h3>Test kenniskaart</h3>
+			</div>
+		</section>
+
+
+
+		<!-- Trigger/Open Kenniskaart -->
+		<button id="myBtn">Open Kenniskaart</button>
+		<!-- The kenniskaart -->
+		<div id="myKennis" class="kennis">
+  		<!-- Kennis content -->
+  		<div class="kennis-content">
+    		<div class="kennis-header">
       		<span class="close">&times;</span>
-      		<h2>Modal Header</h2>
+      		<h2>Corona bron update 17 maart 2020</h2>
     		</div>
-    		<div class="modal-body">
-      		<p>Some text in the Modal Body</p>
-      		<p>Some other text...</p>
-    		</div>
-    		<div class="modal-footer">
-      		<h3>Modal Footer</h3>
+    		<div class="kennis-body">
+      		<p>What</p>
+      		<p>Kenniskaart wordt toegevoegd bij de toevoegen pagina waar de gebruiker mag een nieuwe kenniskaart kan toevoegen.</p><br>
+					<p>How</p>
+      		<p>Kenniskaart wordt toegevoegd bij de toevoegen pagina waar de gebruiker mag een nieuwe kenniskaart kan toevoegen.</p><br>
+					<p>Rol</p>
+      		<p>Kenniskaart wordt toegevoegd bij de toevoegen pagina waar de gebruiker mag een nieuwe kenniskaart kan toevoegen.</p><br>
+					<p>Vaardigheid</p>
+      		<p>Kenniskaart wordt toegevoegd bij de toevoegen pagina waar de gebruiker mag een nieuwe kenniskaart kan toevoegen.</p><br>
+					<p>Voorbeeld</p>
+      		<p>Kenniskaart wordt toegevoegd bij de toevoegen pagina waar de gebruiker mag een nieuwe kenniskaart kan toevoegen.</p><br>
+					<p>Why</p>
+      		<p>Kenniskaart wordt toegevoegd bij de toevoegen pagina waar de gebruiker mag een nieuwe kenniskaart kan toevoegen.</p><br>
+					<p>HBOi</p>
+      		<p>Kenniskaart wordt toegevoegd bij de toevoegen pagina waar de gebruiker mag een nieuwe kenniskaart kan toevoegen.</p><br>
     		</div>
   		</div>
 
 		</div>
+
+
 
 		<footer>
 			<ul class="footer-main">

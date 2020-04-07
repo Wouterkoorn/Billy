@@ -119,36 +119,36 @@ function myFunction() {
 }
 
 
-// Get the modal
-var modal = document.getElementById("myModal");
+// Get the kenniskaart
+var kennis = document.getElementById("myKennis");
 
-// Get the button that opens the modal
+// Get the button that opens the kenniskaart
 var btn = document.getElementById("myBtn");
 
-// Get the div that opens the modal
+// Get the div that opens the kenniskaart
 var ken = document.getElementById("kennis");
 
-// Get the <span> element that closes the modal
+// Get the <span> element that closes the kenniskaart
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks the button, open the modal
+// When the user clicks the button, open the kenniskaart
 btn.onclick = function() {
-  modal.style.display = "block";
+  kennis.style.display = "block";
 }
 
-// When the user clicks on the kenniskaart, open the modal
+// When the user clicks on the kenniskaart, open the kenniskaart
 ken.addEventListener('click', function(event) {
-  modal.style.display = "block";
+  kennis.style.display = "block";
 });
 
-// When the user clicks on <span> (x), close the modal
+// When the user clicks on <span> (x), close the kenniskaart
 span.onclick = function() {
-  modal.style.display = "none";
+  kennis.style.display = "none";
 }
 
-// When the user clicks anywhere outside of the modal, close it
+// When the user clicks anywhere outside of the kenniskaart, close it
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == kennis) {
+    kennis.style.display = "none";
   }
 }
