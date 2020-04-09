@@ -8,7 +8,6 @@
 	<link rel="stylesheet" type="text/css" href="../css/toevoegenForm.css">
 	<link rel="stylesheet" type="text/css" href="../css/style.css">
 	<link rel="stylesheet" type="text/css" href="../css/compatibility.css">
-	<link rel="stylesheet" type="text/css" href="../css/cssKennis.css">
 </head>
 
 
@@ -29,113 +28,101 @@
 	</header>
 
 	<main>
-<!--		<section class="index-banner">-->
-<!--			<div class="vertical-center">-->
-<!--
-		</div>-->
-<!--		</section>-->
-
 		<section class="index-banner">
-
-
-			<form id="toevoegenForm" onsubmit="kenniskaart_toevoegen()">
+			<div id="toevoegenForm">
 				<div class="toevoegenFormContainers">
-					<H4>Titel</H4>
+					<H4 class="toevoegenFormLabels">Titel</H4>
 					<input type="text" class="toevoegenForm" id="formTitel" name="formTitel">
 				</div>
-				<div class="toevoegenFormContainers">
-					<H4 class="toevoegenForm">Algemene Vaardigheid</H4>
-					<select class="toevoegenForm" id="formVaardigheid">
-						<option value="Vakbekwaam, juiste kennis ontwikkelen">Vakbekwaam, juiste kennis ontwikkelen</option>
-						<option value="Vakbekwaam, kwalitatief product maken">Vakbekwaam, kwalitatief product maken</option>
-						<option value="Oordeelvormend, creatief werken">Oordeelvormend, creatief werken</option>
-						<option value="Oordeelvormend, kritisch oordelen">Oordeelvormend, kritisch oordelen</option>
-						<option value="Communicatief, samenwerken">Communicatief, samenwerken</option>
-						<option value="Communicatief, boodschap overbrengen">Communicatief, boodschap overbrengen</option>
-						<option value="Flexibel, plannen">FLexibel, plannen</option>
-						<option value="Flexibel, aanpassingsvermogen">FLexibel, aanpassingsvermogen</option>
-						<option value="Zelflerend, pro-actief handelen">Zelflerend, pro-actief handelen</option>
-						<option value="Zelflerend, reflecteren">Zelflerend, reflecteren</option>
-					</select>
+
+
+				<H3>Dictatuur</H3>
+				<div class="toevoegenGroep">
+					<div class="toevoegenFormContainers">
+						<H4 class="toevoegenFormLabels">Algemene Vaardigheid</H4>
+						<select class="toevoegenForm" id="formVaardigheid">
+							<option value="Vakbekwaam, juiste kennis ontwikkelen">Vakbekwaam, juiste kennis ontwikkelen</option>
+							<option value="Vakbekwaam, kwalitatief product maken">Vakbekwaam, kwalitatief product maken</option>
+							<option value="Oordeelvormend, creatief werken">Oordeelvormend, creatief werken</option>
+							<option value="Oordeelvormend, kritisch oordelen">Oordeelvormend, kritisch oordelen</option>
+							<option value="Communicatief, samenwerken">Communicatief, samenwerken</option>
+							<option value="Communicatief, boodschap overbrengen">Communicatief, boodschap overbrengen</option>
+							<option value="Flexibel, plannen">FLexibel, plannen</option>
+							<option value="Flexibel, aanpassingsvermogen">FLexibel, aanpassingsvermogen</option>
+							<option value="Zelflerend, pro-actief handelen">Zelflerend, pro-actief handelen</option>
+							<option value="Zelflerend, reflecteren">Zelflerend, reflecteren</option>
+						</select>
+					</div>
+
+					<div class="toevoegenFormContainers">
+						<h4 class="toevoegenFormLabels">Rol</h4>
+						<select	class="toevoegenForm" id="formRol">
+							<option	value="Product owner">Product owner</option>
+							<option value="Business analyst">Business analyst</option>
+							<option value="Front-end developer">Front-end developer</option>
+							<option value="UX designer">UX designer</option>
+							<option value="Cyber security & cloud">Cyber security & cloud</option>
+							<option value="Back-end developer">Back-end developer</option>
+							<option value="AI specialist">AI specialist</option>
+							<option value="Alle rollen">Alle rollen</option>
+						</select>
+					</div>
+
+					<div class="toevoegenFormContainers">
+						<H4 class="toevoegenFormLabels">HBO-i</H4>
+						<select id="formArchitectuurlagen" name="Architectuurlagen">
+							<option value="Gebruikersinteractie">Gebruikersinteractie</option>
+							<option value="Organisatieprocessen">Organisatieprocessen</option>
+							<option value="Infrastructuur">Infrastructuur</option>
+							<option value="Software">Software</option>
+							<option value="Hardware Interfacing">Hardware interfacing</option>
+						</select>
+						<select id="formActiviteiten" name="Activiteiten">
+							<option value=" analyseren">Analyseren</option>
+							<option value=" adviseren">Adviseren</option>
+							<option value=" ontwerpen">Ontwerpen</option>
+							<option value=" realiseren">Realiseren</option>
+							<option value=" manage & control">Manage & control</option>
+						</select>
+						<select id="formNiveau" name="niveau">
+							<option value=" 1">1</option>
+							<option value=" 2">2</option>
+							<option value=" 3">3</option>
+							<option value=" 4">4</option>
+						</select>
+					</div>
 				</div>
 
-				<div class="toevoegenFormContainers">
-					<h4 class="toevoegenForm">Rol</h4>
-					<select	class="toevoegenForm" id="formRol">
-						<option	value="Product owner">Product owner</option>
-						<option value="Business analyst">Business analyst</option>
-						<option value="Front-end developer">Front-end developer</option>
-						<option value="UX designer">UX designer</option>
-						<option value="Cyber security & cloud">Cyber security & cloud</option>
-						<option value="Back-end developer">Back-end developer</option>
-						<option value="AI specialist">AI specialist</option>
-						<option value="Alle rollen">Alle rollen</option>
-					</select>
+
+				<H3>Inhoud</H3>
+				<div class="toevoegenGroep">
+
+					<div class="toevoegenFormContainers">
+						<H4 class="toevoegenFormLabels">What</H4>
+						<div class="tekstvelden" id="formWhat" contenteditable="true"></div>
+					</div>
+
+					<div class="toevoegenFormContainers">
+						<h4 class="toevoegenFormLabels">Why</h4>
+						<div class="tekstvelden" id="formWhy" contenteditable="true"></div>
+					</div>
+
+					<div class="toevoegenFormContainers">
+						<h4 class="toevoegenFormLabels">How</h4>
+						<div class="tekstvelden" id="formHow" contenteditable="true"></div>
+					</div>
+
+					<div class="toevoegenFormContainers">
+						<h4 class="toevoegenFormLabels">Voorbeeld</h4>
+						<div class="tekstvelden" id="formVoorbeeld" contenteditable="true"></div>
+					</div>
 				</div>
 
-				<!-- NIET VERWIJDEREN, OPTIES VOOR ALGEMENE VAARDIGHEID
-				<div>Vaardigheid</div>
-				<select class="toevoegenForm" id="formVaardigheid" name="formVaardigheid">
-					<option value="">Juiste kennis ontwikkelen</option>
-					<option value="Kwalitatief product maken">Kwalitatief product maken</option>
-					<option value="Creatief werken">Creatief werken</option>
-					<option value="Kritisch oordelen">Kritisch oordelen</option>
-					<option value="Samenwerken">Samenwerken</option>
-					<option value="Boodschap overbrengen">Boodschap overbrengen</option>
-					<option value="Plannen">Plannen</option>
-					<option value="Aanpassingsvermogen">Aanpassingsvermogen</option>
-					<option value="Pro-actief handelen">Pro-actief handelen</option>
-					<option value="Reflecteren">Reflecteren</option>
-				</select>
-				<br>
-				NIET VERWIJDEREN -->
-
-				<div class="toevoegenFormContainers">
-					<H4>HBO-i</H4>
-					<select id="formArchitectuurlagen" name="Architectuurlagen">
-						<option value="Gebruikersinteractie">Gebruikersinteractie</option>
-						<option value="Organisatieprocessen">Organisatieprocessen</option>
-						<option value="Infrastructuur">Infrastructuur</option>
-						<option value="Software">Software</option>
-						<option value="Hardware Interfacing">Hardware interfacing</option>
-					</select>
-					<select id="formActiviteiten" name="Activiteiten">
-						<option value=" analyseren">Analyseren</option>
-						<option value=" adviseren">Adviseren</option>
-						<option value=" ontwerpen">Ontwerpen</option>
-						<option value=" realiseren">Realiseren</option>
-						<option value=" manage & control">Manage & control</option>
-					</select>
-					<select id="formNiveau" name="niveau">
-						<option value=" 1">1</option>
-						<option value=" 2">2</option>
-						<option value=" 3">3</option>
-						<option value=" 4">4</option>
-					</select>
+<!--				Het is geen echte form omdat een alternatief voor textarea wordt gebruikt. een form was dus niet meer mogelijk. vandaar dat submit niet gebruikt wordt.-->
+				<div id="toevoegenFormButtonContainer">
+					<button type="button" id="toevoegenButton" onclick="kenniskaart_toevoegen()">Bevestigen</button>
 				</div>
-
-				<div class="toevoegenFormContainers">
-					<H4>What</H4>
-					<textarea id="formWhat" name="formWhat" rows="4" cols="60"></textarea>
-				</div>
-
-				<div class="toevoegenFormContainers">
-					<h4>Why</h4>
-					<textarea id="formWhy" name="formWhy" rows="4" cols="60"></textarea>
-				</div>
-
-				<div class="toevoegenFormContainers">
-					<h4>How</h4>
-					<textarea id="formHow" name="formHow" rows="4" cols="60"></textarea>
-				</div>
-
-				<div class="toevoegenFormContainers">
-					<h4>Voorbeeld</h4>
-					<textarea id="formVoorbeeld" name="formVoorbeeld" rows="4" cols="60"></textarea>
-				</div>
-
-				<button type="button" onclick="kenniskaart_toevoegen()">Bevestigen</button>
-			</form>
+			</div>
 		</section>
 
 		<footer>
