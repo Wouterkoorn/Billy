@@ -3,27 +3,24 @@ function kenniskaart_toevoegen() {
 	Geeft na een succesvolle operatie een alert dat het gelukt is.
 	*/
 	let ip = 'http://82.72.167.14:56743/toevoegen';
-	var emptyString = '';
+	var emptyString = ''; //emptystring om alle data van HBO-i bij elkaar te zetten in een string
 	let dataKenniskaart = {
 		"titel": document.getElementById('formTitel').value,
 		"vaardigheid": document.getElementById('formVaardigheid').value,
 		"rol": document.getElementById('formRol').value,
 		"hboi": emptyString.concat(document.getElementById('formArchitectuurlagen').value, document.getElementById('formActiviteiten').value, document.getElementById('formNiveau').value),
-		"what": document.getElementById('formWhat').value,
-		"why": document.getElementById('formWhy').value,
-		"how": document.getElementById('formHow').value,
-		"voorbeeld": document.getElementById('formVoorbeeld').value,
+		"what": document.getElementById('formWhat').innerText,
+		"why": document.getElementById('formWhy').innerText,
+		"how": document.getElementById('formHow').innerText,
+		"voorbeeld": document.getElementById('formVoorbeeld').innerText,
 	};
-	console.log('hi')
-	fetch(ip, {//met post method de json data die in dataKenniskaart is gezet
+	fetch(ip, {
 		method: 'POST',
 		headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
 		body: JSON.stringify(dataKenniskaart)
 	})
 	.then((response) => {
 		return response.json();
-	})
-	.then((result) => {
-		alert('uw kenniskaartje is toegevoegd');
-	})
+	});
+	alert('uw kenniskaartje is toegevoegd');
 }

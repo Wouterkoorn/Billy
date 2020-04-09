@@ -1,15 +1,62 @@
-.toevoegenFormContainers {
-
+/* gehele form */
+#toevoegenForm {
+    text-align: left;
+    background: lightsteelblue;
 }
 
-#toevoegenForm {
+/*divjes */
+.toevoegenFormContainers {
+    margin: 15px 0 15px 0;
+    /*border: black 1px solid;*/
+
+}
+main form H3 {
+    margin: 0;
+}
+
+
+/* labes in divjes*/
+.toevoegenFormLabels {
+    margin: 0;
+}
+.toevoegenGroep {
+    /*border: black 1px solid;*/
+    margin: 0 10px 0 10px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.tekstvelden {
+    border: black solid 1px;
+    background-color: white;
+    min-height: 65px;
+    overflow-wrap: break-word;
+    resize: vertical;
+}
+
+#toevoegenFormButtonContainer {
     text-align: center;
 }
 
 
 
+/*Desktop/ tablet versie*/
+@media only screen and (min-width: 601px) {
+    #toevoegenForm {
+        max-width: 900px;
+        margin: 20px auto;
+        border: black solid 1px;
+        padding: 5px;
+        border-radius: 10px;
+    }
+}
+
 
 /* mobile versie */
 @media only screen and (max-width: 600px) {
-
+    #toevoegenForm {
+        border: black 1px solid;
+    }
 }
