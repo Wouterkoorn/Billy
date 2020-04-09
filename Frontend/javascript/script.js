@@ -39,23 +39,3 @@ function searchFunction() {
     }
   }
 }
-
-
-function (window, document, undefined) {
-	var toeForm = document.getElementById('toevoegenForm');
-
-  toeForm.style.display = 'block';
-
-  function processForm( event ) {
-
-    //get all form data
-    var vaardigheid = document.getElementsByName('Vaardigheid')[0].value,
-        rol = document.getElementsByName('Rol')[0].value,
-        activiteiten = document.getElementsByName('Architectuurlagen')[0].value,
-        niveau = document.getElementsByName('niveau')[0].value,
-        what = document.getElementsByName('formWhat')[0].value,
-        why = document.getElementsByName('formWhy')[0].value,
-        how = document.getElementsByName('formHow')[0].value,
-        voorbeeld = document.getElementsByName('formVoorbeeld')[0].value;
-  }
-}
