@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import db
+from sqlalchemy import Table, Column, Integer, String, MetaData
 
 app = Flask(__name__)
 CORS(app)
@@ -22,11 +23,11 @@ def lijstmaken(billydb):
         )
     return kenniskaarten
 
-
 @app.route('/toevoegen', methods=['POST'])
 def voeg_kenniskaart_toe():
     data = request.json
     sql = f"INSERT INTO kenniskaarten(titel, what, why, how, voorbeeld, rol, vaardigheid, hboi) VALUES ('{data['titel']}','{data['what']}','{data['why']}','{data['how']}','{data['voorbeeld']}','{data['rol']}','{data['vaardigheid']}','{data['hboi']}')"
+
     db.execute_sql(sql)
     return jsonify({'success': True}), 200
 
