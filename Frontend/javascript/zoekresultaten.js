@@ -1,7 +1,22 @@
 
 function formatDateTime(unformatedDatum) {
   var datum = new Date(unformatedDatum);
-  return datum.getDate() + " " + (datum.getMonth() + 1) + " " + datum.getFullYear()
+
+  const maanden = {
+    0: "januari",
+    1: "februari",
+    2: "maart",
+    3: "april",
+    4: "mei",
+    5: "juni",
+    6: "juli",
+    7: "augustus",
+    8: "september",
+    9: "oktober",
+    10: "november",
+    11: "december"
+  };
+  return datum.getDate() + " " + maanden[datum.getMonth()] + " " + datum.getFullYear()
 }
 
 
@@ -21,7 +36,7 @@ function makeImg(locatie, classnaam, imageInDiv) {
 }
 
 
-function toonZoekResultaten(item, index) {
+function maakKenniskaarten(item, index) {
   var kenniskaartBestemming = document.getElementsByClassName("kenniskaartencontainer");
 
   var kenniskaart = document.createElement('div');
@@ -43,17 +58,29 @@ function toonZoekResultaten(item, index) {
 
 function fetchResultaten() {
   console.log('zoeken...');
-  fetch("http://82.72.167.14:56743/ophalen/".concat(document.getElementById('searchBar').value))
-      .then(
-          function (response) {
-            response.json().then(function (data) {//response omzetten in json zodat javascript het kan gebruiken in de functie erna
-              // data.reverse(); //sorteren op laatst toegevoegd
-              data.forEach(function (item, index) {
-                toonZoekResultaten(item, index);
-              })
-            })
+  fetch("http://82.72.167.14:56743/ophalen/zoeken/".concat(document.getElementById('searchBar').value))
+      .then(function (response) {
+        response.json().then(function (data) {//response omzetten in json zodat javascript het kan gebruiken in de functie erna
+          data.forEach(function (item, index) {
+            maakKenniskaarten(item, index);
           })
+        })
       .catch(function (error) {
         console.log(error);
+      })
+      })
+}
+
+function fetchRecent() {
+  fetch("http://82.72.167.14:56743/ophalen/recent")
+      .then(function (response) {
+        response.json().then(function (data) {
+          data.forEach(function (item, index) {
+            maakKenniskaarten(item, index);
+          })
+        })
+      .catch(function (error) {
+        console.log(error); qq
+      })
       })
 }
