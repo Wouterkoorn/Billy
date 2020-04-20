@@ -1,6 +1,7 @@
 import sqlalchemy
+import datetime
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy import Column, Integer, String, TIMESTAMP
+from sqlalchemy import Column, Integer, String, DateTime, desc
 from sqlalchemy.ext.declarative import declarative_base
 from flask import Flask, request, jsonify
 from flask_cors import CORS
@@ -26,14 +27,14 @@ class Kennistkaart(Base):
     rol = Column(String(255))
     vaardigheid = Column(String(255))
     hboi = Column(String(255))
-    datetime = Column(TIMESTAMP)
+    datetime = Column(DateTime, default=datetime.datetime.now())
 
 
 Base.metadata.create_all(engine)
 
 
 @app.route('/toevoegen', methods=['POST'])
-def voeg_kenniskaart_toe():
+def plaats_kenniskaart():
     data = request.json
 
     kennistkaart = Kennistkaart(
@@ -44,7 +45,7 @@ def voeg_kenniskaart_toe():
         voorbeeld=data['voorbeeld'],
         rol=data['rol'],
         vaardigheid=data['vaardigheid'],
-        hboi=data['hboi']
+        hboi=data['hboi'],
     )
 
     session.add(kennistkaart)
@@ -52,31 +53,37 @@ def voeg_kenniskaart_toe():
 
     return jsonify({'success': True}), 200
 
-def kenniskaartGetAll():
+@app.route('/ophalen', methods=['GET'])
+def vraag_alle_kenniskaarten():
     kenniskaartenList = []
-    for i in session.query(Kennistkaart).all():
-        kenniskaartDict = {
-            "titel": i.titel,
-            "what": i.what,
-            "why": i.why,
-            "how": i.how,
-            "voorbeeld": i.voorbeeld,
-            "rol": i.rol,
-            "vaardigheid": i.vaardigheid,
-            "hboi": i.hboi
-        }
+
+    for i in session.query(Kennistkaart).order_by(desc(Kennistkaart.datetime)).all():
+        kenniskaartDict = dict(i.__dict__)
+        del kenniskaartDict['_sa_instance_state']
         kenniskaartenList.append(kenniskaartDict)
 
-    return kenniskaartenList
+    return jsonify(kenniskaartenList)
 
-@app.route('/ophalen', methods=['GET'])
-def vraag_kenniskaart_op():
-    return jsonify(kenniskaartGetAll())
+@app.route('/ophalen/recent', methods=['GET'])
+def vraag_recente_kenniskaarten():
+    kenniskaartenList = []
 
+    for i in session.query(Kennistkaart).order_by(desc(Kennistkaart.datetime)).limit(5).all():
+        kenniskaartDict = dict(i.__dict__)
+        del kenniskaartDict['_sa_instance_state']
+        kenniskaartenList.append(kenniskaartDict)
 
-@app.route('/ophalen/<zoekvraag>', methods=['GET'])
+    return jsonify(kenniskaartenList)
+
+@app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
 def zoek_kenniskaart(zoekvraag):
-    kenniskaartenList = kenniskaartGetAll()
+    kenniskaartenList = []
+
+    for i in session.query(Kennistkaart).order_by(desc(Kennistkaart.datetime)).all():
+        kenniskaartDict = dict(i.__dict__)
+        del kenniskaartDict['_sa_instance_state']
+        kenniskaartenList.append(kenniskaartDict)
+
     results, kenniskaartentitels = [], []
 
     for item in kenniskaartenList:
