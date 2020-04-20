@@ -1,7 +1,7 @@
 
 function formatDateTime(unformatedDatum) {
   var datum = new Date(unformatedDatum);
-  return datum.getDate() + " " + datum.getMonth() + " " + datum.getFullYear()
+  return datum.getDate() + " " + (datum.getMonth() + 1) + " " + datum.getFullYear()
 }
 
 
@@ -47,7 +47,7 @@ function fetchResultaten() {
       .then(
           function (response) {
             response.json().then(function (data) {//response omzetten in json zodat javascript het kan gebruiken in de functie erna
-              // data.reverse();//sorteren op laatst toegevoegd
+              // data.reverse(); //sorteren op laatst toegevoegd
               data.forEach(function (item, index) {
                 toonZoekResultaten(item, index);
               })
