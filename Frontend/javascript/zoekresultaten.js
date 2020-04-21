@@ -1,3 +1,8 @@
+function clearOldResults(elementClassName) {
+  var element = document.getElementsByClassName(elementClassName);
+  console.log(element);
+  element.parentNode.removeChild(element);
+}
 
 function formatDateTime(unformatedDatum) {
   var datum = new Date(unformatedDatum);
@@ -72,6 +77,7 @@ function fetchResultaten() {
 }
 
 function fetchRecent() {
+  // clearOldResults("kenniskaart");
   fetch("http://82.72.167.14:56743/ophalen/recent")
       .then(function (response) {
         response.json().then(function (data) {
