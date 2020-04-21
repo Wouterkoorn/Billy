@@ -57,17 +57,22 @@ def serialize(query):
 
 @app.route('/ophalen', methods=['GET'])
 def vraag_alle_kenniskaarten():
-    return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).all()))
+    return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).all())), 200
 
 
 @app.route('/ophalen/recent', methods=['GET'])
 def vraag_recente_kenniskaarten():
-    return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).limit(5).all()))
+    return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).limit(5).all())), 200
 
 
 @app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
-def zoek_kenniskaart(zoekvraag):
-    return jsonify(serialize(Kenniskaart.query.filter(Kenniskaart.titel.ilike('%' + zoekvraag + '%'))))
+def zoek_kenniskaarten(zoekvraag):
+    return jsonify(serialize(Kenniskaart.query.filter(Kenniskaart.titel.ilike('%' + zoekvraag + '%')))), 200
+
+@app.route('/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
+def verwijder_kenniskaart(kenniskaart_id):
+    Kenniskaart.query.filter(id=kenniskaart_id).delete()
+    db.session.commit()
 
 
 app.run(host='0.0.0.0', port='56743')
