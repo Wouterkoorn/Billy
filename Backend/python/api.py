@@ -1,43 +1,34 @@
-import sqlalchemy
+from flask import Flask, jsonify, request
 import datetime
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import Column, Integer, String, DateTime, desc
-from sqlalchemy.ext.declarative import declarative_base
-from flask import Flask, request, jsonify
+from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-
-engine = sqlalchemy.create_engine('mysql+pymysql://python:luca@localhost/billydb')
-Session = sessionmaker(bind=engine)
-session = Session()
-Base = declarative_base()
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://python:luca@localhost/billydb"
+db = SQLAlchemy(app)
 
 
-class Kennistkaart(Base):
+class Kenniskaart(db.Model):
     __tablename__ = 'kenniskaarten'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    titel = Column(String(255))
-    what = Column(String(1023))
-    why = Column(String(1023))
-    how = Column(String(1023))
-    voorbeeld = Column(String(255))
-    rol = Column(String(255))
-    vaardigheid = Column(String(255))
-    hboi = Column(String(255))
-    datetime = Column(DateTime, default=datetime.datetime.now())
-
-
-Base.metadata.create_all(engine)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    titel = db.Column(db.String(255))
+    what = db.Column(db.String(1023))
+    why = db.Column(db.String(1023))
+    how = db.Column(db.String(1023))
+    voorbeeld = db.Column(db.String(255))
+    rol = db.Column(db.String(255))
+    vaardigheid = db.Column(db.String(255))
+    hboi = db.Column(db.String(255))
+    datetime = db.Column(db.DateTime, default=datetime.datetime.now())
 
 
 @app.route('/toevoegen', methods=['POST'])
 def plaats_kenniskaart():
     data = request.json
 
-    kennistkaart = Kennistkaart(
+    kennistkaart = Kenniskaart(
         titel=data['titel'],
         what=data['what'],
         why=data['why'],
@@ -48,71 +39,35 @@ def plaats_kenniskaart():
         hboi=data['hboi'],
     )
 
-    session.add(kennistkaart)
-    session.commit()
+    db.session.add(kennistkaart)
+    db.session.commit()
 
     return jsonify({'success': True}), 200
 
+
+def serialize(query):
+    queryList = []
+    for i in query:
+        # SQLAlchemy __dict__ object heeft een instance state die niet ge-returnd hoeft te worden
+        del i.__dict__['_sa_instance_state']
+        queryList.append(i.__dict__)
+
+    return queryList
+
+
 @app.route('/ophalen', methods=['GET'])
 def vraag_alle_kenniskaarten():
-    kenniskaartenList = []
+    return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).all()))
 
-    for i in session.query(Kennistkaart).order_by(desc(Kennistkaart.datetime)).all():
-        kenniskaartDict = dict(i.__dict__)
-        del kenniskaartDict['_sa_instance_state']
-        kenniskaartenList.append(kenniskaartDict)
-
-    return jsonify(kenniskaartenList)
 
 @app.route('/ophalen/recent', methods=['GET'])
 def vraag_recente_kenniskaarten():
-    kenniskaartenList = []
+    return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).limit(5).all()))
 
-    for i in session.query(Kennistkaart).order_by(desc(Kennistkaart.datetime)).limit(5).all():
-        kenniskaartDict = dict(i.__dict__)
-        del kenniskaartDict['_sa_instance_state']
-        kenniskaartenList.append(kenniskaartDict)
-
-    return jsonify(kenniskaartenList)
 
 @app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
 def zoek_kenniskaart(zoekvraag):
-    kenniskaartenList = []
-
-    for i in session.query(Kennistkaart).order_by(desc(Kennistkaart.datetime)).all():
-        kenniskaartDict = dict(i.__dict__)
-        del kenniskaartDict['_sa_instance_state']
-        kenniskaartenList.append(kenniskaartDict)
-
-    results, kenniskaartentitels = [], []
-
-    for item in kenniskaartenList:
-
-        titel = str(item['titel'])
-        kenniskaartentitels.append(titel)
-
-        def bestResult(resultSort):
-            num = resultSort.lower().find(zoekvraag.lower())
-            return num
-
-        if zoekvraag.lower() in titel.lower():
-            results.append(titel)
-
-        elif titel.lower() in zoekvraag.lower():
-            results.append(titel)
-
-    if len(results) == 0:
-        return 'Geen resultaten gevonden.'
-
-    else:
-        sorted(results, key=bestResult, reverse=False)
-
-        kaarten = []
-
-        for i in results:
-            kaarten.append(kenniskaartenList[kenniskaartentitels.index(i)])
-
-        return jsonify(kaarten), 200
+    return jsonify(serialize(Kenniskaart.query.filter(Kenniskaart.titel.ilike('%' + zoekvraag + '%'))))
 
 
 app.run(host='0.0.0.0', port='56743')
