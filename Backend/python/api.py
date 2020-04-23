@@ -23,6 +23,10 @@ class Kenniskaart(db.Model):
     hboi = db.Column(db.String(255))
     datetime = db.Column(db.TIMESTAMP, default=datetime.datetime.now())
 
+
+db.create_all()
+
+
 @app.route('/toevoegen', methods=['POST'])
 def plaats_kenniskaart():
     data = request.json
@@ -44,7 +48,7 @@ def plaats_kenniskaart():
 
     return jsonify({'success': True}), 200
 
-
+db.create_all()
 def serialize(query):
     queryList = []
     for i in query:
@@ -73,15 +77,24 @@ def vraag_recente_kenniskaarten():
 
 @app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
 def zoek_kenniskaarten(zoekvraag):
-    velden_list = [Kenniskaart.titel, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld, Kenniskaart.rol, Kenniskaart.vaardigheid, Kenniskaart.hboi]
+    velden_list = [Kenniskaart.titel, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld,
+                   Kenniskaart.rol, Kenniskaart.vaardigheid, Kenniskaart.hboi]
     kenniskaarten_list,kenniskaarten_list2 = [], []
-    for zoekveld in velden_list:
-        kenniskaarten_list.append(serialize(Kenniskaart.query.filter(zoekveld.ilike(zoekvraag))))
-        for kenniskaart in serialize(Kenniskaart.query.filter(zoekveld.ilike('%' + zoekvraag + '%'))):
-            if kenniskaart not in kenniskaarten_list:
-                kenniskaarten_list2.append(kenniskaart)
-    kenniskaarten_list.append(kenniskaarten_list2)
 
+    for a in velden_list:
+        b =  serialize(Kenniskaart.query.filter(a.ilike(zoekvraag)))
+        if len(b) > 0:
+            for c in b:
+                if c not in kenniskaarten_list and c not in kenniskaarten_list2:
+                    kenniskaarten_list.append(c)
+
+        d = serialize(Kenniskaart.query.filter(a.ilike("%" + zoekvraag + "%")))
+        if len(d) > 0:
+            for e in d:
+                if e not in kenniskaarten_list and e not in kenniskaarten_list2:
+                    kenniskaarten_list2.append(e)
+
+    kenniskaarten_list.extend(kenniskaarten_list2)
     return jsonify(kenniskaarten_list), 200
 
 
