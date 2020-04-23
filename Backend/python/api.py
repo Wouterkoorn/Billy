@@ -7,7 +7,6 @@ app = Flask(__name__)
 CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://python:luca@localhost/billydb"
 db = SQLAlchemy(app)
-# test
 
 class Kenniskaart(db.Model):
     __tablename__ = 'kenniskaarten'
@@ -67,13 +66,15 @@ def vraag_recente_kenniskaarten():
 
 @app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
 def zoek_kenniskaarten(zoekvraag):
-    lijst = serialize(Kenniskaart.query.filter(Kenniskaart.titel.ilike('%' + zoekvraag + '%')))
-    for i in serialize(Kenniskaart.query.filter(Kenniskaart.titel.ilike(zoekvraag))):
-        if i not in lijst:
-            lijst.append(i)
+    velden_list = [Kenniskaart.titel, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld, Kenniskaart.rol, Kenniskaart.vaardigheid, Kenniskaart.hboi]
+    kenniskaarten_list = []
+    for zoekveld in velden_list:
+        kenniskaarten_list.append(serialize(Kenniskaart.query.filter(zoekveld.ilike(zoekvraag))))
+        for i in serialize(Kenniskaart.query.filter(zoekveld.ilike('%' + zoekvraag + '%'))):
+            if i not in kenniskaarten_list:
+                kenniskaarten_list.append(i)
 
-
-    return jsonify(lijst), 200
+    return jsonify(kenniskaarten_list), 200
 
 @app.route('/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
 def verwijder_kenniskaart(kenniskaart_id):
