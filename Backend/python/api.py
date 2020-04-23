@@ -51,7 +51,6 @@ def serialize(query):
         # SQLAlchemy __dict__ object heeft een instance state die niet ge-returned hoeft te worden
         del i.__dict__['_sa_instance_state']
         queryList.append(i.__dict__)
-
     return queryList
 
 
@@ -59,11 +58,13 @@ def serialize(query):
 def vraag_alle_kenniskaarten():
     return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).all())), 200
 
+
 @app.route('/ophalen/kenniskaart/<kenniskaart_id>', methods=['GET'])
 def vraag_kenniskaart(kenniskaart_id):
-    print(Kenniskaart.query.get(kenniskaart_id))
-    # del kenniskaart.__dict__['_sa_instance_state']
+    kenniskaart = Kenniskaart.query.get(kenniskaart_id).__dict__
+    del kenniskaart['_sa_instance_state']
     return jsonify(kenniskaart), 200
+
 
 @app.route('/ophalen/recent', methods=['GET'])
 def vraag_recente_kenniskaarten():
@@ -72,14 +73,13 @@ def vraag_recente_kenniskaarten():
 
 @app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
 def zoek_kenniskaarten(zoekvraag):
-    velden_list = [Kenniskaart.titel, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld,
-                   Kenniskaart.rol, Kenniskaart.vaardigheid, Kenniskaart.hboi]
+    velden_list = [Kenniskaart.titel, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld, Kenniskaart.rol, Kenniskaart.vaardigheid, Kenniskaart.hboi]
     kenniskaarten_list = []
     for zoekveld in velden_list:
         kenniskaarten_list.append(serialize(Kenniskaart.query.filter(zoekveld.ilike(zoekvraag))))
-        for kenniskaart in serialize(Kenniskaart.query.filter(zoekveld.ilike('%' + zoekvraag + '%'))):
-            if kenniskaart not in kenniskaarten_list:
-                kenniskaarten_list.append(kenniskaart)
+        for i in serialize(Kenniskaart.query.filter(zoekveld.ilike('%' + zoekvraag + '%'))):
+            if i not in kenniskaarten_list:
+                kenniskaarten_list.append(i)
 
     return jsonify(kenniskaarten_list), 200
 
