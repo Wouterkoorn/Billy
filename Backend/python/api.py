@@ -79,23 +79,23 @@ def vraag_recente_kenniskaarten():
 def zoek_kenniskaarten(zoekvraag):
     velden_list = [Kenniskaart.titel, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld,
                    Kenniskaart.rol, Kenniskaart.vaardigheid, Kenniskaart.hboi]
-    kenniskaarten_list,kenniskaarten_list2 = [], []
+    kenniskaarten_exact, kenniskaarten_inclusief = [], []
 
-    for a in velden_list:
-        b =  serialize(Kenniskaart.query.filter(a.ilike(zoekvraag)))
-        if len(b) > 0:
-            for c in b:
-                if c not in kenniskaarten_list and c not in kenniskaarten_list2:
-                    kenniskaarten_list.append(c)
+    for zoekveld in velden_list:
+        exact_zoekvraag =  serialize(Kenniskaart.query.filter(zoekveld.ilike(zoekvraag)))
+        if len(exact_zoekvraag) > 0:
+            for kenniskaart in exact_zoekvraag:
+                if kenniskaart not in kenniskaarten_exact and kenniskaart not in kenniskaarten_inclusief:
+                    kenniskaarten_exact.append(kenniskaart)
 
-        d = serialize(Kenniskaart.query.filter(a.ilike("%" + zoekvraag + "%")))
-        if len(d) > 0:
-            for e in d:
-                if e not in kenniskaarten_list and e not in kenniskaarten_list2:
-                    kenniskaarten_list2.append(e)
+        zoekvraag_inclusief = serialize(Kenniskaart.query.filter(zoekveld.ilike("%" + zoekvraag + "%")))
+        if len(zoekvraag_inclusief) > 0:
+            for kenniskaart in zoekvraag_inclusief:
+                if kenniskaart not in kenniskaarten_exact and kenniskaart not in kenniskaarten_inclusief:
+                    kenniskaarten_inclusief.append(kenniskaart)
 
-    kenniskaarten_list.extend(kenniskaarten_list2)
-    return jsonify(kenniskaarten_list), 200
+    kenniskaarten_exact.extend(kenniskaarten_inclusief)
+    return jsonify(kenniskaarten_exact), 200
 
 
 @app.route('/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
