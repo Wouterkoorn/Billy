@@ -1,8 +1,11 @@
 function clearOldResults(elementClassName) {
-  var element = document.getElementsByClassName(elementClassName);
-  console.log(element);
-  element.parentNode.removeChild(element);
+  const element = document.getElementsByClassName(elementClassName);
+  console.log(element, element.length);
+  while (element.length > 0) {
+    element[0].remove();
+  }
 }
+
 
 function formatDateTime(unformatedDatum) {
   var datum = new Date(unformatedDatum);
@@ -42,7 +45,6 @@ function makeImg(locatie, classnaam, imageInDiv) {
 
 function maakKenniskaarten(item, index) {
   var kenniskaartBestemming = document.getElementsByClassName("kenniskaartencontainer");
-
   var kenniskaart = document.createElement('div');
   kenniskaart.setAttribute('class', 'kenniskaart');
   kenniskaart.setAttribute('id', item['id']);
@@ -62,6 +64,7 @@ function maakKenniskaarten(item, index) {
 // testSearchResults.forEach(function(item, index) {toonZoekResultaten(item, index)})
 
 function fetchResultaten() {
+  clearOldResults("kenniskaart");
   console.log('zoeken...');
   fetch("http://82.72.167.14:56743/ophalen/zoeken/".concat(document.getElementById('searchBar').value))
       .then(function (response) {
@@ -76,8 +79,8 @@ function fetchResultaten() {
       })
 }
 
+
 function fetchRecent() {
-  // clearOldResults("kenniskaart");
   fetch("http://82.72.167.14:56743/ophalen/recent")
       .then(function (response) {
         response.json().then(function (data) {
@@ -86,7 +89,7 @@ function fetchRecent() {
           })
         })
       .catch(function (error) {
-        console.log(error); qq
+        console.log(error);
       })
       })
 }
