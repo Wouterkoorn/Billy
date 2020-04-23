@@ -67,7 +67,13 @@ def vraag_recente_kenniskaarten():
 
 @app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
 def zoek_kenniskaarten(zoekvraag):
-    return jsonify(serialize(Kenniskaart.query.filter(Kenniskaart.titel.ilike('%' + zoekvraag + '%')))), 200
+    lijst = serialize(Kenniskaart.query.filter(Kenniskaart.titel.ilike('%' + zoekvraag + '%')))
+    for i in serialize(Kenniskaart.query.filter(Kenniskaart.titel.ilike(zoekvraag))):
+        if i not in lijst:
+            lijst.append(i)
+
+
+    return jsonify(lijst), 200
 
 @app.route('/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
 def verwijder_kenniskaart(kenniskaart_id):
