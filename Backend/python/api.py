@@ -61,7 +61,9 @@ def vraag_alle_kenniskaarten():
 
 @app.route('/ophalen/kenniskaart/<kenniskaart_id>', methods=['GET'])
 def vraag_kenniskaart(kenniskaart_id):
-    return jsonify(serialize(Kenniskaart.query.get(kenniskaart_id))), 200
+    kenniskaart = Kenniskaart.query.get(kenniskaart_id).__dict__
+    del kenniskaart.__dict__['_sa_instance_state']
+    return jsonify(kenniskaart), 200
 
 @app.route('/ophalen/recent', methods=['GET'])
 def vraag_recente_kenniskaarten():
