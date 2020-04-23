@@ -7,7 +7,7 @@ app = Flask(__name__)
 CORS(app)
 app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://python:luca@localhost/billydb"
 db = SQLAlchemy(app)
-
+# test
 
 class Kenniskaart(db.Model):
     __tablename__ = 'kenniskaarten'
