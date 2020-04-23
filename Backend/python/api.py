@@ -21,8 +21,7 @@ class Kenniskaart(db.Model):
     rol = db.Column(db.String(255))
     vaardigheid = db.Column(db.String(255))
     hboi = db.Column(db.String(255))
-    datetime = db.Column(db.DateTime, default=datetime.datetime.now())
-
+    datetime = db.Column(db.TIMESTAMP, default=datetime.datetime.now())
 
 @app.route('/toevoegen', methods=['POST'])
 def plaats_kenniskaart():
@@ -37,6 +36,7 @@ def plaats_kenniskaart():
         rol=data['rol'],
         vaardigheid=data['vaardigheid'],
         hboi=data['hboi'],
+        datetime=datetime.datetime.now()
     )
 
     db.session.add(kennistkaart)
@@ -74,12 +74,13 @@ def vraag_recente_kenniskaarten():
 @app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
 def zoek_kenniskaarten(zoekvraag):
     velden_list = [Kenniskaart.titel, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld, Kenniskaart.rol, Kenniskaart.vaardigheid, Kenniskaart.hboi]
-    kenniskaarten_list = []
+    kenniskaarten_list,kenniskaarten_list2 = [], []
     for zoekveld in velden_list:
         kenniskaarten_list.append(serialize(Kenniskaart.query.filter(zoekveld.ilike(zoekvraag))))
-        for i in serialize(Kenniskaart.query.filter(zoekveld.ilike('%' + zoekvraag + '%'))):
-            if i not in kenniskaarten_list:
-                kenniskaarten_list.append(i)
+        for kenniskaart in serialize(Kenniskaart.query.filter(zoekveld.ilike('%' + zoekvraag + '%'))):
+            if kenniskaart not in kenniskaarten_list:
+                kenniskaarten_list2.append(kenniskaart)
+    kenniskaarten_list.append(kenniskaarten_list2)
 
     return jsonify(kenniskaarten_list), 200
 
