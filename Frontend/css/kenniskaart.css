@@ -2,35 +2,39 @@
   background-color: #f1f1f1;
    /*margin: 6px 0 6px 0;*/
 }
+body {
+  font-family: sans-serif;
+}
+
 
 .kenniskaart {
   border-style: solid;
   border-width: 1px;
   border-color: #E1E1E1;
-  margin: 5px 15px 5px 15px;
+  margin: 5px 15px;
   padding: 1px 3px 1px 3px;
   /*border: #111111;*/
   background-color: white;
   box-shadow: 5px 5px 2px lightgray;
 }
 
-.kenniskaart .kenniskaart-datum {
+.kenniskaart-datum {
   /*font-family: "Lucida Sans", sans-serif;*/
   font-size: 13px;
   color: red;
 }
 
-.kenniskaart .kenniskaart-titel {
+.kenniskaart-titel {
   /*font-family: "Lucida Sans", sans-serif;*/
   padding: 3px;
 }
 
-.kenniskaart .kenniskaart-what {
+.kenniskaart-what {
   word-break: break-word;
   padding: 0px 5px 3px 5px;
 }
 
-.kenniskaart .kenniskaart-tags {
+.kenniskaart-tags {
   background-color: #b8e7ff;
   padding: 2px 7px 2px 7px;
   margin: 1px;
@@ -44,11 +48,48 @@
 }
 
 @media only screen and (min-width: 601px) {
+  .kenniskaartencontainer {
+    margin: auto;
+    text-align: center;
+  }
+  .kenniskaart {
+    text-align: left;
+    height: 130px;
+    width: 60%;
+    min-width: 550px;
+    /*min-width: 50%;*/
+    /*max-width: 97%;*/
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    padding: 5px;
+    /*float: left;*/
+  }
   .kenniskaart-foto {
     float: left;
-    
+    height: 130px;
   }
+  .kenniskaart-datum {
+    padding: 20px 0 0 0;
+    position: absolute;
+    right: 15px;
+    top: 0;
+  }
+   .kenniskaart-titel .kenniskaart-what {
+     position: absolute;
+     left: 0;
 
+   }
+   .kenniskaart-tags {
+     position: relative;
+     bottom: 0;
+   }
+   .kenniskaart-what {
+     overflow: hidden;
+     /*white-space: nowrap;*/
+     /*text-overflow: ellipsis;*/
+     height: 31px; /* 55px = 3 lines, 31px = 2 lines & 12px = 1 line*/
+   }
 }
 
 

@@ -1,7 +1,11 @@
+function clearOldResults(elementClassName) {
+  var element = document.getElementsByClassName(elementClassName);
+  console.log(element);
+  element.parentNode.removeChild(element);
+}
 
 function formatDateTime(unformatedDatum) {
   var datum = new Date(unformatedDatum);
-
   const maanden = {
     0: "januari",
     1: "februari",
@@ -41,14 +45,15 @@ function maakKenniskaarten(item, index) {
 
   var kenniskaart = document.createElement('div');
   kenniskaart.setAttribute('class', 'kenniskaart');
+  kenniskaart.setAttribute('id', item['id']);
   kenniskaartBestemming[0].appendChild(kenniskaart);
   var kenniskaartlocatie = document.getElementsByClassName("kenniskaart");
 
   makeImg(kenniskaartlocatie[index], "kenniskaart-foto", '../css/fotos/placeholder.jpeg');
   makeElement(kenniskaartlocatie[index], "kenniskaart-datum", formatDateTime(item["datetime"]), "div");
   makeElement(kenniskaartlocatie[index], "kenniskaart-titel", item["titel"], "H3");
-  makeElement(kenniskaartlocatie[index], "kenniskaart-what", item["what"].slice(0, 150) + "...", "div");
-  // item["tags"].forEach(function (item) {
+  makeElement(kenniskaartlocatie[index], "kenniskaart-what", item["what"], "div");
+  // item["tags"].forEach(function (item) {           item["what"].slice(0, 150) + "..."
   //   makeElement(kenniskaartlocatie[index], "kenniskaart-tags", item, "div")
   // });
 }
@@ -72,6 +77,7 @@ function fetchResultaten() {
 }
 
 function fetchRecent() {
+  // clearOldResults("kenniskaart");
   fetch("http://82.72.167.14:56743/ophalen/recent")
       .then(function (response) {
         response.json().then(function (data) {

@@ -23,4 +23,5 @@ function kenniskaart_toevoegen() {
 		return response.json();
 	});
 	alert('uw kenniskaartje is toegevoegd');
+	window.location.replace("http://82.72.167.14/html/index.html")
 }
