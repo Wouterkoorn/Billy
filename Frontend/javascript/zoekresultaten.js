@@ -6,7 +6,6 @@ function clearOldResults(elementClassName) {
 
 function formatDateTime(unformatedDatum) {
   var datum = new Date(unformatedDatum);
-
   const maanden = {
     0: "januari",
     1: "februari",
@@ -52,8 +51,8 @@ function maakKenniskaarten(item, index) {
   makeImg(kenniskaartlocatie[index], "kenniskaart-foto", '../css/fotos/placeholder.jpeg');
   makeElement(kenniskaartlocatie[index], "kenniskaart-datum", formatDateTime(item["datetime"]), "div");
   makeElement(kenniskaartlocatie[index], "kenniskaart-titel", item["titel"], "H3");
-  makeElement(kenniskaartlocatie[index], "kenniskaart-what", item["what"].slice(0, 150) + "...", "div");
-  // item["tags"].forEach(function (item) {
+  makeElement(kenniskaartlocatie[index], "kenniskaart-what", item["what"], "div");
+  // item["tags"].forEach(function (item) {           item["what"].slice(0, 150) + "..."
   //   makeElement(kenniskaartlocatie[index], "kenniskaart-tags", item, "div")
   // });
 }

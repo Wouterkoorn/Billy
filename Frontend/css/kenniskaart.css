@@ -2,12 +2,16 @@
   background-color: #f1f1f1;
    /*margin: 6px 0 6px 0;*/
 }
+body {
+  font-family: sans-serif;
+}
+
 
 .kenniskaart {
   border-style: solid;
   border-width: 1px;
   border-color: #E1E1E1;
-  margin: 5px 15px 5px 15px;
+  margin: 5px 15px;
   padding: 1px 3px 1px 3px;
   /*border: #111111;*/
   background-color: white;
@@ -44,12 +48,22 @@
 }
 
 @media only screen and (min-width: 601px) {
+  .kenniskaartencontainer {
+    margin: auto;
+    text-align: center;
+  }
   .kenniskaart {
+    text-align: left;
     height: 130px;
-    width: 45%;
+    width: 60%;
+    min-width: 550px;
+    /*min-width: 50%;*/
+    /*max-width: 97%;*/
     position: relative;
+    display: inline-block;
     overflow: hidden;
     padding: 5px;
+    /*float: left;*/
   }
   .kenniskaart-foto {
     float: left;
@@ -64,14 +78,17 @@
    .kenniskaart-titel .kenniskaart-what {
      position: absolute;
      left: 0;
+
    }
    .kenniskaart-tags {
      position: relative;
      bottom: 0;
    }
    .kenniskaart-what {
-     overflow: ;
-     max-height: 20%;
+     overflow: hidden;
+     /*white-space: nowrap;*/
+     /*text-overflow: ellipsis;*/
+     height: 31px; /* 55px = 3 lines, 31px = 2 lines & 12px = 1 line*/
    }
 }
 
