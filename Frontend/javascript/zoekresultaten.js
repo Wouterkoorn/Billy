@@ -45,6 +45,7 @@ function maakKenniskaarten(item, index) {
 
   var kenniskaart = document.createElement('div');
   kenniskaart.setAttribute('class', 'kenniskaart');
+  kenniskaart.setAttribute('id', item['id']);
   kenniskaartBestemming[0].appendChild(kenniskaart);
   var kenniskaartlocatie = document.getElementsByClassName("kenniskaart");
 
