@@ -93,3 +93,12 @@ function fetchRecent() {
       })
       })
 }
+
+const zoekveld = document.getElementById("searchBar");
+
+zoekveld.addEventListener('keydown', function (event) {
+  switch (event.key) {
+    case "Enter":
+      fetchResultaten();
+  }
+});
