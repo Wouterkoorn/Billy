@@ -66,7 +66,7 @@ function maakKenniskaarten(item, index) {
 function fetchResultaten() {
   clearOldResults("kenniskaart");
   console.log('zoeken...');
-  fetch("http://82.72.167.14:56743/ophalen/zoeken/".concat(document.getElementById('searchBar').value))
+  fetch("http://84.105.28.226/ophalen/zoeken/".concat(document.getElementById('searchBar').value))
       .then(function (response) {
         response.json().then(function (data) {//response omzetten in json zodat javascript het kan gebruiken in de functie erna
           data.forEach(function (item, index) {
@@ -81,7 +81,7 @@ function fetchResultaten() {
 
 
 function fetchRecent() {
-  fetch("http://82.72.167.14:56743/ophalen/recent")
+  fetch("http://84.105.28.226:56743/ophalen/recent")
       .then(function (response) {
         response.json().then(function (data) {
           data.forEach(function (item, index) {
