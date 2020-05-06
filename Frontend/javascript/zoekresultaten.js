@@ -1,4 +1,5 @@
 function clearOldResults(elementClassName) {
+    //zoekt alle kenniskaarten op en verwijderd ze
     const element = document.getElementsByClassName(elementClassName);
     console.log(element, element.length);
     while (element.length > 0) {
@@ -8,6 +9,7 @@ function clearOldResults(elementClassName) {
 
 
 function formatDateTime(unformatedDatum) {
+    //zet de datum format van mariadb om naar de gewenste datumformat voor JS met een uitgeschreven maand ipv cijfer
     var datum = new Date(unformatedDatum);
     const maanden = {
         0: "januari",
@@ -28,6 +30,7 @@ function formatDateTime(unformatedDatum) {
 
 
 function makeElement(locatie, classnaam, contentInElement, ElementType) {
+    //maakt een DOM element met classnaam, content in gewenste elementtype en plaatst deze in de locatie
     var element = document.createElement(ElementType);
     element.appendChild(document.createTextNode(contentInElement));
     element.setAttribute('class', classnaam);
@@ -36,6 +39,7 @@ function makeElement(locatie, classnaam, contentInElement, ElementType) {
 
 
 function makeImg(locatie, classnaam, imageInDiv) {
+    //maakt een DOM element specifiek voor de image
     var img = document.createElement('img');
     img.setAttribute('src', imageInDiv); //verander value naar imageInDiv
     img.setAttribute('class', classnaam);
@@ -44,6 +48,7 @@ function makeImg(locatie, classnaam, imageInDiv) {
 
 
 function maakKenniskaarten(item, index) {
+    //maakt een kenniskaart volgens de json uit de variabele item
     var kenniskaartBestemming = document.getElementsByClassName("kenniskaartencontainer");
     var kenniskaart = document.createElement('div');
     kenniskaart.setAttribute('class', 'kenniskaart');
@@ -61,13 +66,8 @@ function maakKenniskaarten(item, index) {
 }
 
 
-function getKenniskaarten() {
-    window.kenniskaarten = document.getElementsByClassName("kenniskaart");
-    alert(kenniskaarten[0]);
-}
-
-
 function fetchResultaten() {
+    //verwijderd oude resultaten en haalt nieuwe resultaten op in json format. Roept Daarna de functie aan om de resultaten te maken.
     clearOldResults("kenniskaart");
     console.log('zoeken...');
     fetch("http://84.105.28.226:56743/ophalen/zoeken/".concat(document.getElementById('searchBar').value))
@@ -88,6 +88,7 @@ function fetchResultaten() {
 
 
 function fetchRecent() {
+    //haalt de 5 laatst toegevoegde kaarten op en toont deze
     fetch("http://84.105.28.226:56743/ophalen/recent")
         .then(function (response) {
             response.json().then(function (data) {
@@ -106,6 +107,7 @@ function fetchRecent() {
 }
 
 
+//eventlistener voor zoeken, toont zoekresultaten zodra enter wordt ingedrukt.
 const zoekveld = document.getElementById("searchBar");
 
 zoekveld.addEventListener('keydown', function (event) {
