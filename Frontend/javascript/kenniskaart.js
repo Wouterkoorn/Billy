@@ -11,7 +11,7 @@ btn.onclick = function() {
   kennis.style.display = "block";
 }
 // When the user clicks on the kenniskaart, open the kenniskaart
-ken.addEventListener('click', function(event) {
+kennis.addEventListener('click', function(event) {
   kennis.style.display = "block" });
 // When the user clicks on <span> (x), close the kenniskaart
 span.onclick = function() {
@@ -26,4 +26,4 @@ window.onclick = function(event) {
 // Add the data to the kenniskaart
 function add_data() {
   if(document.getElementById('myKennis'));
-};
+}
