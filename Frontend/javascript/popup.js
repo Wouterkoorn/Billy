@@ -17,8 +17,6 @@ function addEventListeners() {
             fetch("http://84.105.28.226:56743/ophalen/kenniskaart/".concat(id))
                 .then(function (response) {
                     response.json().then( function (data) {
-                        console.log(data);
-                        console.log(data["datetime"], formatDateTime(data["datetime"]));
                         //pop-up vullen met juiste data
                         document.getElementsByClassName("popupContent")[0].setAttribute("id", data["id"])
                         document.getElementById("popupTitel").innerHTML = data["titel"]
@@ -42,5 +40,33 @@ function addEventListeners() {
                 })
 
         })
+    }
+}
+
+function kenniskaartVerwijderen() {
+    //zodra op de verwijderknop wordt gedrukt wordt de kenniskaart id opghehaald en wordt de kenniskaart verwijderd uit de database en uit de HTML
+    if (confirm(`Weet je zeker dat je de kenniskaart: "${document.getElementById("popupTitel").innerHTML}" wilt verwijderen?`)) {
+        console.log("ah das jammer de API call doet het niet...");
+        const id = document.getElementsByClassName("popupContent")[0].getAttribute("id");
+        fetch("84.105.28.226/verwijderen/kenniskaart/".concat(id), {
+            method: "PUT"
+        })
+            .then(function (response) {
+                if (response["status"] === 404) {
+                    const titel = document.getElementById("popupTitel").innerHTML;
+                    //todo alert veranderen naar kleine korte popup zodat gebruiker niet geinterrupt wordt.
+                    alert(`De kenniskaart: "${titel}" is verwijderd.`);
+                    document.getElementById("popupContainer").style.display = "none";
+                    // verwijder kaart uit lijst in html zodat pagina of zoekresultaten niet opniew geladen hoeft te worden.
+                    //todo toekomstige shareable urls checken of situatie toch niet om refresh vraagt van resultaten.
+                    document.getElementById(id).remove();
+                }
+                else {
+                    console.error(`The delete request responded with something other than status (ok) 200: `, response);
+                }
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch Delete operation:', error);
+            })
     }
 }

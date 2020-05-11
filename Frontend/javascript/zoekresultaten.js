@@ -1,7 +1,7 @@
 function clearOldResults(elementClassName) {
     //zoekt alle kenniskaarten op en verwijderd ze
     const element = document.getElementsByClassName(elementClassName);
-    console.log(element, element.length);
+    // console.log(element, element.length);
     while (element.length > 0) {
         element[0].remove();
     }
