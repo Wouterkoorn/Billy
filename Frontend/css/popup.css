@@ -47,6 +47,17 @@
     #popupDatum {
         float: right;
     }
+    #popupVerwijderenButton {
+        max-width: 20%;
+        height: 50px;
+        float: right;
+        background-image: url("../css/fotos/prullenbak.jpg");
+        background-size: cover;
+        width: 50px;
+    }
+    #popupVerwijderenFoto {
+        max-width: 100%;
+    }
 }
 
 
