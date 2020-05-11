@@ -44,7 +44,3 @@ function addEventListeners() {
         })
     }
 }
-
-
-    //Neemt gegevens op in html
-    //displayed gegevens in popup
