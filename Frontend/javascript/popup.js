@@ -28,7 +28,7 @@ function addEventListeners() {
                         document.getElementById("popupRol").innerHTML = data["rol"]
                         document.getElementById("popupWhat").innerHTML = data["what"]
                         document.getElementById("popupWhy").innerHTML = data["why"]
-                        document.getElementById("popupHow").innerHTML = data["why"]
+                        document.getElementById("popupHow").innerHTML = data["how"]
                         document.getElementById("popupVoorbeeld").innerHTML = data["voorbeeld"]
                         //pop-up tonen
                         popup.style.display = "block";
