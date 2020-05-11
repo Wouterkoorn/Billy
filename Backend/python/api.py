@@ -1,42 +1,37 @@
-import sqlalchemy
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy import Column, Integer, String, TIMESTAMP
-from sqlalchemy.ext.declarative import declarative_base
-from flask import Flask, request, jsonify
+from flask import Flask, jsonify, request
+import datetime
+from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
 
 app = Flask(__name__)
 CORS(app)
-
-engine = sqlalchemy.create_engine('mysql+pymysql://python:luca@localhost/billydb')
-Session = sessionmaker(bind=engine)
-session = Session()
-Base = declarative_base()
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://python:luca@localhost/billydb"
+db = SQLAlchemy(app)
 
 
-class Kennistkaart(Base):
+class Kenniskaart(db.Model):
     __tablename__ = 'kenniskaarten'
 
-    id = Column(Integer, primary_key=True, autoincrement=True)
-    titel = Column(String(255))
-    what = Column(String(1023))
-    why = Column(String(1023))
-    how = Column(String(1023))
-    voorbeeld = Column(String(255))
-    rol = Column(String(255))
-    vaardigheid = Column(String(255))
-    hboi = Column(String(255))
-    datetime = Column(TIMESTAMP)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    titel = db.Column(db.String(255))
+    what = db.Column(db.String(1023))
+    why = db.Column(db.String(1023))
+    how = db.Column(db.String(1023))
+    voorbeeld = db.Column(db.String(255))
+    rol = db.Column(db.String(255))
+    vaardigheid = db.Column(db.String(255))
+    hboi = db.Column(db.String(255))
+    datetime = db.Column(db.TIMESTAMP, default=datetime.datetime.now())
 
 
-Base.metadata.create_all(engine)
+db.create_all()
 
 
 @app.route('/toevoegen', methods=['POST'])
-def voeg_kenniskaart_toe():
+def plaats_kenniskaart():
     data = request.json
 
-    kennistkaart = Kennistkaart(
+    kennistkaart = Kenniskaart(
         titel=data['titel'],
         what=data['what'],
         why=data['why'],
@@ -44,68 +39,69 @@ def voeg_kenniskaart_toe():
         voorbeeld=data['voorbeeld'],
         rol=data['rol'],
         vaardigheid=data['vaardigheid'],
-        hboi=data['hboi']
+        hboi=data['hboi'],
+        datetime=datetime.datetime.now()
     )
 
-    session.add(kennistkaart)
-    session.commit()
+    db.session.add(kennistkaart)
+    db.session.commit()
 
     return jsonify({'success': True}), 200
 
-def kenniskaartGetAll():
-    kenniskaartenList = []
-    for i in session.query(Kennistkaart).all():
-        kenniskaartDict = {
-            "titel": i.titel,
-            "what": i.what,
-            "why": i.why,
-            "how": i.how,
-            "voorbeeld": i.voorbeeld,
-            "rol": i.rol,
-            "vaardigheid": i.vaardigheid,
-            "hboi": i.hboi
-        }
-        kenniskaartenList.append(kenniskaartDict)
+db.create_all()
+def serialize(query):
+    queryList = []
+    for i in query:
+        # SQLAlchemy __dict__ object heeft een instance state die niet ge-returned hoeft te worden
+        del i.__dict__['_sa_instance_state']
+        queryList.append(i.__dict__)
+    return queryList
 
-    return kenniskaartenList
 
 @app.route('/ophalen', methods=['GET'])
-def vraag_kenniskaart_op():
-    return jsonify(kenniskaartGetAll())
+def vraag_alle_kenniskaarten():
+    return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).all())), 200
 
 
-@app.route('/ophalen/<zoekvraag>', methods=['GET'])
-def zoek_kenniskaart(zoekvraag):
-    kenniskaartenList = kenniskaartGetAll()
-    results, kenniskaartentitels = [], []
+@app.route('/ophalen/kenniskaart/<kenniskaart_id>', methods=['GET'])
+def vraag_kenniskaart(kenniskaart_id):
+    kenniskaart = Kenniskaart.query.get(kenniskaart_id).__dict__
+    del kenniskaart['_sa_instance_state']
+    return jsonify(kenniskaart), 200
 
-    for item in kenniskaartenList:
 
-        titel = str(item['titel'])
-        kenniskaartentitels.append(titel)
+@app.route('/ophalen/recent', methods=['GET'])
+def vraag_recente_kenniskaarten():
+    return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).limit(5).all())), 200
 
-        def bestResult(resultSort):
-            num = resultSort.lower().find(zoekvraag.lower())
-            return num
 
-        if zoekvraag.lower() in titel.lower():
-            results.append(titel)
+@app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
+def zoek_kenniskaarten(zoekvraag):
+    velden_list = [Kenniskaart.titel, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld,
+                   Kenniskaart.rol, Kenniskaart.vaardigheid, Kenniskaart.hboi]
+    kenniskaarten_exact, kenniskaarten_inclusief = [], []
 
-        elif titel.lower() in zoekvraag.lower():
-            results.append(titel)
+    for zoekveld in velden_list:
+        exact_zoekvraag =  serialize(Kenniskaart.query.filter(zoekveld.ilike(zoekvraag)))
+        if len(exact_zoekvraag) > 0:
+            for kenniskaart in exact_zoekvraag:
+                if kenniskaart not in kenniskaarten_exact and kenniskaart not in kenniskaarten_inclusief:
+                    kenniskaarten_exact.append(kenniskaart)
 
-    if len(results) == 0:
-        return 'Geen resultaten gevonden.'
+        zoekvraag_inclusief = serialize(Kenniskaart.query.filter(zoekveld.ilike("%" + zoekvraag + "%")))
+        if len(zoekvraag_inclusief) > 0:
+            for kenniskaart in zoekvraag_inclusief:
+                if kenniskaart not in kenniskaarten_exact and kenniskaart not in kenniskaarten_inclusief:
+                    kenniskaarten_inclusief.append(kenniskaart)
 
-    else:
-        sorted(results, key=bestResult, reverse=False)
+    kenniskaarten_exact.extend(kenniskaarten_inclusief)
+    return jsonify(kenniskaarten_exact), 200
 
-        kaarten = []
 
-        for i in results:
-            kaarten.append(kenniskaartenList[kenniskaartentitels.index(i)])
-
-        return jsonify(kaarten), 200
+@app.route('/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
+def verwijder_kenniskaart(kenniskaart_id):
+    Kenniskaart.query.filter(id=kenniskaart_id).delete()
+    db.session.commit()
 
 
 app.run(host='0.0.0.0', port='56743')

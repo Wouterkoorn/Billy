@@ -2,7 +2,7 @@ function kenniskaart_toevoegen() {
 	/*Voegt alle data die is ingevuld bij de template samen in een json variable en verstuurd deze naar de backend.
 	Geeft na een succesvolle operatie een alert dat het gelukt is.
 	*/
-	let ip = 'http://82.72.167.14:56743/toevoegen';
+	let ip = 'http://84.105.28.226:56743/toevoegen';
 	var emptyString = ''; //emptystring om alle data van HBO-i bij elkaar te zetten in een string
 	let dataKenniskaart = {
 		"titel": document.getElementById('formTitel').value,
@@ -23,4 +23,5 @@ function kenniskaart_toevoegen() {
 		return response.json();
 	});
 	alert('uw kenniskaartje is toegevoegd');
+	window.location.replace("http://84.105.28.226/html/index.html")
 }

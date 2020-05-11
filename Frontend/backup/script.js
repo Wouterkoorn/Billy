@@ -39,9 +39,3 @@ function searchFunction() {
     }
   }
 }
-
-
-function (window, document, undefined) {
-	var toevoegenForm = document.getElementById(''),
-	
-}

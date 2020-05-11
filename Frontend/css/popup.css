@@ -1,0 +1,56 @@
+#popupContainer {
+    display: none;
+}
+#popupFoto {
+    width: 100%;
+}
+#popupDatum {
+    color: red;
+}
+
+
+
+
+/*Desktop*/
+@media only screen and (min-width: 601px) {
+    #popupContainer {
+        /*Er voor zorgen dat de container over de gehele pagina rendered*/
+        position: fixed;
+        left: 0;
+        top: 0;
+        z-index: 1;
+        /*normale css*/
+        width: 100%;
+        height: 100%;
+        padding: 90px 0 0 0;
+        overflow: auto; /* er voor zorgen dat scrollen werkt */
+        background-color: rgb(0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+    .popupContent {
+        padding: 20px;
+    }
+    .popupContent {
+        /*popup in het midden zetten*/
+        position: relative;
+        margin: auto;
+        width: 60%;
+        background-color: white;
+        min-height: 80%;
+    }
+    #popupFoto {
+        height: 260px;
+    }
+    #popupTitel {
+        /*float: left;*/
+    }
+    #popupDatum {
+        float: right;
+    }
+}
+
+
+/*Mobile*/
+@media only screen and (max-width: 600px) {
+    /*To be done*/
+}

@@ -1,41 +1,68 @@
+function clearOldResults(elementClassName) {
+    //zoekt alle kenniskaarten op en verwijderd ze
+    const element = document.getElementsByClassName(elementClassName);
+    console.log(element, element.length);
+    while (element.length > 0) {
+        element[0].remove();
+    }
+}
+
 
 function formatDateTime(unformatedDatum) {
-  var datum = new Date(unformatedDatum);
-  return datum.getDate() + " " + datum.getMonth() + " " + datum.getFullYear()
+    //zet de datum format van mariadb om naar de gewenste datumformat voor JS met een uitgeschreven maand ipv cijfer
+    var datum = new Date(unformatedDatum);
+    const maanden = {
+        0: "januari",
+        1: "februari",
+        2: "maart",
+        3: "april",
+        4: "mei",
+        5: "juni",
+        6: "juli",
+        7: "augustus",
+        8: "september",
+        9: "oktober",
+        10: "november",
+        11: "december"
+    };
+    return datum.getDate() + " " + maanden[datum.getMonth()] + " " + datum.getFullYear()
 }
 
 
 function makeElement(locatie, classnaam, contentInElement, ElementType) {
-  var element = document.createElement(ElementType);
-  element.appendChild(document.createTextNode(contentInElement));
-  element.setAttribute('class', classnaam);
-  locatie.appendChild(element);
+    //maakt een DOM element met classnaam, content in gewenste elementtype en plaatst deze in de locatie
+    var element = document.createElement(ElementType);
+    element.appendChild(document.createTextNode(contentInElement));
+    element.setAttribute('class', classnaam);
+    locatie.appendChild(element);
 }
 
 
 function makeImg(locatie, classnaam, imageInDiv) {
-  var img = document.createElement('img');
-  img.setAttribute('src', imageInDiv); //verander value naar imageInDiv
-  img.setAttribute('class', classnaam);
-  locatie.appendChild(img);
+    //maakt een DOM element specifiek voor de image
+    var img = document.createElement('img');
+    img.setAttribute('src', imageInDiv); //verander value naar imageInDiv
+    img.setAttribute('class', classnaam);
+    locatie.appendChild(img);
 }
 
 
-function toonZoekResultaten(item, index) {
-  var kenniskaartBestemming = document.getElementsByClassName("kenniskaartencontainer");
+function maakKenniskaarten(item, index) {
+    //maakt een kenniskaart volgens de json uit de variabele item
+    var kenniskaartBestemming = document.getElementsByClassName("kenniskaartencontainer");
+    var kenniskaart = document.createElement('div');
+    kenniskaart.setAttribute('class', 'kenniskaart');
+    kenniskaart.setAttribute('id', item['id']);
+    kenniskaartBestemming[0].appendChild(kenniskaart);
+    var kenniskaartlocatie = document.getElementsByClassName("kenniskaart");
 
-  var kenniskaart = document.createElement('div');
-  kenniskaart.setAttribute('class', 'kenniskaart');
-  kenniskaartBestemming[0].appendChild(kenniskaart);
-  var kenniskaartlocatie = document.getElementsByClassName("kenniskaart");
-
-  makeImg(kenniskaartlocatie[index], "kenniskaart-foto", '../css/fotos/placeholder.jpeg');
-  makeElement(kenniskaartlocatie[index], "kenniskaart-datum", formatDateTime(item["datetime"]), "div");
-  makeElement(kenniskaartlocatie[index], "kenniskaart-titel", item["titel"], "H3");
-  makeElement(kenniskaartlocatie[index], "kenniskaart-what", item["what"].slice(0, 150) + "...", "div");
-  // item["tags"].forEach(function (item) {
-  //   makeElement(kenniskaartlocatie[index], "kenniskaart-tags", item, "div")
-  // });
+    makeImg(kenniskaartlocatie[index], "kenniskaart-foto", '../css/fotos/placeholder.jpeg');
+    makeElement(kenniskaartlocatie[index], "kenniskaart-datum", formatDateTime(item["datetime"]), "div");
+    makeElement(kenniskaartlocatie[index], "kenniskaart-titel", item["titel"], "H3");
+    makeElement(kenniskaartlocatie[index], "kenniskaart-what", item["what"], "div");
+    // item["tags"].forEach(function (item) {           item["what"].slice(0, 150) + "..."
+    //   makeElement(kenniskaartlocatie[index], "kenniskaart-tags", item, "div")
+    // });
 }
 
 function cleanupKenniskaarten() {
@@ -48,21 +75,53 @@ function cleanupKenniskaarten() {
   }
 }
 
-// testSearchResults.forEach(function(item, index) {toonZoekResultaten(item, index)})
-
 function fetchResultaten() {
-  console.log('zoeken...');
-  fetch("http://82.72.167.14:56743/ophalen/".concat(document.getElementById('searchBar').value))
-      .then(
-          function (response) {
+    //verwijderd oude resultaten en haalt nieuwe resultaten op in json format. Roept Daarna de functie aan om de resultaten te maken.
+    clearOldResults("kenniskaart");
+    console.log('zoeken...');
+    fetch("http://84.105.28.226:56743/ophalen/zoeken/".concat(document.getElementById('searchBar').value))
+        .then(function (response) {
             response.json().then(function (data) {//response omzetten in json zodat javascript het kan gebruiken in de functie erna
-              // data.reverse();//sorteren op laatst toegevoegd
-              data.forEach(function (item, index) {
-                toonZoekResultaten(item, index);
-              })
+                data.forEach(function (item, index) {
+                    maakKenniskaarten(item, index);
+                })
             })
-          })
-      .catch(function (error) {
-        console.log(error);
-      })
+                .then(function () {
+                    addEventListeners();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        })
 }
+
+
+function fetchRecent() {
+    //haalt de 5 laatst toegevoegde kaarten op en toont deze
+    fetch("http://84.105.28.226:56743/ophalen/recent")
+        .then(function (response) {
+            response.json().then(function (data) {
+                data.forEach(function (item, index) {
+                    maakKenniskaarten(item, index);
+                })
+            })
+                .then(function () {
+                    addEventListeners();
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+        })
+
+}
+
+
+//eventlistener voor zoeken, toont zoekresultaten zodra enter wordt ingedrukt.
+const zoekveld = document.getElementById("searchBar");
+
+zoekveld.addEventListener('keydown', function (event) {
+    switch (event.key) {
+        case "Enter":
+            fetchResultaten();
+    }
+});

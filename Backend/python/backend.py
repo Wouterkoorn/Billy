@@ -1,55 +1,96 @@
+import sqlalchemy
+import datetime
+from sqlalchemy.orm import sessionmaker
+from sqlalchemy import Column, Integer, String, DateTime, desc
+from sqlalchemy.ext.declarative import declarative_base
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import db
-from sqlalchemy import Table, Column, Integer, String, MetaData
 
 app = Flask(__name__)
 CORS(app)
 
-def lijstmaken(billydb):
-    kenniskaarten = []
-    for kenniskaart in billydb:
-        kenniskaarten.append(
-            {'titel': kenniskaart['titel'],
-             'what': kenniskaart['what'],
-             'why': kenniskaart['why'],
-             'how': kenniskaart['how'],
-             'voorbeeld': kenniskaart['voorbeeld'],
-             'rol': kenniskaart['rol'],
-             'vaardigheid': kenniskaart['vaardigheid'],
-             'hboi': kenniskaart['hboi'],
-             'datetime': kenniskaart['datetime']
-             }
-        )
-    return kenniskaarten
+engine = sqlalchemy.create_engine('mysql+pymysql://python:luca@localhost/billydb')
+Session = sessionmaker(bind=engine)
+session = Session()
+Base = declarative_base()
+
+
+class Kennistkaart(Base):
+    __tablename__ = 'kenniskaarten'
+
+    id = Column(Integer, primary_key=True, autoincrement=True)
+    titel = Column(String(255))
+    what = Column(String(1023))
+    why = Column(String(1023))
+    how = Column(String(1023))
+    voorbeeld = Column(String(255))
+    rol = Column(String(255))
+    vaardigheid = Column(String(255))
+    hboi = Column(String(255))
+    datetime = Column(DateTime, default=datetime.datetime.now())
+
+
+Base.metadata.create_all(engine)
+
 
 @app.route('/toevoegen', methods=['POST'])
-def voeg_kenniskaart_toe():
+def plaats_kenniskaart():
     data = request.json
-    sql = f"INSERT INTO kenniskaarten(titel, what, why, how, voorbeeld, rol, vaardigheid, hboi) VALUES ('{data['titel']}','{data['what']}','{data['why']}','{data['how']}','{data['voorbeeld']}','{data['rol']}','{data['vaardigheid']}','{data['hboi']}')"
 
-    db.execute_sql(sql)
+    kennistkaart = Kennistkaart(
+        titel=data['titel'],
+        what=data['what'],
+        why=data['why'],
+        how=data['how'],
+        voorbeeld=data['voorbeeld'],
+        rol=data['rol'],
+        vaardigheid=data['vaardigheid'],
+        hboi=data['hboi'],
+    )
+
+    session.add(kennistkaart)
+    session.commit()
+
     return jsonify({'success': True}), 200
 
 
-def check_input():
-    """Voorkomt sql injection"""
-    pass
-
-
 @app.route('/ophalen', methods=['GET'])
-def vraag_kenniskaart_op():
-    billydb = db.execute_sql('SELECT * FROM kenniskaarten')
-    return jsonify(lijstmaken(billydb)), 200
+def vraag_alle_kenniskaarten():
+    kenniskaartenList = []
+
+    for i in session.query(Kennistkaart).order_by(desc(Kennistkaart.datetime)).all():
+        # SQLAlchemy __dict__ object heeft een instance state die niet gereturnd hoeft te worden
+        kenniskaartDict = dict(i.__dict__);
+        del kenniskaartDict['_sa_instance_state']
+        kenniskaartenList.append(kenniskaartDict)
+
+    return jsonify(kenniskaartenList)
 
 
-@app.route('/ophalen/<zoekvraag>', methods=['GET'])
+@app.route('/ophalen/recent', methods=['GET'])
+def vraag_recente_kenniskaarten():
+    kenniskaartenList = []
+
+    for i in session.query(Kennistkaart).order_by(desc(Kennistkaart.datetime)).limit(5).all():
+        kenniskaartDict = dict(i.__dict__);
+        del kenniskaartDict['_sa_instance_state']
+        kenniskaartenList.append(kenniskaartDict)
+
+    return jsonify(kenniskaartenList)
+
+
+@app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
 def zoek_kenniskaart(zoekvraag):
-    billydb = db.execute_sql('SELECT * FROM kenniskaarten')
-    lijstkenniskaarten = lijstmaken(billydb)
+    kenniskaartenList = []
+
+    for i in session.query(Kennistkaart).order_by(desc(Kennistkaart.datetime)).all():
+        kenniskaartDict = dict(i.__dict__);
+        del kenniskaartDict['_sa_instance_state']
+        kenniskaartenList.append(kenniskaartDict)
+
     results, kenniskaartentitels = [], []
 
-    for item in lijstkenniskaarten:
+    for item in kenniskaartenList:
 
         titel = str(item['titel'])
         kenniskaartentitels.append(titel)
@@ -73,9 +114,9 @@ def zoek_kenniskaart(zoekvraag):
         kaarten = []
 
         for i in results:
-            kaarten.append(lijstkenniskaarten[kenniskaartentitels.index(i)])
+            kaarten.append(kenniskaartenList[kenniskaartentitels.index(i)])
 
         return jsonify(kaarten), 200
 
 
-app.run(host='0.0.0.0', port='56743')  # run host op www
+app.run(host='0.0.0.0', port='56743')
