@@ -48,7 +48,7 @@ function kenniskaartVerwijderen() {
     if (confirm(`Weet je zeker dat je de kenniskaart: "${document.getElementById("popupTitel").innerHTML}" wilt verwijderen?`)) {
         console.log("ah das jammer de API call doet het niet...");
         const id = document.getElementsByClassName("popupContent")[0].getAttribute("id");
-        fetch("84.105.28.226:56743/verwijderen/kenniskaart/".concat(id), {
+        fetch("http://84.105.28.226:56743/verwijderen/kenniskaart/".concat(id), {
             method: "DELETE"
         })
             .then(function (response) {
