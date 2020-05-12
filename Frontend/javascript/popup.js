@@ -48,11 +48,11 @@ function kenniskaartVerwijderen() {
     if (confirm(`Weet je zeker dat je de kenniskaart: "${document.getElementById("popupTitel").innerHTML}" wilt verwijderen?`)) {
         console.log("ah das jammer de API call doet het niet...");
         const id = document.getElementsByClassName("popupContent")[0].getAttribute("id");
-        fetch("84.105.28.226/verwijderen/kenniskaart/".concat(id), {
-            method: "PUT"
+        fetch("84.105.28.226:56743/verwijderen/kenniskaart/".concat(id), {
+            method: "DELETE"
         })
             .then(function (response) {
-                if (response["status"] === 404) {
+                if (response["status"] === 200) {
                     const titel = document.getElementById("popupTitel").innerHTML;
                     //todo alert veranderen naar kleine korte popup zodat gebruiker niet geinterrupt wordt.
                     alert(`De kenniskaart: "${titel}" is verwijderd.`);
