@@ -55,7 +55,7 @@ function kenniskaartVerwijderen() {
                     const titel = document.getElementById("popupTitel").innerHTML;
                     //todo alert veranderen naar kleine korte popup zodat gebruiker niet geinterrupt wordt.
                     alert(`De kenniskaart: "${titel}" is verwijderd.`);
-                    document.getElementById("popupContainer").style.display = "none";
+                    closeKenniskaartPopUp();
                     // verwijder kaart uit lijst in html zodat pagina of zoekresultaten niet opniew geladen hoeft te worden.
                     //todo toekomstige shareable urls checken of situatie toch niet om refresh vraagt van resultaten.
                     document.getElementById(id).remove();
@@ -68,4 +68,10 @@ function kenniskaartVerwijderen() {
                 console.error('There has been a problem with your fetch Delete operation:', error);
             })
     }
+}
+
+
+function closeKenniskaartPopUp() {
+    //sluit de pop-up van de kenniskaart.
+    document.getElementById("popupContainer").style.display = "none";
 }

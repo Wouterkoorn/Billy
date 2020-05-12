@@ -1,9 +1,29 @@
 #popupContainer {
     display: none;
 }
-#popupFoto {
+#popupImageContainer {
+    position: relative;
     width: 100%;
 }
+#popupFoto { /*Make image responsive*/
+    width: 100%;
+    height: auto;
+}
+#popupCloseButton {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: #555555;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+}
+#popupCloseButton:hover {
+    background-color: black;
+}
+
 #popupDatum {
     color: red;
 }
