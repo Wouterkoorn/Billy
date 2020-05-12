@@ -1,11 +1,16 @@
-#zoekveld {
-  width: inherit;
-  height: inherit;
-  overflow: hidden;
-  display: flex;
+#searchContainer {
+  width: 35%;
+  height: 45px;
+  background-color: #f1f1f1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+
 }
 
-.mySearch {
+.zoekbalk {
   font-size: 18px;
   border: 0 solid #fff;
   text-align: left;
@@ -17,12 +22,14 @@
   height: inherit;
   float: right;
 }
+
 #searchButton {
   width: auto;
   height: inherit;
   background-color: white;
   float: left;
 }
+
 #searchButton img {
   display: block;
   margin: auto;

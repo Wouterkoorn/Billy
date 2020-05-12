@@ -1,11 +1,16 @@
 .index-banner {
   width: 100%;
-  height: calc(100vh - 400px);
-  background-image: url("../css/fotos/index-books.jpeg");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  display: table;
+  height: calc(100vh - 300px);
+  /*background-image: url("../css/fotos/index-books.jpeg");*/
+  /*background-repeat: no-repeat;*/
+  /*background-position: center;*/
+  /*background-size: cover;*/
+  position: relative;
+}
+
+#bannerfoto {
+  width: 100%;
+  height: inherit;
 }
 
 .index-banner h2 {
@@ -24,15 +29,8 @@
   background-color: #eee;
   display: table;
 } */
-.vertical-center {
-  display: table-cell;
-  vertical-align: middle;
-}
-.index-links {
-  width: 100%;
-  height: 45px;
-  background-color: #f1f1f1;
-}
+
+
 /*.index-links::selection {*/
 /*  background-color: green;*/
 /*  color: yellow;*/
