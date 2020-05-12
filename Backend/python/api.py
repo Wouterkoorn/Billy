@@ -65,7 +65,7 @@ def vraag_alle_kenniskaarten():
 
 @app.route('/ophalen/kenniskaart/<kenniskaart_id>', methods=['GET'])
 def vraag_kenniskaart(kenniskaart_id):
-    kenniskaart = Kenniskaart.query.get(kenniskaart_id).__dict__
+    kenniskaart = Kenniskaart.query.get(kenniskaart_id)
     del kenniskaart['_sa_instance_state']
     return jsonify(kenniskaart), 200
 
