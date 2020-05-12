@@ -46,7 +46,6 @@ function addEventListeners() {
 function kenniskaartVerwijderen() {
     //zodra op de verwijderknop wordt gedrukt wordt de kenniskaart id opghehaald en wordt de kenniskaart verwijderd uit de database en uit de HTML
     if (confirm(`Weet je zeker dat je de kenniskaart: "${document.getElementById("popupTitel").innerHTML}" wilt verwijderen?`)) {
-        console.log("ah das jammer de API call doet het niet...");
         const id = document.getElementsByClassName("popupContent")[0].getAttribute("id");
         fetch("http://84.105.28.226:56743/verwijderen/kenniskaart/".concat(id), {
             method: "DELETE"
