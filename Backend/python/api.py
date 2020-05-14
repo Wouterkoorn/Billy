@@ -75,6 +75,11 @@ def vraag_recente_kenniskaarten():
     return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).limit(5).all())), 200
 
 
+@app.route('/ophalen/zoekfilter/<filterstring>/', methods=['GET'])
+def filter_kenniskaarten(filterstring):
+    return filterstring
+
+
 @app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
 def zoek_kenniskaarten(zoekvraag):
     velden_list = [Kenniskaart.titel, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld,
