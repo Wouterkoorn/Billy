@@ -1,6 +1,7 @@
-.index-banner {
+#banner {
   width: 100%;
   height: calc(100vh - 300px);
+  min-height: 70px;
   /*background-image: url("../css/fotos/index-books.jpeg");*/
   /*background-repeat: no-repeat;*/
   /*background-position: center;*/
@@ -11,9 +12,10 @@
 #bannerfoto {
   width: 100%;
   height: inherit;
+  min-height: 45px;
 }
 
-.index-banner h2 {
+#banner h2 {
   font-family: catamaran;
   font-size: 60px;
   font-weight: 900;

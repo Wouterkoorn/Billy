@@ -7,24 +7,14 @@
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-
-}
-
-.zoekbalk {
-  font-size: 18px;
-  border: 0 solid #fff;
-  text-align: left;
-}
-
-#searchBar {
-  padding-left: 15px;
-  width: inherit;
-  height: inherit;
-  float: right;
+  /*overflow: hidden;*/
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
 }
 
 #searchButton {
-  width: auto;
+  width: 10%;
   height: inherit;
   background-color: white;
   float: left;
@@ -35,5 +25,17 @@
   margin: auto;
   height: 40px;
   width: auto;
-  text-align: center;
+  /*text-align: center;*/
+}
+
+#searchBar {
+  flex-grow: 5;
+  padding-left: 15px;
+  height: 43px; /* compenseren voor twee pixels die uit het niets op komen dagen */
+}
+
+.zoekbalk {
+  font-size: 18px;
+  border: 0 solid #fff;
+  text-align: left;
 }
