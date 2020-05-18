@@ -26,28 +26,40 @@
 
 
 <main>
-    <section class="index-banner">
-
-
-    </section>
-
-    <section class="index-links">
-        <div id="zoekveld">
-            <button class="mySearch" id="searchButton" type="button" onclick="fetchResultaten()"><img
-                    src="../css/fotos/search-icon.png"></button>
-            <input class="mySearch" id="searchBar" type="text" placeholder="Search.." title="Type in a category">
+    <section id="banner">
+        <img id="bannerfoto" src="../css/fotos/index-books.jpeg" alt="BillyBoek">
+        <div id="searchContainer">
+            <button class="zoekbalk" id="searchButton" type="button" onclick="fetchResultaten()">
+                <img src="../css/fotos/search-icon.png" alt="Searchicon">
+            </button>
+            <input class="zoekbalk" id="searchBar" type="text" placeholder="Search.." title="Type in a category">
         </div>
     </section>
+    <div id="flexKenniskaartenFilterContainer">
+        <section class="filtercontainer">
+<!--            <div>Ben nog bezig</div>-->
 
-    <section class="kenniskaartencontainer">
+        </section>
 
+        <section class="kenniskaartencontainer">
 
-    </section>
+    <!--        Kenniskaarten hier-->
+
+        </section>
+    </div>
 </main>
+
+
 <section id="popupContainer">
     <div class="popupContent" id="">
-        <img src="../css/fotos/placeholder.jpeg" id="popupFoto">
+        <div id="popupImageContainer">
+            <img src="../css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
+            <button id="popupCloseButton" onclick="closeKenniskaartPopUp()">X</button>
+        </div>
         <H1 id="popupTitel">test123123</H1>
+        <button onclick="kenniskaartVerwijderen()" id="popupVerwijderenButton">
+<!--            <img src="../css/fotos/prullenbak.jpg" id="popupVerwijderenFoto" alt="prullenbak">-->
+        </button>
         <div id="popupDatum">test123123</div>
         <br>
         <div>HBO-i</div>

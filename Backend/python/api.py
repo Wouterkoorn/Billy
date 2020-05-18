@@ -65,7 +65,7 @@ def vraag_alle_kenniskaarten():
 
 @app.route('/ophalen/kenniskaart/<kenniskaart_id>', methods=['GET'])
 def vraag_kenniskaart(kenniskaart_id):
-    kenniskaart = Kenniskaart.query.get(kenniskaart_id).__dict__
+    kenniskaart = Kenniskaart.query.get(kenniskaart_id)
     del kenniskaart['_sa_instance_state']
     return jsonify(kenniskaart), 200
 
@@ -105,8 +105,8 @@ def zoek_kenniskaarten(zoekvraag):
 
 @app.route('/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE', 'PUT'])
 def verwijder_kenniskaart(kenniskaart_id):
-    Kenniskaart.query.filter(id=kenniskaart_id).delete()
+    Kenniskaart.query.filter_by(id=kenniskaart_id).delete()
     db.session.commit()
-
+    return jsonify({'success': True}), 200
 
 app.run(host='0.0.0.0', port='56743')
