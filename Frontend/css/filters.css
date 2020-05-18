@@ -1,0 +1,8 @@
+@media only screen and (min-width: 601px) {
+  .filtercontainers {
+      min-width: 200px;
+      min-height: 600px;
+      border: 2px solid red;
+      order: 1;
+  }
+}

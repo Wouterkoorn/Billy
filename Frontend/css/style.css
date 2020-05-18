@@ -7,6 +7,7 @@
 @import url(zoekveld.css);
 @import url(kenniskaart.css);
 @import url(popup.css);
+@import url(filters.css);
 
 @import url(compatibility.css);
 
@@ -22,6 +23,19 @@
 body {
   background-color: #f3f3f3;
   margin: 0;
+}
+
+
+@media only screen and (min-width: 601px) {
+  /*container voor filters en kenniskaarten opzetten*/
+  #flexKenniskaartenFilterContainer {
+    min-height: 200px;
+    padding: 0;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
 }
 
 

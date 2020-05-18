@@ -51,6 +51,8 @@ body {
   .kenniskaartencontainer {
     margin: auto;
     text-align: center;
+    order: 2;
+    flex-grow: 2;
   }
   .kenniskaart {
     text-align: left;
