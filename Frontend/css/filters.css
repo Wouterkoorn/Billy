@@ -1,8 +1,9 @@
 @media only screen and (min-width: 601px) {
   .filtercontainer {
       min-width: 300px;
+      max-width: 400px;
       height: auto;
-      border: 2px solid red;
+      /*border: 2px solid red;*/
       order: 1;
       flex-grow: 1;
   }
@@ -12,15 +13,29 @@
         cursor: pointer;
         padding: 16px;
         width: 100%;
+        max-width: 400px;
         border: none;
         text-align: left;
         outline: none;
         font-size: 19px;
     }
     .collapsibleFilterContent {
+        max-width: inherit;
         padding: 0 18px;
         display: none;
         overflow: hidden;
         background-color: #f1f1f1;
+    }
+    #filterToepassenButton {
+        background-color: lightgray;
+        color: #444444;
+        cursor: pointer;
+        padding: 16px;
+        width: 100%;
+        max-width: 400px;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 19px;
     }
 }
