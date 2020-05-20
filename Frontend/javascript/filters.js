@@ -1,5 +1,7 @@
 //alle collapsible filters
 const collapsibles = document.getElementsByClassName("collapsibleFilter");
+let alleRollenChecked = false,
+    alleCompetentiesChecked = false;
 
 let i;
 //eventlistener toevoegen aan alle collapsibles die de filter laat in of uitklappen.
@@ -65,10 +67,29 @@ function alleFilters(classNameCheckboxes, alleCheckboxID) {
     }
 }
 
-
+function filterFilters(filterlijst, category) {
+    //returnd een lijst met alleen de aangeklikte filters bij een category in de juiste format
+    let array = [];
+    for (i = 0; i < filterlijst.length; i++) {
+        if (filterlijst[i].checked === true) {
+            // console.log(filterlijst[i], true);
+            array.push(`${filterlijst[i].value}`.concat(`.${category}`));
+        }
+    }
+    // console.log(array);
+    return array;
+}
 function filtersToepassen() {
-    let rollen = [],
-        competenties = [],
-        hboi = [];
-
+    const rolfilters = document.getElementsByClassName("rol"),
+        competentiefilters = document.getElementsByClassName("competentie"),
+        hboifilters = document.getElementsByClassName("hboi");
+    // console.log(rolfilters, competentiefilters, hboifilters); //filters goed gevonden
+    let selectedFilters = [];
+    //todo verbeteren van de namen zodat het de documentatie volgt.
+    selectedFilters = selectedFilters.concat(filterFilters(rolfilters, "rol"));
+    selectedFilters = selectedFilters.concat(filterFilters(competentiefilters, "competentie"));
+    selectedFilters = selectedFilters.concat(filterFilters(hboifilters, "hboi"));
+    console.log(selectedFilters);
+    //todo fetch
+    //todo inside fetch -> make new kenniskaarten and display them
 }
