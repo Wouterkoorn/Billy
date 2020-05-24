@@ -27,7 +27,7 @@ class Kenniskaart(db.Model):
 db.create_all()
 
 
-@app.route('/toevoegen', methods=['POST'])
+@app.route('/api/toevoegen', methods=['POST'])
 def plaats_kenniskaart():
     data = request.json
 
@@ -58,29 +58,29 @@ def serialize(query):
     return queryList
 
 
-@app.route('/ophalen', methods=['GET'])
+@app.route('/api/ophalen', methods=['GET'])
 def vraag_alle_kenniskaarten():
     return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).all())), 200
 
 
-@app.route('/ophalen/kenniskaart/<kenniskaart_id>', methods=['GET'])
+@app.route('/api/ophalen/kenniskaart/<kenniskaart_id>', methods=['GET'])
 def vraag_kenniskaart(kenniskaart_id):
     kenniskaart = Kenniskaart.query.get(kenniskaart_id)
     del kenniskaart['_sa_instance_state']
     return jsonify(kenniskaart), 200
 
 
-@app.route('/ophalen/recent', methods=['GET'])
+@app.route('/api/ophalen/recent', methods=['GET'])
 def vraag_recente_kenniskaarten():
     return jsonify(serialize(Kenniskaart.query.order_by(db.desc(Kenniskaart.datetime)).limit(5).all())), 200
 
 
-@app.route('/ophalen/zoekfilter/<filterstring>/', methods=['GET'])
+@app.route('/api/ophalen/zoekfilter/<filterstring>/', methods=['GET'])
 def filter_kenniskaarten(filterstring):
     return filterstring
 
 
-@app.route('/ophalen/zoeken/<zoekvraag>', methods=['GET'])
+@app.route('/api/ophalen/zoeken/<zoekvraag>', methods=['GET'])
 def zoek_kenniskaarten(zoekvraag):
     velden_list = [Kenniskaart.titel, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld,
                    Kenniskaart.rol, Kenniskaart.vaardigheid, Kenniskaart.hboi]
@@ -103,7 +103,7 @@ def zoek_kenniskaarten(zoekvraag):
     return jsonify(kenniskaarten_exact), 200
 
 
-@app.route('/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE', 'PUT'])
+@app.route('/api/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE', 'PUT'])
 def verwijder_kenniskaart(kenniskaart_id):
     Kenniskaart.query.filter_by(id=kenniskaart_id).delete()
     db.session.commit()
