@@ -49,21 +49,21 @@ body {
 
 @media only screen and (min-width: 601px) {
   .kenniskaartencontainer {
-    margin: auto;
-    text-align: center;
+    order: 2;
+    flex-grow: 2;
+    display: flex;
+    flex-direction: column;
+
   }
   .kenniskaart {
     text-align: left;
     height: 130px;
-    width: 60%;
+    /*width: 60%;*/
     min-width: 550px;
-    /*min-width: 50%;*/
-    /*max-width: 97%;*/
     position: relative;
     display: inline-block;
     overflow: hidden;
     padding: 5px;
-    /*float: left;*/
   }
   .kenniskaart-foto {
     float: left;

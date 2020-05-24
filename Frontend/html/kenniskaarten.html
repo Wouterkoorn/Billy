@@ -11,13 +11,13 @@
 
 <body>
 <header>
-    <a class="header-brand" href="index.html">
+    <a class="header-brand" href="../index.html">
         <img src="../css/fotos/billy-logo.png" alt="facebook icon">
     </a>
 
     <nav>
         <ul>
-            <li><a href="index.html">Home</a></li>
+            <li><a href="../index.html">Home</a></li>
             <li><a href="toevoegen.html">Toevoegen</a></li>
             <li><a href="kenniskaarten.html">Kenniskaarten</a></li>
         </ul>
@@ -27,7 +27,7 @@
 <main>
     <section class="index-links">
         <div id="zoekveld">
-            <button class="zoekbalk" id="searchButton" type="button" onclick="fetchResultaten()"><img
+            <button class="zoekbalk" id="searchButton" type="button" onclick="fetchZoeken()"><img
                     src="../css/fotos/search-icon.png"></button>
             <input class="zoekbalk" id="searchBar" type="text" placeholder="Search.." title="Type in a category">
         </div>
@@ -94,9 +94,10 @@
     </div>
 </footer>
 
-
+<script type="text/javascript" src="../javascript/globalVariables.js"></script>
 <script type="text/javascript" src="../javascript/zoekresultaten.js"></script>
 <script type="text/javascript" src="../backup/script.js"></script>
 <script type="text/javascript" src="../javascript/popup.js"></script>
+
 </body>
 </html>
