@@ -5,21 +5,21 @@
 <title>kenniskaart</title>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 
 
 <body onload="fetchRecent()">
 <header>
     <a class="header-brand" href="index.html">
-        <img src="../css/fotos/billy-logo.png">
+        <img src="css/fotos/billy-logo.png">
     </a>
 
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="toevoegen.html">Toevoegen</a></li>
-            <li><a href="kenniskaarten.html">Kenniskaarten</a></li>
+            <li><a href="html/toevoegen.html">Toevoegen</a></li>
+            <li><a href="html/kenniskaarten.html">Kenniskaarten</a></li>
         </ul>
     </nav>
 </header>
@@ -27,10 +27,10 @@
 
 <main>
     <section id="banner">
-        <img id="bannerfoto" src="../css/fotos/index-books.jpeg" alt="BillyBoek">
+        <img id="bannerfoto" src="css/fotos/index-books.jpeg" alt="BillyBoek">
         <div id="searchContainer">
-            <button class="zoekbalk" id="searchButton" type="button" onclick="fetchResultaten()">
-                <img src="../css/fotos/search-icon.png" alt="Searchicon">
+            <button class="zoekbalk" id="searchButton" type="button" onclick="fetchZoeken()">
+                <img src="css/fotos/search-icon.png" alt="Searchicon">
             </button>
             <input class="zoekbalk" id="searchBar" type="text" placeholder="Zoeken..." title="Type in a category">
         </div>
@@ -111,16 +111,16 @@
                 <label for="hboi8">Ontwerpen</label><br>
                 <input type="checkbox" class="hboi" id="hboi9" name="Realiseren" value=" realiseren">
                 <label for="hboi9">Realiseren</label><br>
-                <input type="checkbox" class="hboi" id="hboi10" name="Manage & control" value=" manage & control">
+                <input type="checkbox" class="hboi" id="hboi10" name="Manage & control" value="manage & control">
                 <label for="hboi10">Manage & control</label><br>
                 <div>Niveau</div>
-                <input type="checkbox" class="hboi" id="hboi11" name="1" value=" 1">
+                <input type="checkbox" class="hboi" id="hboi11" name="1" value="1">
                 <label for="hboi11">1</label><br>
-                <input type="checkbox" class="hboi" id="hboi12" name="2" value=" 2">
+                <input type="checkbox" class="hboi" id="hboi12" name="2" value="2">
                 <label for="hboi12">2</label><br>
-                <input type="checkbox" class="hboi" id="hboi13" name="3" value=" 3">
+                <input type="checkbox" class="hboi" id="hboi13" name="3" value="3">
                 <label for="hboi13">3</label><br>
-                <input type="checkbox" class="hboi" id="hboi14" name="4" value=" 4">
+                <input type="checkbox" class="hboi" id="hboi14" name="4" value="4">
                 <label for="hboi14">4</label><br>
                 <div>Dit ^ is een M.V.P., je kan maximaal een HBO-i selecteren.</div>
             </div>
@@ -128,60 +128,60 @@
         </div>
 
         <div class="kenniskaartencontainer">
-<!--            <div class="kenniskaart" id="11">-->
-<!--                <img class="kenniskaart-foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
-<!--            <div class="kenniskaart" id="12">-->
-<!--                <img class="kenniskaart-foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
-<!--            <div class="kenniskaart" id="13">-->
-<!--                <img class="kenniskaart-foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
-<!--            <div class="kenniskaart" id="13">-->
-<!--                <img class="kenniskaart-foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
-<!--            <div class="kenniskaart" id="13">-->
-<!--                <img class="kenniskaart-foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
-<!--            <div class="kenniskaart" id="13">-->
-<!--                <img class="kenniskaart-foto" src="../css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
+            <div class="kenniskaart" id="11">
+                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">
+                <div class="kenniskaart-datum">12 maart 2020</div>
+                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>
+                <div class="kenniskaart-what">test1</div>
+                <div class="kenniskaart-tags">bip</div>
+                <div class="kenniskaart-tags">boop</div>
+                <div class="kenniskaart-tags">beep</div>
+            </div>
+            <div class="kenniskaart" id="12">
+                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">
+                <div class="kenniskaart-datum">12 maart 2020</div>
+                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>
+                <div class="kenniskaart-what">test1</div>
+                <div class="kenniskaart-tags">bip</div>
+                <div class="kenniskaart-tags">boop</div>
+                <div class="kenniskaart-tags">beep</div>
+            </div>
+            <div class="kenniskaart" id="13">
+                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">
+                <div class="kenniskaart-datum">12 maart 2020</div>
+                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>
+                <div class="kenniskaart-what">test1</div>
+                <div class="kenniskaart-tags">bip</div>
+                <div class="kenniskaart-tags">boop</div>
+                <div class="kenniskaart-tags">beep</div>
+            </div>
+            <div class="kenniskaart" id="13">
+                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">
+                <div class="kenniskaart-datum">12 maart 2020</div>
+                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>
+                <div class="kenniskaart-what">test1</div>
+                <div class="kenniskaart-tags">bip</div>
+                <div class="kenniskaart-tags">boop</div>
+                <div class="kenniskaart-tags">beep</div>
+            </div>
+            <div class="kenniskaart" id="13">
+                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">
+                <div class="kenniskaart-datum">12 maart 2020</div>
+                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>
+                <div class="kenniskaart-what">test1</div>
+                <div class="kenniskaart-tags">bip</div>
+                <div class="kenniskaart-tags">boop</div>
+                <div class="kenniskaart-tags">beep</div>
+            </div>
+            <div class="kenniskaart" id="13">
+                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">
+                <div class="kenniskaart-datum">12 maart 2020</div>
+                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>
+                <div class="kenniskaart-what">test1</div>
+                <div class="kenniskaart-tags">bip</div>
+                <div class="kenniskaart-tags">boop</div>
+                <div class="kenniskaart-tags">beep</div>
+            </div>
             <!--        Kenniskaarten hier-->
 
         </div>
@@ -192,7 +192,7 @@
 <section id="popupContainer">
     <div class="popupContent" id="">
         <div id="popupImageContainer">
-            <img src="../css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
+            <img src="css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
             <button id="popupCloseButton" onclick="closeKenniskaartPopUp()">X</button>
         </div>
         <H1 id="popupTitel">test123123</H1>
@@ -236,21 +236,21 @@
     </ul>
     <div class="footer-sm">
         <a href="#">
-            <img src="../css/fotos/facebook-logo.png" alt="facebook icon">
+            <img src="css/fotos/facebook-logo.png" alt="facebook icon">
         </a>
         <a href="#">
-            <img src="../css/fotos/hu-logo.png" alt="facebook icon">
+            <img src="css/fotos/hu-logo.png" alt="facebook icon">
         </a>
         <a href="#">
-            <img src="../css/fotos/twitter-logo.png" alt="facebook icon">
+            <img src="css/fotos/twitter-logo.png" alt="facebook icon">
         </a>
     </div>
 </footer>
 
-<script type="text/javascript" src="../javascript/zoekresultaten.js"></script>
-<script type="text/javascript" src="../backup/script.js"></script>
-<script type="text/javascript" src="../javascript/popup.js"></script>
-<script type="text/javascript" src="../javascript/filters.js"></script>
+<script type="text/javascript" src="javascript/globalVariables.js"></script>
+<script type="text/javascript" src="javascript/zoekresultaten.js"></script>
+<script type="text/javascript" src="javascript/popup.js"></script>
+<script type="text/javascript" src="javascript/filters.js"></script>
 
 </body>
 </html>

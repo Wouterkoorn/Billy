@@ -1,8 +1,8 @@
 function addEventListeners() {
-    let popup = document.getElementById("popupContainer")
-    let kenniskaarten = document.getElementsByClassName("kenniskaart");
+    let popup = document.getElementById("popupContainer"),
+        kenniskaarten = document.getElementsByClassName("kenniskaart"),
+        i;
     //gaat alle kenniskaarten langs en doet voor ieder:
-    let i;
     for (i=0; i < kenniskaarten.length; i++) {
         //event listener toevoegen
         kenniskaarten[i].addEventListener('click', function (element) {
@@ -10,13 +10,16 @@ function addEventListeners() {
             let kenniskaart = element.target,
                 id = kenniskaart.getAttribute("id");
             if (id == null) {
+                //als child element is aangeklikt wordt id van parent (kenniskaart zelf) element gepakt
                 kenniskaart = kenniskaart.parentElement;
                 id = kenniskaart.getAttribute("id");
             }
+            console.log(`${ip}/api/ophalen/kenniskaart/${id}`);
             //Juiste gegevens oproepen met fetch command
-            fetch("http://84.105.28.226:56743/ophalen/kenniskaart/".concat(id))
+            fetch(`${ip}/api/ophalen/kenniskaart/${id}`)
                 .then(function (response) {
                     response.json().then( function (data) {
+                        console.log(response, data);
                         //pop-up vullen met juiste data
                         document.getElementsByClassName("popupContent")[0].setAttribute("id", data["id"])
                         document.getElementById("popupTitel").innerHTML = data["titel"]
@@ -47,7 +50,7 @@ function kenniskaartVerwijderen() {
     //zodra op de verwijderknop wordt gedrukt wordt de kenniskaart id opghehaald en wordt de kenniskaart verwijderd uit de database en uit de HTML
     if (confirm(`Weet je zeker dat je de kenniskaart: "${document.getElementById("popupTitel").innerHTML}" wilt verwijderen?`)) {
         const id = document.getElementsByClassName("popupContent")[0].getAttribute("id");
-        fetch("http://84.105.28.226:56743/verwijderen/kenniskaart/".concat(id), {
+        fetch(`${ip}/api/verwijderen/kenniskaart/${id}`, {
             method: "DELETE"
         })
             .then(function (response) {

@@ -75,17 +75,21 @@ function cleanupKenniskaarten() {
   }
 }
 
-function fetchResultaten() {
+function fetchZoeken() {
     //verwijderd oude resultaten en haalt nieuwe resultaten op in json format. Roept Daarna de functie aan om de resultaten te maken.
-    clearOldResults("kenniskaart");
-    console.log('zoeken...');
-    fetch("http://84.105.28.226:56743/ophalen/zoeken/".concat(document.getElementById('searchBar').value))
+    clearOldResults("kenniskaart"); //hetzelfde als cleanupKenniskaarten() functie
+    console.log('zoeken...', `${ip}/api/ophalen/zoeken/${document.getElementById('searchBar').value}`);
+    window.zoekterm = document.getElementById('searchBar').value;
+    fetch(`${ip}/api/ophalen/zoeken/${document.getElementById('searchBar').value}`)
         .then(function (response) {
+
             response.json().then(function (data) {//response omzetten in json zodat javascript het kan gebruiken in de functie erna
                 data.forEach(function (item, index) {
+                    // cleanupKenniskaarten();
                     maakKenniskaarten(item, index);
                 })
             })
+                //todo gebruiker vermelden dat er niks is gevonden als er geen resultaten zijn.
                 .then(function () {
                     addEventListeners();
                 })
@@ -98,7 +102,7 @@ function fetchResultaten() {
 
 function fetchRecent() {
     //haalt de 5 laatst toegevoegde kaarten op en toont deze
-    fetch("http://84.105.28.226:56743/ophalen/recent")
+    fetch(`${ip}/api/ophalen/recent`)
         .then(function (response) {
             response.json().then(function (data) {
                 data.forEach(function (item, index) {
@@ -122,6 +126,6 @@ const zoekveld = document.getElementById("searchBar");
 zoekveld.addEventListener('keydown', function (event) {
     switch (event.key) {
         case "Enter":
-            fetchResultaten();
+            fetchZoeken();
     }
 });
