@@ -22,5 +22,5 @@ function kenniskaart_toevoegen() {
 		return response.json();
 	});
 	alert('uw kenniskaartje is toegevoegd');
-	window.location.replace("http://84.105.28.226/html/index.html")
+	//todo verwijzen naar home page
 }

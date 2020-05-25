@@ -1,20 +1,20 @@
 from flask import Flask, jsonify, request
-import datetime
 from flask_sqlalchemy import SQLAlchemy
-from flask_cors import CORS
+import datetime
 
 app = Flask(__name__)
-CORS(app)
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql+pymysql://python:luca@localhost/billydb"
-db = SQLAlchemy(app)
 
+app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://python:luca@mariadb:3306/billydb"
+app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
+
+db = SQLAlchemy(app)
 
 class Kenniskaart(db.Model):
     __tablename__ = 'kenniskaarten'
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     titel = db.Column(db.String(255))
-    what = db.Column(db.String(1023))
+    what = db.Column(db.String(178294))
     why = db.Column(db.String(1023))
     how = db.Column(db.String(1023))
     voorbeeld = db.Column(db.String(255))
@@ -49,6 +49,7 @@ def plaats_kenniskaart():
     return jsonify({'success': True}), 200
 
 db.create_all()
+
 def serialize(query):
     queryList = []
     for i in query:
@@ -66,8 +67,8 @@ def vraag_alle_kenniskaarten():
 @app.route('/api/ophalen/kenniskaart/<kenniskaart_id>', methods=['GET'])
 def vraag_kenniskaart(kenniskaart_id):
     kenniskaart = Kenniskaart.query.get(kenniskaart_id)
-    del kenniskaart['_sa_instance_state']
-    return jsonify(kenniskaart), 200
+    del kenniskaart.__dict__['_sa_instance_state']
+    return jsonify(kenniskaart.__dict__), 200
 
 
 @app.route('/api/ophalen/recent', methods=['GET'])
@@ -108,5 +109,3 @@ def verwijder_kenniskaart(kenniskaart_id):
     Kenniskaart.query.filter_by(id=kenniskaart_id).delete()
     db.session.commit()
     return jsonify({'success': True}), 200
-
-app.run(host='0.0.0.0', port='56743')
