@@ -104,7 +104,7 @@ def zoek_kenniskaarten(zoekvraag):
     return jsonify(kenniskaarten_exact), 200
 
 
-@app.route('/api/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE', 'PUT'])
+@app.route('/api/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
 def verwijder_kenniskaart(kenniskaart_id):
     Kenniskaart.query.filter_by(id=kenniskaart_id).delete()
     db.session.commit()
