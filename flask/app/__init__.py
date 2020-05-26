@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 import datetime
+import time
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ class Kenniskaart(db.Model):
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     titel = db.Column(db.String(255))
-    what = db.Column(db.String(178294))
+    what = db.Column(db.String(1023))
     why = db.Column(db.String(1023))
     how = db.Column(db.String(1023))
     voorbeeld = db.Column(db.String(255))
@@ -23,8 +24,13 @@ class Kenniskaart(db.Model):
     hboi = db.Column(db.String(255))
     datetime = db.Column(db.TIMESTAMP, default=datetime.datetime.now())
 
-
-db.create_all()
+while True:
+    try:
+        db.create_all()
+    except:
+        time.sleep(1)
+        continue
+    break
 
 
 @app.route('/api/toevoegen', methods=['POST'])
@@ -104,7 +110,7 @@ def zoek_kenniskaarten(zoekvraag):
     return jsonify(kenniskaarten_exact), 200
 
 
-@app.route('/api/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE', 'PUT'])
+@app.route('/api/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
 def verwijder_kenniskaart(kenniskaart_id):
     Kenniskaart.query.filter_by(id=kenniskaart_id).delete()
     db.session.commit()

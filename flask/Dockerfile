@@ -9,4 +9,5 @@ ADD . .
 
 RUN chmod +x wait-for-it.sh
 
-CMD ["./wait-for-it.sh", "mariadb:3306","--", "uwsgi", "app.ini"]
+CMD ["uwsgi", "app.ini"]
+#CMD ["./wait-for-it.sh", "mariadb:3306","--", "uwsgi", "app.ini"]
