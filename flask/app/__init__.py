@@ -10,6 +10,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
+
 class Kenniskaart(db.Model):
     __tablename__ = 'kenniskaarten'
 
@@ -23,6 +24,7 @@ class Kenniskaart(db.Model):
     vaardigheid = db.Column(db.String(255))
     hboi = db.Column(db.String(255))
     datetime = db.Column(db.TIMESTAMP, default=datetime.datetime.now())
+
 
 while True:
     try:
@@ -54,7 +56,9 @@ def plaats_kenniskaart():
 
     return jsonify({'success': True}), 200
 
+
 db.create_all()
+
 
 def serialize(query):
     queryList = []
@@ -94,7 +98,7 @@ def zoek_kenniskaarten(zoekvraag):
     kenniskaarten_exact, kenniskaarten_inclusief = [], []
 
     for zoekveld in velden_list:
-        exact_zoekvraag =  serialize(Kenniskaart.query.filter(zoekveld.ilike(zoekvraag)))
+        exact_zoekvraag = serialize(Kenniskaart.query.filter(zoekveld.ilike(zoekvraag)))
         if len(exact_zoekvraag) > 0:
             for kenniskaart in exact_zoekvraag:
                 if kenniskaart not in kenniskaarten_exact and kenniskaart not in kenniskaarten_inclusief:
