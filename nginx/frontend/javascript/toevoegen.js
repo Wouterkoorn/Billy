@@ -26,27 +26,25 @@ function kenniskaart_toevoegen() {
     window.location.replace(`${ip}/index.html`);
 }
 
-function delete_select(element) {
-
-}
-
 
 function extra_select(select) {
-    //maakt nog een competentie drop down list
-    let clone = select.cloneNode(true);
+    //maakt nog een competentie drop down list en een verwijder knop die gekopeld is aan de select door middel van een container
+    let clone = select.cloneNode(true),
+        container = document.createElement("div");
+    console.log(select.parentElement);
+
     clone.removeAttribute("id");
-
-
-
-    select.parentElement.appendChild(clone);
+    container.setAttribute("class", "toevoegenExtraSelect");
+    container.appendChild(clone);
 
     let deleteButton = document.createElement("button");
     deleteButton.appendChild(document.createTextNode("-"));
     // deleteButton.setAttribute("onclick", "delete_select(element)");
-    select.parentElement.appendChild(deleteButton);
+    container.appendChild(deleteButton);
+
+    select.parentElement.appendChild(container);
 
     deleteButton.addEventListener("click", function (element) {
-
+        element.target.parentElement.remove();
 	})
-
 }
