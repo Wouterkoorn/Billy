@@ -2,13 +2,12 @@ function kenniskaart_toevoegen() {
     /*Voegt alle data die is ingevuld bij de template samen in een json variable en verstuurd deze naar de backend.
     Geeft na een succesvolle operatie een alert dat het gelukt is.
     */
-    let emptyString = '', //emptystring om alle data van HBO-i bij elkaar te zetten in een string
-        dataKenniskaart = {
+    let dataKenniskaart = {
             "titel": document.getElementById('formTitel').value,
             //todo for loopjes voor vaardigheid rol en hboi
-            "vaardigheid": document.getElementById('formCompetentie').value,
-            "rol": document.getElementById('formRol').value,
-            "hboi": emptyString.concat(document.getElementById('formArchitectuurlagen').value, document.getElementById('formActiviteiten').value, document.getElementById('formNiveau').value),
+            "vaardigheid": leesSelected(document.getElementsByClassName("toevoegenCompetentie")),
+            "rol": leesSelected(document.getElementsByClassName("toevoegenRol")),
+            "hboi": formathboi(document.getElementsByClassName("toevoegenArchitectuurlagen"), document.getElementsByClassName("toevoegenActiviteiten"), document.getElementsByClassName("toevoegenNiveau")),
             "what": document.getElementById('formWhat').innerText,
             "why": document.getElementById('formWhy').innerText,
             "how": document.getElementById('formHow').innerText,
@@ -20,8 +19,17 @@ function kenniskaart_toevoegen() {
         body: JSON.stringify(dataKenniskaart)
     })
         .then((response) => {
-            return response.json();
-        });
+            try {
+                return response.json();
+            }
+            catch(err) {
+                return response;
+            }
+        })
+        // .catch(function (error) {
+        //     return error
+        // })
+    //todo verander komende alert in popup op index.html
     alert('uw kenniskaartje is toegevoegd');
     window.location.replace(`${ip}/index.html`);
 }
@@ -31,7 +39,6 @@ function extra_select(select) {
     //maakt nog een competentie drop down list en een verwijder knop die gekopeld is aan de select door middel van een container
     let clone = select.cloneNode(true),
         container = document.createElement("div");
-    console.log(select.parentElement);
 
     clone.removeAttribute("id");
     container.setAttribute("class", "toevoegenExtraSelect");
@@ -47,4 +54,24 @@ function extra_select(select) {
     deleteButton.addEventListener("click", function (element) {
         element.target.parentElement.remove();
 	})
+}
+
+
+function formathboi(architectuurlagen, activiteiten, niveau){
+    let i,
+        hboi = [];
+    for (i = 0; i < architectuurlagen.length; i++) {
+        hboi.push(`${architectuurlagen[i].value} ${activiteiten[i].value} ${niveau[i].value}`);
+    }
+    return hboi;
+}
+
+
+function leesSelected(lijst) {
+    let i,
+        values = [];
+    for (i = 0; i < lijst.length; i++) {
+        values.push(lijst[i].value);
+    }
+    return values;
 }
