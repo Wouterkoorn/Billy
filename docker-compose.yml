@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+
+  mariadb:
+    build: ./mariadb
+    container_name: mariadb
+    restart: always
+
+  flask:
+    build: ./flask
+    container_name: flask
+    restart: always
+    depends_on:
+      - mariadb
+
+  nginx:
+    build: ./nginx
+    container_name: nginx
+    restart: always
+    depends_on:
+      - flask
+    ports:
+      - "80:80"

@@ -1,0 +1,6 @@
+FROM mariadb:latest
+
+ENV MYSQL_ROOT_PASSWORD snotroggel
+ENV MYSQL_DATABASE billydb
+ENV MYSQL_USER python
+ENV MYSQL_PASSWORD luca

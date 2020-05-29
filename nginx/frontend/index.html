@@ -1,0 +1,256 @@
+<!DOCTYPE HTML>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kenniskaart</title>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+
+<body onload="fetchRecent()">
+<header>
+    <a class="header-brand" href="index.html">
+        <img src="css/fotos/billy-logo.png">
+    </a>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="html/toevoegen.html">Toevoegen</a></li>
+<!--            <li><a href="html/kenniskaarten.html">Kenniskaarten</a></li>-->
+        </ul>
+    </nav>
+</header>
+
+
+<main>
+    <section id="banner">
+<!--        <img id="bannerfoto" src="css/fotos/index-books.jpeg" alt="BillyBoek">-->
+        <div id="searchContainer">
+            <button class="zoekbalk" id="searchButton" type="button" onclick="fetchZoeken()">
+                <img src="css/fotos/search-icon.png" alt="Searchicon">
+            </button>
+            <input class="zoekbalk" id="searchBar" type="text" placeholder="Zoeken..." title="Type in a category">
+        </div>
+    </section>
+    <div id="flexKenniskaartenFilterContainer">
+
+        <div  class="filtercontainer">
+            <button type="button" id="filterToepassenButton" onclick="filtersToepassen()">Pas filters toe</button>
+            <button type="button" id="filterRolButton" class="collapsibleFilter">Rol</button>
+            <div class="collapsibleFilterContent" id="filterRol">
+                <input type="checkbox" class="rol" id="rol1" name="Product owner" value="Product owner">
+                <label for="rol1">Product owner</label><br>
+                <input type="checkbox" class="rol" id="rol2" name="Business analyst" value="Business analyst">
+                <label for="rol2">Business analyst</label><br>
+                <input type="checkbox" class="rol" id="rol3" name="Front-end developer" value="Front-end developer">
+                <label for="rol3">Front-end developer</label><br>
+                <input type="checkbox" class="rol" id="rol4" name="UX designer" value="UX designer">
+                <label for="rol4">UX designer</label><br>
+                <input type="checkbox" class="rol" id="rol5" name="Cyber security & cloud" value="Cyber security & cloud">
+                <label for="rol5">Cyber security & cloud</label><br>
+                <input type="checkbox" class="rol" id="rol6" name="Back-end developer" value="Back-end developer">
+                <label for="rol6">Back-end developer</label><br>
+                <input type="checkbox" class="rol" id="rol7" name="AI specialist" value="AI specialist">
+                <label for="rol7">AI specialist</label><br>
+                <input type="checkbox" id="allerollen" name="Alle rollen" value="Alle rollen" onclick="alleFilters('rol', 'allerollen')">
+                <label for="allerollen">Alle rollen</label>
+            </div>
+            <button type="button" id="filterCompetentieButton" class="collapsibleFilter">Competentie</button>
+            <div class="collapsibleFilterContent" id="filterCompetentie">
+                <div>Vakbekwaam</div>
+                <input type="checkbox" class="competentie" id="comp1" name="juiste kennis ontwikkelen" value="juiste kennis ontwikkelen">
+                <label for="comp1">Juiste kennis ontwikkelen</label><br>
+                <input type="checkbox" class="competentie" id="comp2" name="kwalitatief product maken" value="kwalitatief product maken">
+                <label for="comp2">Kwalitatief product maken</label><br>
+                <div>Oordeelvormend</div>
+                <input type="checkbox" class="competentie" id="comp3" name="creatief werken" value="creatief werken">
+                <label for="comp3">Creatief werken</label><br>
+                <input type="checkbox" class="competentie" id="comp4" name="kritisch oordelen" value="kritisch oordelen">
+                <label for="comp4">Kritisch oordelen</label><br>
+                <div>Communicatief</div>
+                <input type="checkbox" class="competentie" id="comp5" name="samenwerken" value="samenwerken">
+                <label for="comp5">Samenwerken</label><br>
+                <input type="checkbox" class="competentie" id="comp6" name="boodschap overbrengen" value="boodschap overbrengen">
+                <label for="comp6">Boodschap overbrengen</label><br>
+                <div>Flexibel</div>
+                <input type="checkbox" class="competentie" id="comp7" name="plannen" value="plannen">
+                <label for="comp7">Plannen</label><br>
+                <input type="checkbox" class="competentie" id="comp8" name="aanpassingsvermogen" value="aanpassingsvermogen">
+                <label for="comp8">Aanpassingsvermogen</label><br>
+                <div>Zelflerend</div>
+                <input type="checkbox" class="competentie" id="comp9" name="pro-actief handelen" value="pro-actief handelen">
+                <label for="comp9">Pro-actief handelen</label><br>
+                <input type="checkbox" class="competentie" id="comp10" name="reflecteren" value="reflecteren">
+                <label for="comp10">Reflecteren</label><br>
+                <div>Alle competenties</div>
+                <input type="checkbox" id="allecompetenties" name="Alle competenties" value="Alle competenties" onclick="alleFilters('competentie', 'allecompetenties')">
+                <label for="allecompetenties">Alle competenties</label>
+            </div>
+            <button type="button" id="filterhboiButton" class="collapsibleFilter">HBO-i</button>
+            <div class="collapsibleFilterContent" id="filterhboi">
+                <div>Architectuurlagen</div>
+                <input type="checkbox" class="hboi" id="hboi1" name="Gebruikersinteractie" value="Gebruikersinteractie">
+                <label for="hboi1">Gebruikersinteractie</label><br>
+                <input type="checkbox" class="hboi" id="hboi2" name="Organisatieprocessen" value="Organisatieprocessen">
+                <label for="hboi2">Organisatieprocessen</label><br>
+                <input type="checkbox" class="hboi" id="hboi3" name="Infrastructuur" value="Infrastructuur">
+                <label for="hboi3">Infrastructuur</label><br>
+                <input type="checkbox" class="hboi" id="hboi4" name="Software" value="Software">
+                <label for="hboi4">Software</label><br>
+                <input type="checkbox" class="hboi" id="hboi5" name="Hardware interfacing" value="Hardware interfacing">
+                <label for="hboi5">Hardware interfacing</label><br>
+                <div>Activiteiten</div>
+                <input type="checkbox" class="hboi" id="hboi6" name="Analyseren" value=" analyseren">
+                <label for="hboi6">analyseren</label><br>
+                <input type="checkbox" class="hboi" id="hboi7" name="Adviseren" value=" adviseren">
+                <label for="hboi7">Adviseren</label><br>
+                <input type="checkbox" class="hboi" id="hboi8" name="Ontwerpen" value=" ontwerpen">
+                <label for="hboi8">Ontwerpen</label><br>
+                <input type="checkbox" class="hboi" id="hboi9" name="Realiseren" value=" realiseren">
+                <label for="hboi9">Realiseren</label><br>
+                <input type="checkbox" class="hboi" id="hboi10" name="Manage & control" value="manage & control">
+                <label for="hboi10">Manage & control</label><br>
+                <div>Niveau</div>
+                <input type="checkbox" class="hboi" id="hboi11" name="1" value="1">
+                <label for="hboi11">1</label><br>
+                <input type="checkbox" class="hboi" id="hboi12" name="2" value="2">
+                <label for="hboi12">2</label><br>
+                <input type="checkbox" class="hboi" id="hboi13" name="3" value="3">
+                <label for="hboi13">3</label><br>
+                <input type="checkbox" class="hboi" id="hboi14" name="4" value="4">
+                <label for="hboi14">4</label><br>
+                <div>Dit ^ is een M.V.P., je kan maximaal een HBO-i selecteren.</div>
+            </div>
+
+        </div>
+
+        <div class="kenniskaartencontainer">
+<!--            <div class="kenniskaart" id="11">-->
+<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
+<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
+<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
+<!--                <div class="kenniskaart-what">test1</div>-->
+<!--                <div class="kenniskaart-tags">bip</div>-->
+<!--                <div class="kenniskaart-tags">boop</div>-->
+<!--                <div class="kenniskaart-tags">beep</div>-->
+<!--            </div>-->
+<!--            <div class="kenniskaart" id="12">-->
+<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
+<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
+<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
+<!--                <div class="kenniskaart-what">test1</div>-->
+<!--                <div class="kenniskaart-tags">bip</div>-->
+<!--                <div class="kenniskaart-tags">boop</div>-->
+<!--                <div class="kenniskaart-tags">beep</div>-->
+<!--            </div>-->
+<!--            <div class="kenniskaart" id="13">-->
+<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
+<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
+<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
+<!--                <div class="kenniskaart-what">test1</div>-->
+<!--                <div class="kenniskaart-tags">bip</div>-->
+<!--                <div class="kenniskaart-tags">boop</div>-->
+<!--                <div class="kenniskaart-tags">beep</div>-->
+<!--            </div>-->
+<!--            <div class="kenniskaart" id="13">-->
+<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
+<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
+<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
+<!--                <div class="kenniskaart-what">test1</div>-->
+<!--                <div class="kenniskaart-tags">bip</div>-->
+<!--                <div class="kenniskaart-tags">boop</div>-->
+<!--                <div class="kenniskaart-tags">beep</div>-->
+<!--            </div>-->
+<!--            <div class="kenniskaart" id="13">-->
+<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
+<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
+<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
+<!--                <div class="kenniskaart-what">test1</div>-->
+<!--                <div class="kenniskaart-tags">bip</div>-->
+<!--                <div class="kenniskaart-tags">boop</div>-->
+<!--                <div class="kenniskaart-tags">beep</div>-->
+<!--            </div>-->
+<!--            <div class="kenniskaart" id="13">-->
+<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
+<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
+<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
+<!--                <div class="kenniskaart-what">test1</div>-->
+<!--                <div class="kenniskaart-tags">bip</div>-->
+<!--                <div class="kenniskaart-tags">boop</div>-->
+<!--                <div class="kenniskaart-tags">beep</div>-->
+<!--            </div>-->
+            <!--        Kenniskaarten hier-->
+
+        </div>
+
+</main>
+
+
+<section id="popupContainer">
+    <div class="popupContent" id="">
+        <div id="popupImageContainer">
+            <img src="css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
+            <button id="popupCloseButton" onclick="closeKenniskaartPopUp()">X</button>
+        </div>
+        <H1 id="popupTitel">test123123</H1>
+        <button onclick="kenniskaartVerwijderen()" id="popupVerwijderenButton">
+<!--            <img src="../css/fotos/prullenbak.jpg" id="popupVerwijderenFoto" alt="prullenbak">-->
+        </button>
+        <div id="popupDatum">test123123</div>
+        <br>
+        <div>HBO-i</div>
+        <div id="popupHBO-i"></div>
+        <br>
+        <div>Vaardigheid</div>
+        <div id="popupVaardigheid"></div>
+        <br>
+        <div>Rol</div>
+        <div id="popupRol"></div>
+        <br>
+        <div>What</div>
+        <div id="popupWhat">test123123</div>
+        <br>
+        <div>Why</div>
+        <div id="popupWhy">test123123</div>
+        <br>
+        <div>How</div>
+        <div id="popupHow">TEST</div>
+        <br>
+        <div>Voorbeeld</div>
+        <div id="popupVoorbeeld"></div>
+    </div>
+</section>
+
+<footer>
+    <ul class="footer-main">
+        <div class="footer-main-lines"></div>
+        <li><a href="#">Hogeschool Utrecht</a></li>
+        <div class="footer-main-lines"></div>
+        <li><a href="#">Voltijd</a></li>
+        <div class="footer-main-lines"></div>
+        <li><a href="#">Meer HU sites</a></li>
+        <div class="footer-main-lines"></div>
+    </ul>
+    <div class="footer-sm">
+        <a href="#">
+            <img src="css/fotos/facebook-logo.png" alt="facebook icon">
+        </a>
+        <a href="#">
+            <img src="css/fotos/hu-logo.png" alt="facebook icon">
+        </a>
+        <a href="#">
+            <img src="css/fotos/twitter-logo.png" alt="facebook icon">
+        </a>
+    </div>
+</footer>
+
+<script type="text/javascript" src="javascript/globalVariables.js"></script>
+<script type="text/javascript" src="javascript/zoekresultaten.js"></script>
+<script type="text/javascript" src="javascript/popup.js"></script>
+<script type="text/javascript" src="javascript/filters.js"></script>
+
+</body>
+</html>

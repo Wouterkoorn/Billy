@@ -1,0 +1,40 @@
+#banner {
+  width: 100%;
+  height: calc(100vh - 300px);
+  min-height: 70px;
+  background-image: url("fotos/index-books.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+#bannerfoto {
+  width: 100%;
+  height: inherit;
+  min-height: 45px;
+  overflow: hidden;
+}
+
+#banner h2 {
+  font-family: catamaran;
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 60px;
+  color: #ff0800;
+  text-align: center;
+  text-shadow: 2px 2px 8px #111;
+}
+
+/* .index-banner2 {
+  width: 100%;
+  height: calc(100vh - 100px);
+  background-color: #eee;
+  display: table;
+} */
+
+
+/*.index-links::selection {*/
+/*  background-color: green;*/
+/*  color: yellow;*/
+/*}*/

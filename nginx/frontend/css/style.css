@@ -1,0 +1,103 @@
+/*importeren van aparte css files*/
+@import url(cssKennis.css);
+@import url(toevoegenForm.css);
+@import url(header.css);
+@import url(footer.css);
+@import url(index-banner.css);
+@import url(zoekveld.css);
+@import url(kenniskaart.css);
+@import url(popup.css);
+@import url(filters.css);
+
+@import url(compatibility.css);
+
+
+
+/* My code */
+
+*{
+  decoration:none;
+}
+
+
+body {
+  background-color: #f3f3f3;
+  margin: 0;
+}
+
+
+@media only screen and (min-width: 601px) {
+  /*container voor filters en kenniskaarten opzetten*/
+  #mainContainer {
+    width: 80%;
+    margin: auto;
+  }
+  #flexKenniskaartenFilterContainer {
+    min-height: 200px;
+    width: 80%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    /*margin: auto;*/
+  }
+}
+
+
+
+
+/* .index-links div {
+  font-family: catamaran;
+  font-size: 60px;
+  font-weight: 900;
+  line-height: 60px;
+  color: #ff0800;
+  text-align: center;
+  text-shadow: 2px 2px 8px #111;
+} */
+
+
+
+/*
+.boxje, button, input {
+	box-sizing: border-box;
+  	width: 100%;
+}
+	.row {
+  	flex-direction: column;
+	}
+	.col-3, .col-9 {
+		width: 100%;
+	}
+
+
+	.menu li {
+		font-style: oblique;
+  	font-weight: bold;
+  	font-variant-caps: petite-caps;
+	}
+	body {
+  	background-color: lightblue;
+  	margin: 0%;
+}
+[class*="col-"] {
+	float: left;
+	padding: 0px;
+}
+.header {
+	padding: 15px;
+}
+.column {
+	padding: 20px;
+} */
+
+
+@media only screen and (min-width: 500px) {
+  header .grids {
+    margin: 0;
+    text-align: left;
+    padding: 0px 20px 0 30px;
+    border-right: 3px solid #111;
+    float: left
+  }
+}
