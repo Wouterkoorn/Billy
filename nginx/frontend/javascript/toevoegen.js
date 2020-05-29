@@ -26,10 +26,6 @@ function kenniskaart_toevoegen() {
     window.location.replace(`${ip}/index.html`);
 }
 
-function delete_select(element) {
-
-}
-
 
 function extra_select(select) {
     //maakt nog een competentie drop down list
