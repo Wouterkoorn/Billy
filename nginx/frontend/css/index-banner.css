@@ -2,10 +2,10 @@
   width: 100%;
   height: calc(100vh - 300px);
   min-height: 70px;
-  /*background-image: url("../css/fotos/index-books.jpeg");*/
-  /*background-repeat: no-repeat;*/
-  /*background-position: center;*/
-  /*background-size: cover;*/
+  background-image: url("fotos/index-books.jpeg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   position: relative;
 }
 
@@ -13,6 +13,7 @@
   width: 100%;
   height: inherit;
   min-height: 45px;
+  overflow: hidden;
 }
 
 #banner h2 {

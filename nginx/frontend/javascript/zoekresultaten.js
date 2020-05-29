@@ -34,6 +34,7 @@ function makeElement(locatie, classnaam, contentInElement, ElementType) {
     var element = document.createElement(ElementType);
     element.appendChild(document.createTextNode(contentInElement));
     element.setAttribute('class', classnaam);
+    console.log(element);
     locatie.appendChild(element);
 }
 
