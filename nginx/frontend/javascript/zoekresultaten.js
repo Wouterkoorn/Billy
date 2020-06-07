@@ -34,7 +34,6 @@ function makeElement(locatie, classnaam, contentInElement, ElementType) {
     var element = document.createElement(ElementType);
     element.appendChild(document.createTextNode(contentInElement));
     element.setAttribute('class', classnaam);
-    console.log(element);
     locatie.appendChild(element);
 }
 
@@ -80,13 +79,19 @@ function fetchZoeken() {
     //verwijderd oude resultaten en haalt nieuwe resultaten op in json format. Roept Daarna de functie aan om de resultaten te maken.
     clearOldResults("kenniskaart"); //hetzelfde als cleanupKenniskaarten() functie
 
-
-    console.log('zoeken...', `${ip}/api/ophalen/zoeken/${document.getElementById('searchBar').value}`);
-
     //todo remove this and replace by URL paramaters
     window.zoekterm = document.getElementById('searchBar').value;
 
-    addParam('search', document.getElementById('searchBar').value)
+    console.log(document.getElementById('searchBar').value);
+
+    if (document.getElementById('searchBar').value) {
+        addParam('search', document.getElementById('searchBar').value);
+    }
+    else {
+        deleteParam('search');
+        fetchRecent();
+        return
+    }
 
     fetch(`${ip}/api/ophalen/zoeken/${document.getElementById('searchBar').value}`)
         .then(function (response) {
