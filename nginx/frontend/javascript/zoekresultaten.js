@@ -79,11 +79,18 @@ function cleanupKenniskaarten() {
 function fetchZoeken() {
     //verwijderd oude resultaten en haalt nieuwe resultaten op in json format. Roept Daarna de functie aan om de resultaten te maken.
     clearOldResults("kenniskaart"); //hetzelfde als cleanupKenniskaarten() functie
+
+
     console.log('zoeken...', `${ip}/api/ophalen/zoeken/${document.getElementById('searchBar').value}`);
+
+    //todo remove this and replace by URL paramaters
     window.zoekterm = document.getElementById('searchBar').value;
+
+    addParam('search', document.getElementById('searchBar').value)
+
     fetch(`${ip}/api/ophalen/zoeken/${document.getElementById('searchBar').value}`)
         .then(function (response) {
-
+            //todo filters toepassen als die geselecteerd zijn
             response.json().then(function (data) {//response omzetten in json zodat javascript het kan gebruiken in de functie erna
                 data.forEach(function (item, index) {
                     // cleanupKenniskaarten();

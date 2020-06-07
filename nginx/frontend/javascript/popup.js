@@ -33,6 +33,7 @@ function addEventListeners() {
                         document.getElementById("popupVoorbeeld").innerHTML = data["voorbeeld"]
                         //pop-up tonen
                         popup.style.display = "block";
+                        addParam('kenniskaart', data["id"]);
                         popup.addEventListener("click", function (element) {
                             //naast popup clicken sluit de pop-up
                             if (element.target.getAttribute("id") === popup.getAttribute("id")) {

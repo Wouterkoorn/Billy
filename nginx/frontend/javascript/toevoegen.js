@@ -13,6 +13,7 @@ function kenniskaart_toevoegen() {
             "how": document.getElementById('formHow').innerText,
             "voorbeeld": document.getElementById('formVoorbeeld').innerText,
         };
+    console.log(dataKenniskaart["vaardigheid"]);
     fetch(`${ip}/api/toevoegen`, {
         method: 'POST',
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
