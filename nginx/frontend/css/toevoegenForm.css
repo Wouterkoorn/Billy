@@ -1,62 +1,217 @@
-/* gehele form */
-#toevoegenForm {
-    text-align: left;
-    background: lightsteelblue;
+/*body*/
+/*-----------------------------------*/
+body {
+  font-family: Arial,
+  Helvetica, sans-serif;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0%;
+  max-width: 100%;
+  background-color: #e8eaed;
+}
+* {
+  box-sizing: border-box;
 }
 
-/*divjes */
-.toevoegenFormContainers {
-    margin: 15px 0 15px 0;
-    /*border: black 1px solid;*/
-
-}
-main form H3 {
-    margin: 0;
-}
-
-
-/* labes in divjes*/
-.toevoegenFormLabels {
-    margin: 0;
-}
-.toevoegenGroep {
-    /*border: black 1px solid;*/
-    margin: 0 10px 0 10px;
+/* Upper body of the kenniskaart */
+.toevoegUp {
+  display: grid;
+  grid-template-columns: 220px 220px 220px 220px 220px ;
+  grid-column-gap: 40px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background-color: #ffffff;
 }
 
-textarea {
-    resize: vertical;
+.item1 {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  background-image: url(https://haririjal.com.np/wp-content/uploads/2018/12/gallery_1245283-300x300.png);
+  height: 250px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  width: 416px;
 }
 
-.tekstvelden {
-    border: black solid 1px;
-    background-color: white;
-    min-height: 65px;
-    overflow-wrap: break-word;
-    resize: vertical;
+.item3 {
+  grid-column: 1 / span 2;
+  grid-row: 2;
 }
 
-#toevoegenFormButtonContainer {
-    text-align: center;
+.item4 {
+  grid-column: 3 / span 2;
+  grid-row: 1;
 }
 
-
-
-/*Desktop/ tablet versie*/
-@media only screen and (min-width: 601px) {
-    #toevoegenForm {
-        max-width: 900px;
-        margin: 20px auto;
-        border: black solid 1px;
-        padding: 5px;
-        border-radius: 10px;
-    }
+.item5 {
+  grid-column: 5 / span 1;
+  grid-row: 1;
+  position: relative;
 }
 
 
-/* mobile versie */
-@media only screen and (max-width: 600px) {
-    #toevoegenForm {
-        border: black 1px solid;
-    }
+
+/* Full-width input fields */
+input[type=text], input[type=date], textarea, select {
+  width: 90%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+/* Add a background color when the inputs get focus */
+input[type=text]:focus, input[type=date]:focus, textarea:focus,select:focus{
+  background-color: #F9F9F9;
+  outline: none;
+}
+
+/* Set a style for all plus buttons */
+.plusButton {
+  background-color: #1daad785;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 5%;
+  opacity: 0.9;
+}
+
+button:hover {
+  opacity:1;
+}
+
+/* Extra styles for the cancel button */
+.cancelbtn {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
+
+.verwijder {
+	background-color: #f44336;
+}
+
+.toevoegenButton {
+  width: 90%;
+  background-color: #03A0D2;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+/* Float cancel and signup buttons and add an equal width */
+.cancelbtn, .signupbtn {
+  float: left;
+  width: 100%;
+}
+
+/* Add padding to container elements */
+.toevoegBody {
+  padding: 16px;
+  background-color: #F3F3F3;
+}
+
+
+
+.toevoegDown {
+  padding: 16px;
+  background-color: #ffffff;
+}
+
+/* Style the horizontal ruler */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+/* The Close Button (x) */
+.close {
+  position: absolute;
+  right: 35px;
+  top: 15px;
+  font-size: 40px;
+  font-weight: bold;
+  color: #f1f1f1;
+}
+
+.close:hover,
+.close:focus {
+  color: #f44336;
+  cursor: pointer;
+}
+
+/* Clear floats */
+.clearfix::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
+.side1 {
+  flex: 80%;
+  background-color: #b4b6ba;
+  padding: 0px;
+}
+
+.side2 {
+  flex: 20%;
+  background-color: #698bce;
+  padding: 10px;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  border: 1px solid #ddd;
+}
+
+th, td {
+  text-align: left;
+  padding: 16px;
+}
+tr:hover {
+  opacity:5;
+  back-ground: blue;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2
+}
+
+/*small screens*/
+/* Change styles for all on extra small screens */
+@media screen and (max-width: 450px) {
+  .cancelbtn, .signupbtn {
+     width: 100%;
+
+  }
+  body {
+    max-width:100%;
+  }
+  header .navbar, #inloggen, .navmenu {
+    display: flex;
+    flex-direction: column;
+  }
+  * {
+    max-width: 100%;
+    text-align: justify;
+  }
+
 }
