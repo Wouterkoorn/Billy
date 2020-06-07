@@ -37,13 +37,13 @@ q:before, q:after {
 
 
 /* alle links */
-a {
+/* a {
   margin:0;
   padding:0;
   font-size:100%;
   vertical-align:baseline;
   background:transparent;
-}
+} */
 
 /* change colours to suit your needs */
 ins {
@@ -53,7 +53,7 @@ ins {
 }
 
 /* change colours to suit your needs */
-mark {
+/* mark {
   background-color:#ff9;
   color:#000;
   font-style:italic;
@@ -72,10 +72,10 @@ abbr[title], dfn[title] {
 table {
   border-collapse:collapse;
   border-spacing:0;
-}
+} */
 
 /* change border colour to suit your needs */
-hr {
+/* hr {
   display:block;
   height:1px;
   border:0;
@@ -91,4 +91,4 @@ input, select {
 .col-9 {
   margin-top: 20px;
   text-align: center;
-}
+} */

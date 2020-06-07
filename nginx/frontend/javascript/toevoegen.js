@@ -46,6 +46,7 @@ function extra_select(select) {
     container.appendChild(clone);
 
     let deleteButton = document.createElement("button");
+    deleteButton.setAttribute("class", "plusButton");
     deleteButton.appendChild(document.createTextNode("-"));
     // deleteButton.setAttribute("onclick", "delete_select(element)");
     container.appendChild(deleteButton);
