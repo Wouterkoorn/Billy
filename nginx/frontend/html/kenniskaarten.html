@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>kenniskaart</title>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+    <link rel="stylesheet" type="text/css" href="../css/cssKennis.css">
+</head>
+
+<body>
+<header>
+    <a class="header-brand" href="../index.html">
+        <img src="../css/fotos/billy-logo.png" alt="facebook icon">
+    </a>
+
+    <nav>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="toevoegen.html">Toevoegen</a></li>
+            <li><a href="kenniskaarten.html">Kenniskaarten</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <section class="index-links">
+        <div id="zoekveld">
+            <button class="zoekbalk" id="searchButton" type="button" onclick="fetchZoeken()"><img
+                    src="../css/fotos/search-icon.png"></button>
+            <input class="zoekbalk" id="searchBar" type="text" placeholder="Search.." title="Type in a category">
+        </div>
+    </section>
+
+    <section class="kenniskaartencontainer">
+
+
+    </section>
+</main>
+
+<section id="popupContainer">
+    <div class="popupContent" id="">
+        <div id="popupImageContainer">
+            <img src="../css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
+            <button id="popupCloseButton" onclick="closeKenniskaartPopUp()">X</button>
+        </div>
+        <H1 id="popupTitel">test123123</H1>
+        <button onclick="kenniskaartVerwijderen()" id="popupVerwijderenButton">
+<!--            <img src="../css/fotos/prullenbak.jpg" id="popupVerwijderenFoto" alt="prullenbak">-->
+        </button>
+        <button onclick="kenniskaartWijzigen()" id="popupWijzigenButton">Wijzigen</button>
+        <div id="popupDatum">test123123</div>
+        <br>
+        <div>HBO-i</div>
+        <div id="popupHBO-i"></div>
+        <br>
+        <div>Vaardigheid</div>
+        <div id="popupVaardigheid"></div>
+        <br>
+        <div>Rol</div>
+        <div id="popupRol"></div>
+        <br>
+        <div>What</div>
+        <div id="popupWhat">test123123</div>
+        <br>
+        <div>Why</div>
+        <div id="popupWhy">test123123</div>
+        <br>
+        <div>How</div>
+        <div id="popupHow">TEST</div>
+        <br>
+        <div>Voorbeeld</div>
+        <div id="popupVoorbeeld"></div>
+    </div>
+</section>
+
+
+<footer>
+    <ul class="footer-main">
+        <li><a href="#">home</a></li>
+        <li><a href="#">Toevoegen</a></li>
+        <li><a href="#">Beheren</a></li>
+    </ul>
+    <div class="footer-sm">
+        <a href="#">
+            <img src="../css/fotos/facebook-logo.png" alt="facebook icon">
+        </a>
+        <a href="#">
+            <img src="../css/fotos/hu-logo.png" alt="facebook icon">
+        </a>
+        <a href="#">
+            <img src="../css/fotos/twitter-logo.png" alt="facebook icon">
+        </a>
+    </div>
+</footer>
+
+<script type="text/javascript" src="../javascript/globalVariables.js"></script>
+<script type="text/javascript" src="../javascript/zoekresultaten.js"></script>
+<script type="text/javascript" src="../backup/script.js"></script>
+<script type="text/javascript" src="../javascript/popup.js"></script>
+
+</body>
+</html>
