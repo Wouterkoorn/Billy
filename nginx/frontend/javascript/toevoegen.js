@@ -32,7 +32,6 @@ function kenniskaart_toevoegen() {
         })
     }
 
-
     let dataKenniskaart = {
         "titel": document.getElementById("formTitel").value,
         "auteur": document.getElementById("formAuteur").value,
@@ -42,9 +41,9 @@ function kenniskaart_toevoegen() {
         "rollen": lijstRollen,
         "competentie": lijstCompetenties,
         "hboi": lijsthboi,
-        "voorbeeld": document.getElementById('formVoorbeeld').value
+        "voorbeeld": document.getElementById('formVoorbeeld').value,
+        "bronnen": document.getElementById("formBronnen")
     }
-
 
     // console.log(dataKenniskaart);
     fetch(`${ip}/api/toevoegen`, {

@@ -65,6 +65,7 @@ function maakKenniskaarten(item, index) {
     // });
 }
 
+
 function cleanupKenniskaarten() {
   var kenniskaartenSection = document.getElementsByClassName('kenniskaartencontainer');
   console.log(kenniskaartenSection.firstElementChild);
@@ -74,6 +75,7 @@ function cleanupKenniskaarten() {
     kenniskaartenSection.removeChild(element);
   }
 }
+
 
 function fetchZoeken() {
     //verwijderd oude resultaten en haalt nieuwe resultaten op in json format. Roept Daarna de functie aan om de resultaten te maken.
