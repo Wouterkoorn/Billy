@@ -25,6 +25,58 @@ class Kenniskaart(db.Model):
     hboi = db.Column(db.String(255))
     datetime = db.Column(db.TIMESTAMP, default=datetime.datetime.now())
 
+    combi = db.relationship('Kennis_bron', backref='kenniskaart', lazy=True)
+    rollen = db.relationship('Rol', backref='kenniskaart', lazy=True)
+    competenties = db.relationship('Competentie', backref='kenniskaart', lazy=True)
+    hboi = db.relationship('Hboi', backref='kenniskaart', lazy=True)
+
+
+class Bron(db.Model):
+    __tablename__ = 'bronnen'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    bronnaam = db.Column(db.String(255))
+    gevorderdheid = db.Column(db.String(255))
+    link = db.Column(db.String(255))
+    tijdsduur = db.Column(db.String(255))
+
+    combi = db.relationship('Kennis_bron', backref='bron', lazy=True)
+
+
+class Kennis_bron(db.Model):
+    __tablename__ = 'kennis_bron'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    kenniskaart_id = db.Column(db.Integer, db.ForeignKey('kenniskaart.id'), nullable=False)
+    bron_id = db.Column(db.Integer, db.ForeignKey('bron.id'), nullable=False)
+
+
+class Rol(db.Model):
+    __tablename__ = 'rollen'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    kenniskaart_id = db.Column(db.Integer, db.ForeignKey('kenniskaart.id'), nullable=False)
+    rolnaam = db.Column(db.String(255))
+
+
+class Competentie(db.Model):
+    __tablename__ = 'competenties'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    kenniskaart_id = db.Column(db.Integer, db.ForeignKey('kenniskaart.id'), nullable=False)
+    categorie = db.Column(db.String(255))
+    competentie = db.Column(db.String(255))
+
+
+class Hboi(db.Model):
+    __tablename__ = 'hboi'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    kenniskaart_id = db.Column(db.Integer, db.ForeignKey('kenniskaart.id'), nullable=False)
+    architectuurlaag = db.Column(db.String(255))
+    fase = db.Column(db.String(255))
+    niveau = db.Column(db.Integer)
+
 
 while True:
     try:
