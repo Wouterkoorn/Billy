@@ -9,7 +9,7 @@
 </head>
 
 
-<body onload="fetchRecent()">
+<body>
 <header>
     <a class="header-brand" href="index.html">
         <img src="css/fotos/billy-logo.png">
@@ -18,8 +18,8 @@
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="html/toevoegen.html">Toevoegen</a></li>
-<!--            <li><a href="html/kenniskaarten.html">Kenniskaarten</a></li>-->
+            <li><a href="html/toevoegenTest.html">Toevoegen</a></li>
+<!--            <li><a href="html/toevoegenTest.html">ToevoegenNieuw</a></li>-->
         </ul>
     </nav>
 </header>
@@ -128,6 +128,8 @@
         </div>
 
         <div class="kenniskaartencontainer">
+            <button type="button" onclick="addParam('search', document.getElementById('searchBar').value)">AddSearchParam</button>
+            <button type="button" onclick="urlParser()">urlParser</button>
 <!--            <div class="kenniskaart" id="11">-->
 <!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
 <!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
@@ -193,13 +195,14 @@
     <div class="popupContent" id="">
         <div id="popupImageContainer">
             <img src="css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
-            <button id="popupCloseButton" onclick="closeKenniskaartPopUp()">X</button>
+            <button id="popupCloseButton">X</button>
         </div>
-        <H1 id="popupTitel">test123123</H1>
+        <H1 id="popupTitel"></H1>
         <button onclick="kenniskaartVerwijderen()" id="popupVerwijderenButton">
 <!--            <img src="../css/fotos/prullenbak.jpg" id="popupVerwijderenFoto" alt="prullenbak">-->
         </button>
-        <div id="popupDatum">test123123</div>
+        <button onclick="kenniskaartWijzigen()" type="button">Wijzigen</button>
+        <div id="popupDatum"></div>
         <br>
         <div>HBO-i</div>
         <div id="popupHBO-i"></div>
@@ -211,13 +214,13 @@
         <div id="popupRol"></div>
         <br>
         <div>What</div>
-        <div id="popupWhat">test123123</div>
+        <div id="popupWhat"></div>
         <br>
         <div>Why</div>
-        <div id="popupWhy">test123123</div>
+        <div id="popupWhy"></div>
         <br>
         <div>How</div>
-        <div id="popupHow">TEST</div>
+        <div id="popupHow"></div>
         <br>
         <div>Voorbeeld</div>
         <div id="popupVoorbeeld"></div>
@@ -251,6 +254,9 @@
 <script type="text/javascript" src="javascript/zoekresultaten.js"></script>
 <script type="text/javascript" src="javascript/popup.js"></script>
 <script type="text/javascript" src="javascript/filters.js"></script>
+<script type="text/javascript" src="javascript/url.js"></script>
+<script type="text/javascript" src="javascript/wijzigen.js"></script>
+<script type="text/javascript" src="javascript/startup.js"></script>
 
 </body>
 </html>

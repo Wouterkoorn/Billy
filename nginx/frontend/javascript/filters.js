@@ -113,10 +113,11 @@ function filtersToepassen() {
         selectedFilters = selectedFilters + filterFilters(hboifilters, "hboi");
     }
 
-
+    addParam('filters', selectedFilters);
     console.log(selectedFilters);
     console.log(zoekterm);
     //checken of er al is gezocht. Zo ja pas filters toe op resultaten van zoekterm
+    //todo zoekterm veranderen naar paramater
     if (zoekterm != null) {
         //wat is exacte api call
         fetch(`${ip}/api/filter/${selectedFilters}`)
@@ -131,7 +132,7 @@ function filtersToepassen() {
                 addEventListeners();
             })
             .catch(function (error) {
-                console.log(error);
+                console.error(error);
             })
         })
     }

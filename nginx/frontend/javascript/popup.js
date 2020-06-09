@@ -14,34 +14,8 @@ function addEventListeners() {
                 kenniskaart = kenniskaart.parentElement;
                 id = kenniskaart.getAttribute("id");
             }
-            console.log(`${ip}/api/ophalen/kenniskaart/${id}`);
             //Juiste gegevens oproepen met fetch command
-            fetch(`${ip}/api/ophalen/kenniskaart/${id}`)
-                .then(function (response) {
-                    response.json().then( function (data) {
-                        console.log(response, data);
-                        //pop-up vullen met juiste data
-                        document.getElementsByClassName("popupContent")[0].setAttribute("id", data["id"])
-                        document.getElementById("popupTitel").innerHTML = data["titel"]
-                        document.getElementById("popupDatum").innerHTML = formatDateTime(data["datetime"])
-                        document.getElementById("popupHBO-i").innerHTML = data["hboi"]
-                        document.getElementById("popupVaardigheid").innerHTML = data["vaardigheid"]
-                        document.getElementById("popupRol").innerHTML = data["rol"]
-                        document.getElementById("popupWhat").innerHTML = data["what"]
-                        document.getElementById("popupWhy").innerHTML = data["why"]
-                        document.getElementById("popupHow").innerHTML = data["how"]
-                        document.getElementById("popupVoorbeeld").innerHTML = data["voorbeeld"]
-                        //pop-up tonen
-                        popup.style.display = "block";
-                        popup.addEventListener("click", function (element) {
-                            //naast popup clicken sluit de pop-up
-                            if (element.target.getAttribute("id") === popup.getAttribute("id")) {
-                                popup.style.display = "none";
-                            }
-                        })
-                    })
-                })
-
+            popupTonen(id);
         })
     }
 }
@@ -55,7 +29,7 @@ function kenniskaartVerwijderen() {
         })
             .then(function (response) {
                 if (response["status"] === 200) {
-                    const titel = document.getElementById("popupTitel").innerHTML;
+                    const titel = document.getElementById("popupTitel").innerText;
                     //todo alert veranderen naar kleine korte popup zodat gebruiker niet geinterrupt wordt.
                     alert(`De kenniskaart: "${titel}" is verwijderd.`);
                     closeKenniskaartPopUp();
@@ -74,7 +48,43 @@ function kenniskaartVerwijderen() {
 }
 
 
-function closeKenniskaartPopUp() {
-    //sluit de pop-up van de kenniskaart.
-    document.getElementById("popupContainer").style.display = "none";
+function popupTonen(kenniskaart_id) {
+    console.log("hallo ik wil een popup tonen", `${ip}/api/ophalen/kenniskaart/${kenniskaart_id}`);
+    let popup = document.getElementById("popupContainer");
+    fetch(`${ip}/api/ophalen/kenniskaart/${kenniskaart_id}`)
+        .then(function (response) {
+            response.json().then( function (data) {
+                console.log(response, data);
+                //pop-up vullen met juiste data
+                document.getElementsByClassName("popupContent")[0].setAttribute("id", data["id"])
+                document.getElementById("popupTitel").innerText = data["titel"]
+                document.getElementById("popupDatum").innerText = formatDateTime(data["datetime"])
+                document.getElementById("popupHBO-i").innerText = data["hboi"]
+                document.getElementById("popupVaardigheid").innerText = data["vaardigheid"]
+                document.getElementById("popupRol").innerText = data["rol"]
+                document.getElementById("popupWhat").innerText = data["what"]
+                document.getElementById("popupWhy").innerText = data["why"]
+                document.getElementById("popupHow").innerText = data["how"]
+                document.getElementById("popupVoorbeeld").innerText = data["voorbeeld"]
+                //pop-up tonen
+                popup.style.display = "block";
+                //paramater voor kenniskaart toevoegen
+                addParam('kenniskaart', data["id"]);
+
+                //event listeners om popup te sluiten toevoegen
+                popup.addEventListener("click", function (element) {
+                    //naast popup clicken sluit de pop-up
+                    if (element.target.getAttribute("id") === popup.getAttribute("id")) {
+                        popup.style.display = "none";
+                        deleteParam('kenniskaart');
+                    }
+                })
+                document.getElementById("popupCloseButton").addEventListener("click", function (element) {
+                    //sluit de pop-up van de kenniskaart.
+                    document.getElementById("popupContainer").style.display = "none";
+                    deleteParam('kenniskaart');
+                })
+            })
+        })
+
 }
