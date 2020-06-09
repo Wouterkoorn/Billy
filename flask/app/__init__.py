@@ -49,10 +49,9 @@ class Hboi(db.Model):
 while True:
     try:
         db.create_all()
-        print('try')
     except Exception as e:
-        time.sleep(1)
         print(e)
+        time.sleep(1)
         continue
     break
 
@@ -67,19 +66,38 @@ def plaats_kenniskaart():
         why=data['why'],
         how=data['how'],
         voorbeeld=data['voorbeeld'],
-        rol=data['rol'],
-        vaardigheid=data['vaardigheid'],
-        hboi=data['hboi'],
         datetime=datetime.datetime.now()
     )
-
     db.session.add(kennistkaart)
+    db.session.flush() #Stuurt data naar database zonder permanent op te slaan, hierdoor kan hieronder de correcte kenniskaart.id gebruikt worden
+
+    for rol in data['rollen']:
+        rol_relatie = Rol(
+            kenniskaart_id=kennistkaart.id,
+            rolnaam=rol,
+        )
+        db.session.add(rol_relatie)
+
+    for competentie in data['competentie']:
+        competentie_relatie = Competentie(
+            kenniskaart_id=kennistkaart.id,
+            categorie=competentie['categorie'],
+            competentie=competentie['competentie'],
+        )
+        db.session.add(competentie_relatie)
+
+    for hboi in data['hboi']:
+        hboi_relatie = Hboi(
+            kenniskaart_id=kennistkaart.id,
+            architectuurlaag=hboi['architectuurlaag'],
+            fase=hboi['fase'],
+            niveau=hboi['niveau'],
+        )
+        db.session.add(hboi_relatie)
+
     db.session.commit()
 
     return jsonify({'success': True}), 200
-
-
-db.create_all()
 
 
 def serialize(query):
