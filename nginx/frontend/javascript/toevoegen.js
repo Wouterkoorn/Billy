@@ -42,7 +42,7 @@ function kenniskaart_toevoegen() {
         "competentie": lijstCompetenties,
         "hboi": lijsthboi,
         "voorbeeld": document.getElementById('formVoorbeeld').value,
-        "bronnen": document.getElementById("formBronnen")
+        "bronnen": document.getElementById("formBronnen").value
     }
 
     // console.log(dataKenniskaart);

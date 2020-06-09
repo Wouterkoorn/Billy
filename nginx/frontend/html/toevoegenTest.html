@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="grid-item item3">
-                        <input type="text" id="formAuteur" value="" placeholder="Voeg een auteur">
+                        <input type="text" id="formAuteur" value="" placeholder="Voeg een auteur" required>
                     </div>
 
                     <div class="grid-item item4">
@@ -41,7 +41,7 @@
                     </div>
 
                     <div class="grid-item item5">
-                        <button class="toevoegenButton" type="button" id="toevoegenButton"
+                        <button class="toevoegenButton" type="submit" id="toevoegenButton"
                                 onclick="kenniskaart_toevoegen()">Toevoegen
                         </button>
                     </div>
@@ -65,10 +65,10 @@
                     <label for="competentie">Competentie</label><br>
                     <div id="competentieContainer">
                         <select class="toevoegenCompetentie" id="toevoegenCompetentie" name="Competentie">
-                            <option value="Vakbekwaam;juiste kennis ontwikkelen">Vakbekwaam, juiste kennis
+                            <option value="vakbekwaam;juiste kennis ontwikkelen">Vakbekwaam, juiste kennis
                                 ontwikkelen
                             </option>
-                            <option value="Vakbekwaam;kwalitatief product maken">Vakbekwaam, kwalitatief product
+                            <option value="vakbekwaam;kwalitatief product maken">Vakbekwaam, kwalitatief product
                                 maken
                             </option>
                             <option value="Oordeelvormend;creatief werken">Oordeelvormend, creatief werken</option>
@@ -129,7 +129,7 @@
                             </select>
 
                         </div>
-                    </div>
+                    </div><br>
                     <button class="plusButton" type="button" id="extrahboi" onclick="extra_select(formhboi)">+</button>
 
 
@@ -137,7 +137,7 @@
                     <textarea name="voorbeelden" placeholder="Voorbeeld(en)" style="height: 150px" id="formVoorbeeld"></textarea><br>
 
                     <label for="formBronnen">Bronnen</label><br>
-                    <textarea name="bronnen" placeholder="Bronn(en)" style="height: 150px" id="formBronnen"></textarea>
+                    <textarea name="bronnen" placeholder="Bron(nen)" style="height: 150px" id="formBronnen"></textarea>
                 </div>
             </fieldset>
     </div>
