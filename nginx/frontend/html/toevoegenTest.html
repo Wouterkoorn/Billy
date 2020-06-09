@@ -18,7 +18,9 @@
     <nav>
       <ul>
         <li><a href="../index.html">Home</a></li>
+
         <li><a href="toevoegenTest.html">Toevoegen</a></li>
+
       </ul>
     </nav>
   </header>
@@ -37,14 +39,14 @@
             </div>
 
             <div class="grid-item item4">
+
               <input type="text" id="formTitel" name="" value="" placeholder="Voeg een Titel" required>
+
             </div>
 
             <div class="grid-item item5">
               <button  class="toevoegenButton" type="submit" id="toevoegenButton" onclick="kenniskaart_toevoegen()">Toevoegen</button>
             </div>
-
-
 
           </div>
         </fieldset>
@@ -52,6 +54,7 @@
 
         <fieldset>
           <div class="toevoegDown">
+
             <label for="what">What</label><br><input id="formWhat" type="text" placeholder="what" name="what" required><br>
 
             <label for="why">Why</label><br><input id="formWhy" type="text" placeholder="why" name="why" required><br>
@@ -61,6 +64,7 @@
             <label for="competentie">Competentie</label><br>
               <div id="competentieContainer">
             <select class="toevoegenCompetentie" id="toevoegenCompetentie" name="Competentie">
+
               <option value="Vakbekwaam, juiste kennis ontwikkelen">Vakbekwaam, juiste kennis ontwikkelen</option>
               <option value="Vakbekwaam, kwalitatief product maken">Vakbekwaam, kwalitatief product maken</option>
               <option value="Oordeelvormend, creatief werken">Oordeelvormend, creatief werken</option>
@@ -71,6 +75,7 @@
               <option value="Flexibel, aanpassingsvermogen">Flexibel, aanpassingsvermogen</option>
               <option value="Zelflerend, pro-actief handelen">Zelflerend, pro-actief handelen</option>
               <option value="Zelflerend, reflecteren">Zelflerend, reflecteren</option>
+
             </select>
               </div>
             <button class="plusButton" type="button" id="extraCompetentie" onclick="extra_select(toevoegenCompetentie)">+</button><br>
@@ -78,6 +83,7 @@
             <label for="rol">Rol</label><br>
               <div id="rolContainer">
             <select class="toevoegenRol" id="toevoegenRol" name="Rol">
+
                 <option value="Product owner">Product owner</option>
                 <option value="Business analyst">Business analyst</option>
                 <option value="Front-end developer">Front-end developer</option>
@@ -87,6 +93,7 @@
                 <option value="AI specialist">AI specialist</option>
                 <option value="Alle rollen">Alle rollen</option>
             </select>
+
               </div>
             <button class="plusButton" type="button" id="extraRol" onclick="extra_select(toevoegenRol)">+</button><br>
 
@@ -122,6 +129,7 @@
             <label for="voorbeelden">Voorbeelden</label><br>
             <input  type="text" placeholder="Geef een voorbeeld/voorbeelden" name="voorbeelden" required><br>
             <textarea  name="voorbeelden" placeholder="Geef een voorbeeld/voorbeelden" style="height: 150px"></textarea>
+
           </div>
         </fieldset>
     </div>
@@ -129,5 +137,6 @@
     <script type="text/javascript" src="../javascript/globalVariables.js"></script>
     <script type="text/javascript" src="../javascript/toevoegen.js"></script>
     <script type="text/javascript" src="javascript/wijzigen.js"></script>
+
 </body>
 </html>
