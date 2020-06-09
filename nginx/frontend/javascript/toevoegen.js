@@ -2,9 +2,15 @@ function kenniskaart_toevoegen() {
     /*Voegt alle data die is ingevuld bij de template samen in een json variable en verstuurd deze naar de backend.
     Geeft na een succesvolle operatie een alert dat het gelukt is.
     */
+
+    // let dataKenniskaart = {
+    //     "titel": document.getElementById("formTitel").value,
+    //     "auteur": document.getElementById("formAuteur").value,
+    //
+    // }
+
     let dataKenniskaart = {
             "titel": document.getElementById('formTitel').value,
-            //todo for loopjes voor vaardigheid rol en hboi
             "vaardigheid": leesSelected(document.getElementsByClassName("toevoegenCompetentie")),
             "rol": leesSelected(document.getElementsByClassName("toevoegenRol")),
             "hboi": formathboi(document.getElementsByClassName("toevoegenArchitectuurlagen"), document.getElementsByClassName("toevoegenActiviteiten"), document.getElementsByClassName("toevoegenNiveau")),
@@ -13,7 +19,7 @@ function kenniskaart_toevoegen() {
             "how": document.getElementById('formHow').innerText,
             "voorbeeld": document.getElementById('formVoorbeeld').innerText,
         };
-    console.log(dataKenniskaart["vaardigheid"]);
+    console.log(dataKenniskaart);
     fetch(`${ip}/api/toevoegen`, {
         method: 'POST',
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
