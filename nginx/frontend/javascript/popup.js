@@ -48,24 +48,64 @@ function kenniskaartVerwijderen() {
 }
 
 
+function deleteChildren(myNode) {
+    //verwijderd alle kinderen van het element myNode
+    while (myNode.firstChild) {
+        myNode.removeChild(myNode.lastChild);
+    }
+}
+
+
 function popupTonen(kenniskaart_id) {
-    console.log("hallo ik wil een popup tonen", `${ip}/api/ophalen/kenniskaart/${kenniskaart_id}`);
+    //vult de template in html in met de data die opgehaald wordt uit de database en toont daarna de popup.
+    //Er worden daarna nog event listeners toegevoegd zodat de popup kan worden gesloten
+
+    // console.log("hallo ik wil een popup tonen", `${ip}/api/ophalen/kenniskaart/${kenniskaart_id}`);
     let popup = document.getElementById("popupContainer");
     fetch(`${ip}/api/ophalen/kenniskaart/${kenniskaart_id}`)
         .then(function (response) {
             response.json().then( function (data) {
-                console.log(response, data);
+                //console.log(response, data);
+                //todo pop-up oude data verwijderen
+                deleteChildren(document.getElementById("popupHBO-i"));
+                deleteChildren(document.getElementById("popupCompetentie"));
+                deleteChildren(document.getElementById("popupRollen"));
                 //pop-up vullen met juiste data
+                let i;
+                //todo onderstaande code verbeteren. Dit is technisch gezien mezelf repeaten op een lelijke manier
+                //hboi vullen
+                for (i = 0; i < data["hboi"].length; i++) {
+                    let contentString = "";
+                    contentString = contentString.concat(data["hboi"][i]["architectuurlaag"], " ", data["hboi"][i]["fase"], " ", data["hboi"][i]["niveau"]);
+                    //maak container en plaats op de juiste locatie
+                    makeElement(document.getElementById("popupHBO-i"), "hboiContainer", contentString, "div");
+                }
+
+                //competentie vullen
+                for (i = 0; i < data["competenties"].length; i++) {
+                    let contentString = "";
+                    contentString = contentString.concat(data["competenties"][i]["categorie"], " ", data["competenties"][i]["competentie"]);
+                    //maak container en plaats op de juiste locatie
+                    makeElement(document.getElementById("popupCompetentie"), "competentieContainer", contentString, "div");
+                }
+
+                //rollen vullen
+                for (i = 0; i < data["rollen"].length; i++) {
+                    //maak container en plaats op de juiste locatie
+                    makeElement(document.getElementById("popupRollen"), "rollenContainer", data["rollen"][i], "div");
+                }
+
+
                 document.getElementsByClassName("popupContent")[0].setAttribute("id", data["id"])
                 document.getElementById("popupTitel").innerText = data["titel"]
                 document.getElementById("popupDatum").innerText = formatDateTime(data["datetime"])
                 document.getElementById("popupHBO-i").innerText = data["hboi"]
-                document.getElementById("popupVaardigheid").innerText = data["vaardigheid"]
-                document.getElementById("popupRol").innerText = data["rol"]
                 document.getElementById("popupWhat").innerText = data["what"]
                 document.getElementById("popupWhy").innerText = data["why"]
                 document.getElementById("popupHow").innerText = data["how"]
                 document.getElementById("popupVoorbeeld").innerText = data["voorbeeld"]
+                document.getElementById("popupBronnen").innerText = data["bronnen"]
+                document.getElementById("popupAuteur").innerText = data["auteur"]
                 //pop-up tonen
                 popup.style.display = "block";
                 //paramater voor kenniskaart toevoegen

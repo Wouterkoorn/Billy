@@ -1,5 +1,5 @@
 function urlParser() {
-    //todo schrijf console.log die alle paramaters die currently actief zijn logd
+
 }
 
 
