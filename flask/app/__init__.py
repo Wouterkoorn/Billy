@@ -62,7 +62,7 @@ while True:
 @app.route('/api/toevoegen', methods=['POST'])
 def plaats_kenniskaart():
     data = request.json
-    print(data)
+
     kennistkaart = Kenniskaart(
         titel=data['titel'],
         auteur=data['auteur'],
@@ -172,6 +172,28 @@ def zoek_kenniskaarten(zoekvraag):
 
     kenniskaarten_exact.extend(kenniskaarten_inclusief)
     return jsonify(kenniskaarten_exact), 200
+
+
+@app.route('/api/wijzigen/kenniskaart/<kenniskaart_id>', methods=['PATCH'])
+def wijzig_kenniskaart(kenniskaart_id):
+    data = request.json
+
+    Kenniskaart.query.filter_by(id=kenniskaart_id).update(dict(
+        titel=data['titel'],
+        auteur=data['auteur'],
+        what=data['what'],
+        why=data['why'],
+        how=data['how'],
+        voorbeeld=data['voorbeeld'],
+        bronnen=data['bronnen'],
+    ))
+
+    for rol in data['rollen']:
+        Rol.query.filter_by(kenniskaart_id=kenniskaart_id).update(dict(
+
+    ))
+
+    return jsonify({'succes': True}), 200
 
 
 @app.route('/api/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
