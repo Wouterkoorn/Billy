@@ -39,7 +39,7 @@ function kenniskaart_toevoegen() {
         "why": document.getElementById("formWhy").value,
         "how": document.getElementById("formHow").value,
         "rollen": lijstRollen,
-        "competentie": lijstCompetenties,
+        "competenties": lijstCompetenties,
         "hboi": lijsthboi,
         "voorbeeld": document.getElementById('formVoorbeeld').value,
         "bronnen": document.getElementById("formBronnen").value
@@ -55,7 +55,7 @@ function kenniskaart_toevoegen() {
             try {
                 return response.json();
             }
-            catch(err) {
+            catch(error) {
                 return response;
             }
         })

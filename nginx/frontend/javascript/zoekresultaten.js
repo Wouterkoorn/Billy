@@ -31,7 +31,7 @@ function formatDateTime(unformatedDatum) {
 
 function makeElement(locatie, classnaam, contentInElement, ElementType) {
     //maakt een DOM element met classnaam, content in gewenste elementtype en plaatst deze in de locatie
-    var element = document.createElement(ElementType);
+    let element = document.createElement(ElementType);
     element.appendChild(document.createTextNode(contentInElement));
     element.setAttribute('class', classnaam);
     locatie.appendChild(element);

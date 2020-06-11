@@ -65,41 +65,35 @@ function popupTonen(kenniskaart_id) {
     fetch(`${ip}/api/ophalen/kenniskaart/${kenniskaart_id}`)
         .then(function (response) {
             response.json().then( function (data) {
-                //console.log(response, data);
+                console.log(response, data);
                 //todo pop-up oude data verwijderen
-                deleteChildren(document.getElementById("popupHBO-i"));
-                deleteChildren(document.getElementById("popupCompetentie"));
                 deleteChildren(document.getElementById("popupRollen"));
-                //pop-up vullen met juiste data
+                deleteChildren(document.getElementById("popupCompetentie"));
+                deleteChildren(document.getElementById("popupHBOI"));
                 let i;
+                //pop-up vullen met juiste data
                 //todo onderstaande code verbeteren. Dit is technisch gezien mezelf repeaten op een lelijke manier
-                //hboi vullen
-                for (i = 0; i < data["hboi"].length; i++) {
-                    let contentString = "";
-                    contentString = contentString.concat(data["hboi"][i]["architectuurlaag"], " ", data["hboi"][i]["fase"], " ", data["hboi"][i]["niveau"]);
+
+                for (i = 0; i < data["rollen"].length; i++) {
                     //maak container en plaats op de juiste locatie
-                    makeElement(document.getElementById("popupHBO-i"), "hboiContainer", contentString, "div");
+                    makeElement(document.getElementById("popupRollen"), "rollenContainer", data["rollen"][i], "p");
                 }
 
-                //competentie vullen
                 for (i = 0; i < data["competenties"].length; i++) {
                     let contentString = "";
                     contentString = contentString.concat(data["competenties"][i]["categorie"], " ", data["competenties"][i]["competentie"]);
-                    //maak container en plaats op de juiste locatie
-                    makeElement(document.getElementById("popupCompetentie"), "competentieContainer", contentString, "div");
+                    makeElement(document.getElementById("popupCompetentie"), "competentieContainer", contentString, "p");
                 }
 
-                //rollen vullen
-                for (i = 0; i < data["rollen"].length; i++) {
-                    //maak container en plaats op de juiste locatie
-                    makeElement(document.getElementById("popupRollen"), "rollenContainer", data["rollen"][i], "div");
+                for (i = 0; i < data["hboi"].length; i++) {
+                    let contentString = "";
+                    contentString = contentString.concat(data["hboi"][i]["architectuurlaag"], " ", data["hboi"][i]["fase"], " ", data["hboi"][i]["niveau"]);
+                    makeElement(document.getElementById("popupHBOI"), "hboiContainer", contentString, "p");
                 }
-
 
                 document.getElementsByClassName("popupContent")[0].setAttribute("id", data["id"])
                 document.getElementById("popupTitel").innerText = data["titel"]
                 document.getElementById("popupDatum").innerText = formatDateTime(data["datetime"])
-                document.getElementById("popupHBO-i").innerText = data["hboi"]
                 document.getElementById("popupWhat").innerText = data["what"]
                 document.getElementById("popupWhy").innerText = data["why"]
                 document.getElementById("popupHow").innerText = data["how"]
