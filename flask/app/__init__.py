@@ -190,7 +190,6 @@ def wijzig_kenniskaart(kenniskaart_id):
 
     for rol in data['rollen']:
         Rol.query.filter_by(kenniskaart_id=kenniskaart_id).update(dict(
-
     ))
 
     return jsonify({'succes': True}), 200
@@ -198,9 +197,9 @@ def wijzig_kenniskaart(kenniskaart_id):
 
 @app.route('/api/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
 def verwijder_kenniskaart(kenniskaart_id):
-    Kenniskaart.query.filter_by(id=kenniskaart_id).delete()
     Rol.query.filter_by(kenniskaart_id=kenniskaart_id).delete()
     Competentie.query.filter_by(kenniskaart_id=kenniskaart_id).delete()
     Hboi.query.filter_by(kenniskaart_id=kenniskaart_id).delete()
+    Kenniskaart.query.filter_by(id=kenniskaart_id).delete()
     db.session.commit()
     return jsonify({'success': True}), 200
