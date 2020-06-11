@@ -54,7 +54,7 @@ while True:
         db.create_all()
     except Exception as e:
         print(e)
-        time.sleep(1)
+        time.sleep(3)
         continue
     break
 
@@ -190,7 +190,7 @@ def wijzig_kenniskaart(kenniskaart_id):
 
     for rol in data['rollen']:
         Rol.query.filter_by(kenniskaart_id=kenniskaart_id).update(dict(
-    ))
+        ))
 
     return jsonify({'succes': True}), 200
 
