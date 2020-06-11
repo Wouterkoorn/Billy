@@ -77,25 +77,28 @@ def plaats_kenniskaart():
     db.session.flush()  # Stuurt data naar database zonder permanent op te slaan, hierdoor kan hieronder de correcte kenniskaart.id gebruikt worden
 
     for rol in data['rollen']:
-        db.session.add(Rol(
+        rol_relatie = Rol(
             kenniskaart_id=kennistkaart.id,
             rolnaam=rol,
-        ))
+        )
+        db.session.add(rol_relatie)
 
     for competentie in data['competenties']:
-        db.session.add(Competentie(
+        competentie_relatie = Competentie(
             kenniskaart_id=kennistkaart.id,
             categorie=competentie['categorie'],
             competentie=competentie['competentie'],
-        ))
+        )
+        db.session.add(competentie_relatie)
 
     for hboi in data['hboi']:
-        db.session.add(Hboi(
+        hboi_relatie = Hboi(
             kenniskaart_id=kennistkaart.id,
             architectuurlaag=hboi['architectuurlaag'],
             fase=hboi['fase'],
             niveau=hboi['niveau'],
-        ))
+        )
+        db.session.add(hboi_relatie)
 
     db.session.commit()
 
