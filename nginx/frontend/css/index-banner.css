@@ -1,6 +1,6 @@
 #banner {
   width: 100%;
-  height: calc(100vh - 300px);
+  height: calc(100vh - 1000px);
   min-height: 70px;
   background-image: url("fotos/index-books.jpeg");
   background-repeat: no-repeat;
