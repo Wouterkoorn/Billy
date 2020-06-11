@@ -64,7 +64,7 @@ function kenniskaart_toevoegen() {
         // })
     //todo verander komende alert in popup op index.html
     alert('uw kenniskaartje is toegevoegd');
-	//window.location.replace(`${ip}/index.html`);
+	window.location.replace(`${ip}/index.html`);
 }
 
 
