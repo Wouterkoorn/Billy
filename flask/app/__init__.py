@@ -125,7 +125,7 @@ def vraag_kenniskaart(kenniskaart_id):
 
     competenties = []
     for competentie in Competentie.query.with_entities(Competentie.categorie, Competentie.competentie).filter_by(kenniskaart_id=kenniskaart['id']).all():
-        competenties.append(dict(zip(['catergorie', 'competentie'], competentie)))
+        competenties.append(dict(zip(['categorie', 'competentie'], competentie)))
     kenniskaart.update({'competenties': competenties})
 
     hbois = []
