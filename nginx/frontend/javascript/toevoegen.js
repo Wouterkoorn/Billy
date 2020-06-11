@@ -45,7 +45,7 @@ function kenniskaart_toevoegen() {
         "bronnen": document.getElementById("formBronnen").value
     }
 
-    // console.log(dataKenniskaart);
+    console.log(dataKenniskaart);
     fetch(`${ip}/api/toevoegen`, {
         method: 'POST',
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
@@ -64,7 +64,7 @@ function kenniskaart_toevoegen() {
         // })
     //todo verander komende alert in popup op index.html
     alert('uw kenniskaartje is toegevoegd');
-    window.location.replace(`${ip}/index.html`);
+	//window.location.replace(`${ip}/index.html`);
 }
 
 

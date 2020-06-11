@@ -83,7 +83,7 @@ def plaats_kenniskaart():
         )
         db.session.add(rol_relatie)
 
-    for competentie in data['competentie']:
+    for competentie in data['competenties']:
         competentie_relatie = Competentie(
             kenniskaart_id=kennistkaart.id,
             categorie=competentie['categorie'],
@@ -126,7 +126,7 @@ def vraag_kenniskaart(kenniskaart_id):
     competenties = []
     for competentie in Competentie.query.with_entities(Competentie.categorie, Competentie.competentie).filter_by(kenniskaart_id=kenniskaart['id']).all():
         competenties.append(dict(zip(['catergorie', 'competentie'], competentie)))
-    kenniskaart.update({'competentie': competenties})
+    kenniskaart.update({'competenties': competenties})
 
     hbois = []
     for hboi in Hboi.query.with_entities(Hboi.architectuurlaag, Hboi.fase, Hboi.niveau).filter_by(kenniskaart_id=kenniskaart['id']).all():
