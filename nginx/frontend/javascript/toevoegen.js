@@ -2,18 +2,50 @@ function kenniskaart_toevoegen() {
     /*Voegt alle data die is ingevuld bij de template samen in een json variable en verstuurd deze naar de backend.
     Geeft na een succesvolle operatie een alert dat het gelukt is.
     */
+    let rollen = document.getElementsByClassName("toevoegenRol"),
+        lijstRollen = [],
+        competenties = leesSelected(document.getElementsByClassName("toevoegenCompetentie")),
+        lijstCompetenties = [],
+        hboi1 = leesSelected(document.getElementsByClassName("toevoegenArchitectuurlagen")),
+        hboi2 = leesSelected(document.getElementsByClassName("toevoegenActiviteiten")),
+        hboi3 = leesSelected(document.getElementsByClassName("toevoegenNiveau")),
+        lijsthboi = [],
+        i;
+
+    for (i = 0; i < rollen.length; i++) {
+        lijstRollen.push(rollen[i].value)
+    }
+
+    for (i = 0; i < competenties.length; i++) {
+        let split = competenties[i].split(";");
+        lijstCompetenties.push({
+            "categorie": split[0],
+            "competentie": split[1]
+        });
+    }
+
+    for (i = 0; i < hboi1.length; i++) {
+        lijsthboi.push({
+            "architectuurlaag": hboi1[i],
+            "fase": hboi2[i],
+            "niveau": hboi3[i]
+        })
+    }
+
     let dataKenniskaart = {
-            "titel": document.getElementById('formTitel').value,
-            //todo for loopjes voor vaardigheid rol en hboi
-            "vaardigheid": leesSelected(document.getElementsByClassName("toevoegenCompetentie")),
-            "rol": leesSelected(document.getElementsByClassName("toevoegenRol")),
-            "hboi": formathboi(document.getElementsByClassName("toevoegenArchitectuurlagen"), document.getElementsByClassName("toevoegenActiviteiten"), document.getElementsByClassName("toevoegenNiveau")),
-            "what": document.getElementById('formWhat').innerText,
-            "why": document.getElementById('formWhy').innerText,
-            "how": document.getElementById('formHow').innerText,
-            "voorbeeld": document.getElementById('formVoorbeeld').innerText,
-        };
-    console.log(dataKenniskaart["vaardigheid"]);
+        "titel": document.getElementById("formTitel").value,
+        "auteur": document.getElementById("formAuteur").value,
+        "what": document.getElementById("formWhat").value,
+        "why": document.getElementById("formWhy").value,
+        "how": document.getElementById("formHow").value,
+        "rollen": lijstRollen,
+        "competenties": lijstCompetenties,
+        "hboi": lijsthboi,
+        "voorbeeld": document.getElementById('formVoorbeeld').value,
+        "bronnen": document.getElementById("formBronnen").value
+    }
+
+    console.log(dataKenniskaart);
     fetch(`${ip}/api/toevoegen`, {
         method: 'POST',
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
@@ -23,7 +55,7 @@ function kenniskaart_toevoegen() {
             try {
                 return response.json();
             }
-            catch(err) {
+            catch(error) {
                 return response;
             }
         })
@@ -32,7 +64,7 @@ function kenniskaart_toevoegen() {
         // })
     //todo verander komende alert in popup op index.html
     alert('uw kenniskaartje is toegevoegd');
-    window.location.replace(`${ip}/index.html`);
+	window.location.replace(`${ip}/index.html`);
 }
 
 
@@ -56,16 +88,6 @@ function extra_select(select) {
     deleteButton.addEventListener("click", function (element) {
         element.target.parentElement.remove();
 	})
-}
-
-
-function formathboi(architectuurlagen, activiteiten, niveau){
-    let i,
-        hboi = [];
-    for (i = 0; i < architectuurlagen.length; i++) {
-        hboi.push(`${architectuurlagen[i].value} ${activiteiten[i].value} ${niveau[i].value}`);
-    }
-    return hboi;
 }
 
 

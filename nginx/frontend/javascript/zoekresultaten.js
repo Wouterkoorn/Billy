@@ -31,7 +31,7 @@ function formatDateTime(unformatedDatum) {
 
 function makeElement(locatie, classnaam, contentInElement, ElementType) {
     //maakt een DOM element met classnaam, content in gewenste elementtype en plaatst deze in de locatie
-    var element = document.createElement(ElementType);
+    let element = document.createElement(ElementType);
     element.appendChild(document.createTextNode(contentInElement));
     element.setAttribute('class', classnaam);
     locatie.appendChild(element);
@@ -65,6 +65,7 @@ function maakKenniskaarten(item, index) {
     // });
 }
 
+
 function cleanupKenniskaarten() {
   var kenniskaartenSection = document.getElementsByClassName('kenniskaartencontainer');
   console.log(kenniskaartenSection.firstElementChild);
@@ -74,6 +75,7 @@ function cleanupKenniskaarten() {
     kenniskaartenSection.removeChild(element);
   }
 }
+
 
 function fetchZoeken() {
     //verwijderd oude resultaten en haalt nieuwe resultaten op in json format. Roept Daarna de functie aan om de resultaten te maken.
