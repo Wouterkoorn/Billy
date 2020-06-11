@@ -59,6 +59,19 @@ while True:
     break
 
 
+def serialize(query):
+    # SQLAlchemy __dict__ object heeft een instance state die niet ge-returned hoeft te worden
+    try:
+        queryList = []
+        for i in query:
+            del i.__dict__['_sa_instance_state']
+            queryList.append(i.__dict__)
+        return queryList
+    except TypeError:
+        del query.__dict__['_sa_instance_state']
+        return query.__dict__
+
+
 @app.route('/api/toevoegen', methods=['POST'])
 def plaats_kenniskaart():
     data = request.json
@@ -105,15 +118,6 @@ def plaats_kenniskaart():
     return jsonify({'success': True}), 200
 
 
-def serialize(query):
-    queryList = []
-    for i in query:
-        # SQLAlchemy __dict__ object heeft een instance state die niet ge-returned hoeft te worden
-        del i.__dict__['_sa_instance_state']
-        queryList.append(i.__dict__)
-    return queryList
-
-
 @app.route('/api/ophalen/kenniskaart/<kenniskaart_id>', methods=['GET'])
 def vraag_kenniskaart(kenniskaart_id):
     kenniskaart = serialize(Kenniskaart.query.filter_by(id=kenniskaart_id).all())[0]
@@ -139,15 +143,14 @@ def vraag_kenniskaart(kenniskaart_id):
 @app.route('/api/ophalen/recent', methods=['GET'])
 def vraag_recente_kenniskaarten():
     kenniskaarten = []
-    for kenniskaart in Kenniskaart.query.with_entities(Kenniskaart.id, Kenniskaart.titel, Kenniskaart.what, Kenniskaart.datetime).order_by(
-            db.desc(Kenniskaart.datetime)).limit(5).all():
-        # Het gebruik van '.with_entities()' hierboven geeft tuples zonder keys, die keys worden hieronder toegevoegd
+    for kenniskaart in Kenniskaart.query.with_entities(
+            Kenniskaart.id, Kenniskaart.titel, Kenniskaart.what, Kenniskaart.datetime).order_by(db.desc(Kenniskaart.datetime)).limit(5).all():
         kenniskaarten.append(dict(zip(['id', 'titel', 'what', 'datetime'], kenniskaart)))
 
     return jsonify(kenniskaarten), 200
 
 
-@app.route('/api/ophalen/zoekfilter/<filterstring>/', methods=['GET'])
+@app.route('/api/ophalen/zoekfilter/<filterstring>', methods=['GET'])
 def filter_kenniskaarten(filterstring):
     return filterstring
 
@@ -171,7 +174,10 @@ def zoek_kenniskaarten(zoekvraag):
                     kenniskaarten_inclusief.append(kenniskaart)
 
     kenniskaarten_exact.extend(kenniskaarten_inclusief)
-    return jsonify(kenniskaarten_exact), 200
+    if len(kenniskaarten_exact) > 0:
+        return jsonify(kenniskaarten_exact), 200
+    else:
+        return "Go fuck yourself"
 
 
 @app.route('/api/wijzigen/kenniskaart/<kenniskaart_id>', methods=['PATCH'])
@@ -188,10 +194,46 @@ def wijzig_kenniskaart(kenniskaart_id):
         bronnen=data['bronnen'],
     ))
 
+    rollen_huidig = Rol.query.with_entities(Rol.rolnaam).filter_by(kenniskaart_id=kenniskaart_id).all()
+    if type(rollen_huidig) == list:
+        for rol in rollen_huidig:
+            if rol[0] not in data['rollen']:
+                Rol.query.filter_by(kenniskaart_id=kenniskaart_id, rolnaam=rol[0]).delete()
+    else:
+        if rollen_huidig[0] not in data['rollen']:
+            Rol.query.filter_by(kenniskaart_id=kenniskaart_id, rolnaam=rollen_huidig[0]).delete()
     for rol in data['rollen']:
-        Rol.query.filter_by(kenniskaart_id=kenniskaart_id).update(dict(
-    ))
+        if Rol.query.filter_by(kenniskaart_id=kenniskaart_id, rolnaam=rol) is None:
+            rol_nieuw = Rol(kenniskaart_id=kenniskaart_id, rolnaam=rol)
+            db.session.add(rol_nieuw)
 
+    competenties_huidig = Competentie.query.with_entities(Competentie.categorie, Competentie.competentie).filter_by(kenniskaart_id=kenniskaart_id).all()
+    if type(competenties_huidig) == list:
+        for competentie in competenties_huidig:
+            if dict(zip(['categorie', 'competentie'], competentie)) not in data['competenties']:
+                Competentie.query.filter_by(kenniskaart_id=kenniskaart_id, categorie=competentie[0], competentie=competentie[1]).delete()
+    else:
+        if dict(zip(['categorie', 'competentie'], competenties_huidig)) not in data['competenties']:
+            Competentie.query.filter_by(kenniskaart_id=kenniskaart_id, categorie=competenties_huidig[0], competentie=competenties_huidig[1]).delete()
+    for competentie in data['competenties']:
+        if Competentie.query.filter_by(kenniskaart_id=kenniskaart_id, categorie=competentie['categorie'], competentie=competentie['competentie']) is None:
+            competentie_nieuw = Competentie(kenniskaart_id=kenniskaart_id, categorie=competentie['categorie'], competentie=competentie['competentie'])
+            db.session.add(competentie_nieuw)
+
+    hboi_huidig = Hboi.query.with_entities(Hboi.architectuurlaag, Hboi.fase, Hboi.niveau).filter_by(kenniskaart_id=kenniskaart_id).all()
+    if type(hboi_huidig) == list:
+        for hboi in hboi_huidig:
+            if dict(zip(['architectuurlaag', 'fase', 'niveau'], hboi)) not in data['hboi']:
+                Hboi.query.filter_by(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi[0], fase=hboi[1], niveau=hboi[2]).delete()
+    else:
+        if dict(zip(['architectuurlaag', 'fase', 'niveau'], hboi_huidig)) not in data['hboi']:
+            Hboi.query.filter_by(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi_huidig[0], fase=hboi_huidig[1], niveau=hboi_huidig[2]).delete()
+    for hboi in data['hboi']:
+        if Hboi.query.filter_by(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi['architectuurlaag'], fase=hboi['fase'], niveau=hboi['niveau']) is None:
+            hboi_nieuw = Hboi(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi['architectuurlaag'], fase=hboi['fase'], niveau=hboi['niveau'])
+            db.session.add(hboi_nieuw)
+
+    db.session.commit()
     return jsonify({'succes': True}), 200
 
 
