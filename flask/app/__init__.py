@@ -62,7 +62,7 @@ while True:
 @app.route('/api/toevoegen', methods=['POST'])
 def plaats_kenniskaart():
     data = request.json
-    print(data)
+
     kennistkaart = Kenniskaart(
         titel=data['titel'],
         auteur=data['auteur'],
@@ -77,28 +77,25 @@ def plaats_kenniskaart():
     db.session.flush()  # Stuurt data naar database zonder permanent op te slaan, hierdoor kan hieronder de correcte kenniskaart.id gebruikt worden
 
     for rol in data['rollen']:
-        rol_relatie = Rol(
+        db.session.add(Rol(
             kenniskaart_id=kennistkaart.id,
             rolnaam=rol,
-        )
-        db.session.add(rol_relatie)
+        ))
 
     for competentie in data['competenties']:
-        competentie_relatie = Competentie(
+        db.session.add(Competentie(
             kenniskaart_id=kennistkaart.id,
             categorie=competentie['categorie'],
             competentie=competentie['competentie'],
-        )
-        db.session.add(competentie_relatie)
+        ))
 
     for hboi in data['hboi']:
-        hboi_relatie = Hboi(
+        db.session.add(Hboi(
             kenniskaart_id=kennistkaart.id,
             architectuurlaag=hboi['architectuurlaag'],
             fase=hboi['fase'],
             niveau=hboi['niveau'],
-        )
-        db.session.add(hboi_relatie)
+        ))
 
     db.session.commit()
 
@@ -172,6 +169,28 @@ def zoek_kenniskaarten(zoekvraag):
 
     kenniskaarten_exact.extend(kenniskaarten_inclusief)
     return jsonify(kenniskaarten_exact), 200
+
+
+@app.route('/api/wijzigen/kenniskaart/<kenniskaart_id>', methods=['PATCH'])
+def wijzig_kenniskaart(kenniskaart_id):
+    data = request.json
+
+    Kenniskaart.query.filter_by(id=kenniskaart_id).update(dict(
+        titel=data['titel'],
+        auteur=data['auteur'],
+        what=data['what'],
+        why=data['why'],
+        how=data['how'],
+        voorbeeld=data['voorbeeld'],
+        bronnen=data['bronnen'],
+    ))
+
+    for rol in data['rollen']:
+        Rol.query.filter_by(kenniskaart_id=kenniskaart_id).update(dict(
+
+    ))
+
+    return jsonify({'succes': True}), 200
 
 
 @app.route('/api/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
