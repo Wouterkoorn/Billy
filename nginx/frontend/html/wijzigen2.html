@@ -2,7 +2,7 @@
 <html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>kenniskaart</title>
+<title>wijzigen</title>
 
 <head>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
@@ -19,21 +19,18 @@
     <nav>
       <ul>
         <li><a href="../index.html">Home</a></li>
-
         <li><a href="toevoegenTest.html">Toevoegen</a></li>
-
       </ul>
+
     </nav>
+
   </header>
 
   <main>
     <div class="toevoegBody">
-      <form class="modal-" id="toevoegen" method="POST">
+      <form class="modal-" id="wijzigen" method="PUT">
         <fieldset>
           <div class="toevoegUp">
-            <div class="grid-item item1">
-              <input type="file" id="up" name="img" accept="image/*">
-            </div>
 
             <div class="grid-item item3">
               <input type="text" id="auteur" value="" placeholder="Voeg een auteur">
@@ -44,7 +41,7 @@
             </div>
 
             <div class="grid-item item5">
-              <button  class="Button toevoegenB" type="submit" id="toevoegenButton" onclick="kenniskaart_toevoegen()">Toevoegen</button>
+              <button  class="Button wijzigenB" type="submit" id="wijzigenButton" onclick="kenniskaart_wijzigen()">Wijzigen</button>
             </div>
 
           </div>
@@ -55,13 +52,13 @@
           <div class="toevoegDown">
 
             <label for="what">What</label><br>
-            <textarea  id="formWhat" name="what" placeholder="What" style="height: 150px" required></textarea><br>
+            <textarea  id="formWhat" name="what" placeholder="What" style="height: 150px" alt="what" required></textarea><br>
 
             <label for="why">Why</label><br>
-            <textarea  id="formWhy" name="why" placeholder="Why" style="height: 150px" required></textarea><br>
+            <textarea  id="formWhy" name="why" placeholder="Why" style="height: 150px" alt="why" required></textarea><br>
 
             <label for="how">How</label><br>
-            <textarea  id="formHow" name="how" placeholder="formHow" style="height: 150px" required></textarea><br>
+            <textarea  id="formHow" name="how" placeholder="formHow" style="height: 150px" alt="how" required></textarea><br>
 
             <label for="competentie">Competentie</label><br>
               <div id="competentieContainer" class="selectL">
@@ -85,14 +82,14 @@
             <label for="rol">Rol</label><br>
               <div id="rolContainer" class="selectL">
                 <select class="toevoegenRol" id="toevoegenRol" name="Rol">
-                    <option value="Product owner">Product owner</option>
-                    <option value="Business analyst">Business analyst</option>
-                    <option value="Front-end developer">Front-end developer</option>
-                    <option value="UX designer">UX designer</option>
-                    <option value="Cyber security & cloud">Cyber security & cloud</option>
-                    <option value="Back-end developer">Back-end developer</option>
-                    <option value="AI specialist">AI specialist</option>
-                    <option value="Alle rollen">Alle rollen</option>
+                  <option value="Product owner">Product owner</option>
+                  <option value="Business analyst">Business analyst</option>
+                  <option value="Front-end developer">Front-end developer</option>
+                  <option value="UX designer">UX designer</option>
+                  <option value="Cyber security & cloud">Cyber security & cloud</option>
+                  <option value="Back-end developer">Back-end developer</option>
+                  <option value="AI specialist">AI specialist</option>
+                  <option value="Alle rollen">Alle rollen</option>
                 </select>
 
                 <button class="plusButton" type="button" id="extraRol" onclick="extra_select(toevoegenRol)">+</button>
@@ -124,10 +121,9 @@
                       <option value=" 4">4</option>
                     </select>
 
+                    <button class="plusButton" type="button" id="extrahboi" onclick="extra_select(formhboi)">+</button>
+
                   </div>
-
-                  <button class="plusButton" type="button" id="extrahboi" onclick="extra_select(formhboi)">+</button>
-
               </div>
 
             <label for="voorbeelden">Voorbeelden</label><br>

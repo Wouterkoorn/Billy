@@ -1,3 +1,4 @@
+/*Desktop*/
 #popupContainer {
     display: none;
 }
@@ -7,78 +8,138 @@
 }
 #popupFoto { /*Make image responsive*/
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 #popupCloseButton {
     position: absolute;
     top: 0;
     right: 0;
-    background-color: #555555;
-    color: white;
-    font-size: 16px;
-    padding: 12px;
     border: none;
     cursor: pointer;
+    background-color: transparent;
+    color: #1daad7;
+    padding: 0px 5px 0px 5px;
+    margin-bottom: 10px;
+    width: 28px;
+    opacity: 0.9;
+  	font-size: 30px;
 }
 #popupCloseButton:hover {
     background-color: black;
 }
 
+#datum {
+  color: red;
+  float: right;
+  width: 85%;
+}
+
+.stuk1 {
+  grid-column: 1 / span 2;
+  grid-row: 1;
+  background-image: url(https://haririjal.com.np/wp-content/uploads/2018/12/gallery_1245283-300x300.png);
+  height: 250px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.stuk2 {
+  grid-column: 6 / span 1;
+  grid-row: 1;
+}
+
+.stuk3 {
+  grid-column: 3 / span 2;
+  grid-row: 1;
+  position: relative;
+  top: 25px;
+}
+
+.stuk4 {
+  grid-column: 6 / span 1;
+  grid-row: 1;
+  position: relative;
+  top: 25px;
+}
+
+.stuk5 {
+  grid-column: 5 / span 1;
+  grid-row: 1;
+  position: relative;
+  top: 25px;
+}
+
+.stuk6 {
+  grid-column: 1 / span 1;
+  grid-row: 2;
+}
+
+.stuk7 {
+  grid-column: 2 / span 1;
+  grid-row: 2;
+}
+
+
+
+
+.popupContent {
+    padding: 0px;
+    margin: 0px 12%;
+}
+
+.kaartUp {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
+  grid-column-gap: 2%;
+  padding: 12px 0px;
+  margin-bottom: 16px;
+  background-color: #ffffff;
+  width: 100%;
+}
+
+.kaartDown {
+  padding: 16px;
+  background-color: #ffffff;
+  margin-bottom: 16px;
+}
+
+#popupContainer {
+  /*Er voor zorgen dat de container over de gehele pagina rendered*/
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  /*normale css*/
+  width: 100%;
+  height: 100%;
+  padding: 90px 0 0 0;
+  overflow: auto; /* er voor zorgen dat scrollen werkt */
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popupContent {
+    /*popup in het midden zetten*/
+    position: relative;
+    margin: auto;
+    width: 75%;
+    min-height: 80%;
+}
+
+#popupTitel {
+  /*float: left;*/
+}
 #popupDatum {
-    color: red;
+  float: right;
+}
+.verwijderB {
+  float: left;
+  background-color: #ed0010;
+}
+#popupVerwijderenFoto {
+  max-width: 100%;
 }
 
-
-
-
-/*Desktop*/
-@media only screen and (min-width: 601px) {
-    #popupContainer {
-        /*Er voor zorgen dat de container over de gehele pagina rendered*/
-        position: fixed;
-        left: 0;
-        top: 0;
-        z-index: 1;
-        /*normale css*/
-        width: 100%;
-        height: 100%;
-        padding: 90px 0 0 0;
-        overflow: auto; /* er voor zorgen dat scrollen werkt */
-        background-color: rgb(0, 0, 0);
-        background-color: rgba(0, 0, 0, 0.5);
-    }
-    .popupContent {
-        padding: 20px;
-    }
-    .popupContent {
-        /*popup in het midden zetten*/
-        position: relative;
-        margin: auto;
-        width: 60%;
-        background-color: white;
-        min-height: 80%;
-    }
-    #popupFoto {
-        height: 260px;
-    }
-    #popupTitel {
-        /*float: left;*/
-    }
-    #popupDatum {
-        float: right;
-    }
-    #popupVerwijderenButton {
-        max-width: 20%;
-        height: 50px;
-        float: right;
-        background-image: url("../css/fotos/prullenbak.jpg");
-        background-size: cover;
-        width: 50px;
-    }
-    #popupVerwijderenFoto {
-        max-width: 100%;
-    }
-}
 
 
 /*Mobile*/
