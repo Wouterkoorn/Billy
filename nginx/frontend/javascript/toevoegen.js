@@ -52,6 +52,10 @@ function kenniskaart_toevoegen() {
         body: JSON.stringify(dataKenniskaart)
     })
         .then((response) => {
+            if (response["status"] === 200) {
+                alert('uw kenniskaartje is toegevoegd');
+                window.location.replace(`${ip}/index.html`);
+            }
             try {
                 return response.json();
             }
@@ -59,9 +63,6 @@ function kenniskaart_toevoegen() {
                 return response;
             }
         })
-    //todo verander komende alert in popup op index.html
-    alert('uw kenniskaartje is toegevoegd');
-	window.location.replace(`${ip}/index.html`);
 }
 
 
