@@ -50,6 +50,10 @@ for (i = 0; i < hboiFilters.length; i++) {
     })
 }
 
+document.getElementById("sorteer1").addEventListener("click", function () {
+    kenniskaartenZoeken();
+})
+
 function areAllBoxesChecked(classNameCheckboxes, alleCheckboxID) {
     //checkt of alle checkboxes gecheckd zijn zodat de "alle ..." ook gecheckt wordt
     let checkboxes = document.getElementsByClassName(classNameCheckboxes),
@@ -110,7 +114,8 @@ function kenniskaartenZoeken() {
             "architectuurlaag": selectedFilters("hboiArch"),
             "fase": selectedFilters("hboiFase"),
             "niveau": selectedFilters("hboiNiv")
-        }
+        },
+        "sorteer": document.getElementById("sorteer1").value
     }
     addParam("filters", JSON.stringify(zoekfilters));
     fetch(`${ip}/api/ophalen/zoeken`, {
