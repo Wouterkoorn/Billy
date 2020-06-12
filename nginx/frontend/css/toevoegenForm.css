@@ -1,7 +1,7 @@
 /*body*/
 /*-----------------------------------*/
 body {
-  font-family: Arial,
+  font-family: 'Avenir',
   Helvetica, sans-serif;
   margin-left: auto;
   margin-right: auto;
@@ -16,11 +16,12 @@ body {
 /* Upper body of the kenniskaart */
 .toevoegUp {
   display: grid;
-  grid-template-columns: 220px 220px 220px 220px 220px ;
-  grid-column-gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr ;
+  grid-column-gap: 3%;
   padding: 16px;
   margin-bottom: 16px;
   background-color: #ffffff;
+  width: 100%;
 }
 
 .item1 {
@@ -54,7 +55,7 @@ body {
 
 /* Full-width input fields */
 input[type=text], input[type=date], textarea, select {
-  width: 100%;
+  width: 90%;
   padding: 15px;
   margin: 5px 0 22px 0;
   display: inline-block;
@@ -70,14 +71,16 @@ input[type=text]:focus, input[type=date]:focus, textarea:focus,select:focus{
 
 /* Set a style for all plus buttons */
 .plusButton {
-  background-color: #1daad785;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
+  background-color: transparent;
+  color: #1daad7;
+  padding: 0px 10px;
+  margin-bottom: 16px ;
   border: none;
   cursor: pointer;
-  width: 5%;
+  width: 55px;
   opacity: 0.9;
+	font-size: 55px;
+
 }
 
 button:hover {
@@ -85,18 +88,9 @@ button:hover {
 }
 
 /* Extra styles for the cancel button */
-.cancelbtn {
-  padding: 14px 20px;
-  background-color: #f44336;
-}
 
-.verwijder {
-	background-color: #f44336;
-}
-
-.toevoegenButton {
+.Button {
   width: 90%;
-  background-color: #03A0D2;
   color: white;
   padding: 14px 20px;
   margin: 8px 0;
@@ -105,19 +99,27 @@ button:hover {
   opacity: 0.9;
 }
 
-/* Float cancel and signup buttons and add an equal width */
-.cancelbtn, .signupbtn {
-  float: left;
-  width: 100%;
+.toevoegenB {
+  background-color: #03A0D2;
+  float: right;
 }
 
 /* Add padding to container elements */
 .toevoegBody {
-  padding: 20px 250px;
-  background-color: #e4e8f6;
+  padding: 16px;
+  background-color: #F3F3F3;
 }
 
-
+.hboiS {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 4;
+}
+.selectL {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 2;
+}
 
 .toevoegDown {
   padding: 16px;
@@ -197,13 +199,12 @@ tr:nth-child(even) {
 
 /*small screens*/
 /* Change styles for all on extra small screens */
-@media screen and (max-width: 450px) {
-  .cancelbtn, .signupbtn {
-     width: 100%;
-
-  }
+@media screen and (max-width: 1371px) {
   body {
     max-width:100%;
+  }
+  .item1, .item3, .item4, .item5 {
+    width: 100%;
   }
   header .navbar, #inloggen, .navmenu {
     display: flex;
@@ -214,4 +215,28 @@ tr:nth-child(even) {
     text-align: justify;
   }
 
+}
+
+@media screen and (max-width: 881px) {
+  body {
+    max-width: 100%;
+  }
+  .toevoegBody {
+    margin-bottom: 10px;
+  }
+  header .navbar, #inloggen, .navmenu {
+    display: flex;
+    flex-direction: column;
+  }
+  .toevoegUp {
+    display: flex;
+    flex-direction: column;
+
+    background-color: #ffffff;
+    width: 100%;
+  }
+  .item1, .item3, .item4, .item5 {
+    flex-direction: column;
+    width: 100%;
+  }
 }
