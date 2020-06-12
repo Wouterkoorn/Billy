@@ -27,6 +27,7 @@ const rollenFilters = document.getElementsByClassName("rol");
 for (i = 0; i < rollenFilters.length; i++) {
     rollenFilters[i].addEventListener("click", function(){
         areAllBoxesChecked("rol", "allerollen");
+        kenniskaartenZoeken();
     })
 }
 
@@ -36,8 +37,19 @@ const competentieFilters = document.getElementsByClassName("competentie");
 for (i = 0; i < competentieFilters.length; i++) {
     competentieFilters[i].addEventListener("click", function () {
         areAllBoxesChecked("competentie", "allecompetenties");
+        kenniskaartenZoeken();
     })
 }
+
+
+//event listeners toevoegen voor alle hboi filters
+const hboiFilters = document.getElementsByClassName("hboi")
+for (i = 0; i < competentieFilters.length; i++) {
+    hboiFilters[i].addEventListener("click", function () {
+        kenniskaartenZoeken();
+    })
+}
+
 
 
 function areAllBoxesChecked(classNameCheckboxes, alleCheckboxID) {

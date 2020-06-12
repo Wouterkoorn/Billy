@@ -1,27 +1,80 @@
 
+function filtersAfChecken(classname, alleclassname, buttonid, jsonselector, zoekfilters) {
+    let elements = document.getElementsByClassName(classname);
+    for (i = 0; i < elements.length; i++) {
+        if (jsonselector.length == 2) {
+            if (zoekfilters[jsonselector[0]][jsonselector[1]].includes(elements[i].value)) {
+                elements[i].checked = true;
+            }
+        }
+        else {
+            if (zoekfilters[jsonselector[0]].includes(elements[i].value)) {
+                elements[i].checked = true;
+            }
+        }
+    }
+    try {
+        areAllBoxesChecked(classname, alleclassname);
+    }
+    catch(error) {
+        console.error(error)
+    }
+    try {
+        document.getElementById(buttonid).click();
+    }
+    catch (error) {
+        console.error(error)
+    }
+}
+
 function urlParserIndex() {
-    //todo filters
     //possible maken om methods te gebruiken op standaard constant
     const urlParams = new URLSearchParams(window.location.search);
 
     let zoekfilters = JSON.parse(urlParams.get('filters')),
         kenniskaart_id = urlParams.get('kenniskaart'),
-        i;
+        i,
+        hboifilter = false;
+
+    console.log(zoekfilters)
 
     if (zoekfilters["zoekterm"]) {
         document.getElementById("searchBar").value = zoekfilters["zoekterm"];
     }
-    // if (zoekfilters["rol"]) {
-    //     let elements = document.getElementsByClassName("rol");
-    //     for (i = 0; i < elements.length; i++) {
-    //         if (elements[i] === zoekfilters["rol"][i]) {
-    //
-    //         }
-    //     }
-    // }
 
+    if (zoekfilters["rollen"].length > 0) {
+        filtersAfChecken("rol", "allerollen", "filterRolButton", ["rollen"], zoekfilters);
+    }
 
+    if (zoekfilters["competenties"].length > 0) {
+        let elements = document.getElementsByClassName("competentie");
+        for (i = 0; i < elements.length; i++) {
+            if (zoekfilters["competenties"].includes(elements[i].value.split(";")[0])) {
+                elements[i].checked = true;
+            }
+        }
+        areAllBoxesChecked("competentie", "allecompetenties");
+        document.getElementById("filterCompetentieButton").click();
+    }
 
+    if (zoekfilters["hboi"]["architectuurlaag"].length > 0) {
+        filtersAfChecken("hboiArch", "", "", ["hboi", "architectuurlaag"], zoekfilters);
+        hboifilter = true;
+    }
+
+    if (zoekfilters["hboi"]["fase"].length >0) {
+        filtersAfChecken("hboiFase", "", "", ["hboi", "fase"], zoekfilters);
+        hboifilter = true;
+    }
+
+    if (zoekfilters["hboi"]["fase"].length > 0) {
+        filtersAfChecken("hboiNiv", "", "", ["hboi", "niveau"], zoekfilters);
+        hboifilter = true;
+    }
+
+    if (hboifilter) {
+        document.getElementById("filterhboiButton").click();
+    }
 
     if (kenniskaart_id) {
         popupTonen(kenniskaart_id);

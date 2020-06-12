@@ -38,7 +38,6 @@
     <div id="flexKenniskaartenFilterContainer">
 
         <div  class="filtercontainer">
-            <button type="button" id="filterToepassenButton" onclick="kenniskaartenZoeken()">Pas filters toe</button>
             <button type="button" id="filterRolButton" class="collapsibleFilter">Rol</button>
             <div class="collapsibleFilterContent" id="filterRol">
                 <input type="checkbox" class="rol" id="rol1" name="Product owner" value="Product owner">
@@ -92,97 +91,42 @@
             <button type="button" id="filterhboiButton" class="collapsibleFilter">HBO-i</button>
             <div class="collapsibleFilterContent" id="filterhboi">
                 <div>Architectuurlagen</div>
-                <input type="checkbox" class="hboiArch" id="hboi1" name="Gebruikersinteractie" value="Gebruikersinteractie">
+                <input type="checkbox" class="hboiArch hboi" id="hboi1" name="Gebruikersinteractie" value="Gebruikersinteractie">
                 <label for="hboi1">Gebruikersinteractie</label><br>
-                <input type="checkbox" class="hboiArch" id="hboi2" name="Organisatieprocessen" value="Organisatieprocessen">
+                <input type="checkbox" class="hboiArch hboi" id="hboi2" name="Organisatieprocessen" value="Organisatieprocessen">
                 <label for="hboi2">Organisatieprocessen</label><br>
-                <input type="checkbox" class="hboiArch" id="hboi3" name="Infrastructuur" value="Infrastructuur">
+                <input type="checkbox" class="hboiArch hboi" id="hboi3" name="Infrastructuur" value="Infrastructuur">
                 <label for="hboi3">Infrastructuur</label><br>
-                <input type="checkbox" class="hboiArch" id="hboi4" name="Software" value="Software">
+                <input type="checkbox" class="hboiArch hboi" id="hboi4" name="Software" value="Software">
                 <label for="hboi4">Software</label><br>
-                <input type="checkbox" class="hboiArch" id="hboi5" name="Hardware interfacing" value="Hardware interfacing">
+                <input type="checkbox" class="hboiArch hboi" id="hboi5" name="Hardware interfacing" value="Hardware interfacing">
                 <label for="hboi5">Hardware interfacing</label><br>
-                <div>Activiteiten</div>
-                <input type="checkbox" class="hboiAct" id="hboi6" name="Analyseren" value=" analyseren">
+                <div>Fase</div>
+                <input type="checkbox" class="hboiFase hboi" id="hboi6" name="Analyseren" value=" analyseren">
                 <label for="hboi6">Analyseren</label><br>
-                <input type="checkbox" class="hboiAct" id="hboi7" name="Adviseren" value=" adviseren">
+                <input type="checkbox" class="hboiFase hboi" id="hboi7" name="Adviseren" value=" adviseren">
                 <label for="hboi7">Adviseren</label><br>
-                <input type="checkbox" class="hboiAct" id="hboi8" name="Ontwerpen" value=" ontwerpen">
+                <input type="checkbox" class="hboiFase hboi" id="hboi8" name="Ontwerpen" value=" ontwerpen">
                 <label for="hboi8">Ontwerpen</label><br>
-                <input type="checkbox" class="hboiAct" id="hboi9" name="Realiseren" value=" realiseren">
+                <input type="checkbox" class="hboiFase hboi" id="hboi9" name="Realiseren" value=" realiseren">
                 <label for="hboi9">Realiseren</label><br>
-                <input type="checkbox" class="hboiAct" id="hboi10" name="Manage & control" value="manage & control">
+                <input type="checkbox" class="hboiFase hboi" id="hboi10" name="Manage & control" value="manage & control">
                 <label for="hboi10">Manage & control</label><br>
                 <div>Niveau</div>
-                <input type="checkbox" class="hboiNiv" id="hboi11" name="1" value=1>
+                <input type="checkbox" class="hboiNiv hboi" id="hboi11" name="1" value=1>
                 <label for="hboi11">1</label><br>
-                <input type="checkbox" class="hboiNiv" id="hboi12" name="2" value=2>
+                <input type="checkbox" class="hboiNiv hboi" id="hboi12" name="2" value=2>
                 <label for="hboi12">2</label><br>
-                <input type="checkbox" class="hboiNiv" id="hboi13" name="3" value=3>
+                <input type="checkbox" class="hboiNiv hboi" id="hboi13" name="3" value=3>
                 <label for="hboi13">3</label><br>
-                <input type="checkbox" class="hboiNiv" id="hboi14" name="4" value=4>
+                <input type="checkbox" class="hboiNiv hboi" id="hboi14" name="4" value=4>
                 <label for="hboi14">4</label><br>
             </div>
         </div>
 
         <div class="kenniskaartencontainer">
-<!--            <button type="button" onclick="addParam('search', document.getElementById('searchBar').value)">AddSearchParam</button>-->
-<!--            <button type="button" onclick="urlParser()">urlParser</button>-->
-<!--            <div class="kenniskaart" id="11">-->
-<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
-<!--            <div class="kenniskaart" id="12">-->
-<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
-<!--            <div class="kenniskaart" id="13">-->
-<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
-<!--            <div class="kenniskaart" id="13">-->
-<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
-<!--            <div class="kenniskaart" id="13">-->
-<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
-<!--            <div class="kenniskaart" id="13">-->
-<!--                <img class="kenniskaart-foto" src="css/fotos/placeholder.jpeg" alt="placeholder">-->
-<!--                <div class="kenniskaart-datum">12 maart 2020</div>-->
-<!--                <H3 class="kenniskaart-titel">Lorem Ipsum</H3>-->
-<!--                <div class="kenniskaart-what">test1</div>-->
-<!--                <div class="kenniskaart-tags">bip</div>-->
-<!--                <div class="kenniskaart-tags">boop</div>-->
-<!--                <div class="kenniskaart-tags">beep</div>-->
-<!--            </div>-->
-            <!--        Kenniskaarten hier-->
+
+
 
         </div>
 
