@@ -77,6 +77,7 @@ def serialize(query):
 @app.route('/api/toevoegen', methods=['POST'])
 def plaats_kenniskaart():
     data = request.json
+    print(data)
 
     kennistkaart = Kenniskaart(
         titel=data['titel'],
