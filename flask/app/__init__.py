@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_cors import CORS
+from sqlalchemy import or_
+
 import datetime
 import time
 
@@ -70,6 +72,7 @@ def serialize(query):
     except TypeError:
         del query.__dict__['_sa_instance_state']
         return query.__dict__
+
 
 @app.route('/api/toevoegen', methods=['POST'])
 def plaats_kenniskaart():
@@ -158,15 +161,17 @@ def filter_kenniskaarten():
 
     if len(data['rollen']) > 0:
         baseJoin += 'Rol, '
+        baseRol = '.filter(or_('
         for rol in data['rollen']:
-            baseFilter += '.filter(Rol.rolnaam=="' + rol + '")'
+            baseRol += 'Rol.rolnaam=="' + rol + '", '
+        baseFilter += baseRol + '))'
 
     if len(data['competenties']) > 0:
         baseJoin += 'Competentie, '
         for competentie in data['competenties']:
             baseFilter += '.filter(Competentie.competentie=="' + competentie + '")'
 
-    if len(data['hboi']) > 0:
+    if len(data['hboi']['architectuurlaag']) > 0 or len(data['hboi']['fase']) > 0 or len(data['hboi']['niveau']) > 0:
         baseJoin += 'Hboi, '
         for veld in data['hboi']:
             if len(data['hboi'][veld]):
@@ -256,7 +261,7 @@ def wijzig_kenniskaart(kenniskaart_id):
 
 @app.route('/api/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
 def verwijder_kenniskaart(kenniskaart_id):
-    Rol.query.filter_by(kenniskaart_id=kenniskaart_id).delete()
+    Rol.query.filter(kenniskaart_id=kenniskaart_id).delete()
     Competentie.query.filter_by(kenniskaart_id=kenniskaart_id).delete()
     Hboi.query.filter_by(kenniskaart_id=kenniskaart_id).delete()
     Kenniskaart.query.filter_by(id=kenniskaart_id).delete()
