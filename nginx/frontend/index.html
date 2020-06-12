@@ -40,86 +40,86 @@
         <div  class="filtercontainer">
             <button type="button" id="filterRolButton" class="collapsibleFilter">Rol</button>
             <div class="collapsibleFilterContent" id="filterRol">
-                <input type="checkbox" class="rol" id="rol1" name="Product owner" value="Product owner">
+                <input type="checkbox" class="rol filter" id="rol1" name="Product owner" value="Product owner">
                 <label for="rol1">Product owner</label><br>
-                <input type="checkbox" class="rol" id="rol2" name="Business analyst" value="Business analyst">
+                <input type="checkbox" class="rol filter" id="rol2" name="Business analyst" value="Business analyst">
                 <label for="rol2">Business analyst</label><br>
-                <input type="checkbox" class="rol" id="rol3" name="Front-end developer" value="Front-end developer">
+                <input type="checkbox" class="rol filter" id="rol3" name="Front-end developer" value="Front-end developer">
                 <label for="rol3">Front-end developer</label><br>
-                <input type="checkbox" class="rol" id="rol4" name="UX designer" value="UX designer">
+                <input type="checkbox" class="rol filter" id="rol4" name="UX designer" value="UX designer">
                 <label for="rol4">UX designer</label><br>
-                <input type="checkbox" class="rol" id="rol5" name="Cyber security & cloud" value="Cyber security & cloud">
+                <input type="checkbox" class="rol filter" id="rol5" name="Cyber security & cloud" value="Cyber security & cloud">
                 <label for="rol5">Cyber security & cloud</label><br>
-                <input type="checkbox" class="rol" id="rol6" name="Back-end developer" value="Back-end developer">
+                <input type="checkbox" class="rol filter" id="rol6" name="Back-end developer" value="Back-end developer">
                 <label for="rol6">Back-end developer</label><br>
-                <input type="checkbox" class="rol" id="rol7" name="AI specialist" value="AI specialist">
+                <input type="checkbox" class="rol filter" id="rol7" name="AI specialist" value="AI specialist">
                 <label for="rol7">AI specialist</label><br>
-                <input type="checkbox" id="allerollen" name="Alle rollen" value="Alle rollen" onclick="alleFilters('rol', 'allerollen')">
+                <input type="checkbox" id="allerollen" class="filter" name="Alle rollen" value="Alle rollen" onclick="alleFilters('rol', 'allerollen')">
                 <label for="allerollen">Alle rollen</label>
             </div>
             <button type="button" id="filterCompetentieButton" class="collapsibleFilter">Competentie</button>
             <div class="collapsibleFilterContent" id="filterCompetentie">
                 <div>Vakbekwaam</div>
-                <input type="checkbox" class="competentie" id="comp1" name="juiste kennis ontwikkelen" value="juiste kennis ontwikkelen">
+                <input type="checkbox" class="competentie filter" id="comp1" name="juiste kennis ontwikkelen" value="juiste kennis ontwikkelen">
                 <label for="comp1">Juiste kennis ontwikkelen</label><br>
-                <input type="checkbox" class="competentie" id="comp2" name="kwalitatief product maken" value="kwalitatief product maken">
+                <input type="checkbox" class="competentie filter" id="comp2" name="kwalitatief product maken" value="kwalitatief product maken">
                 <label for="comp2">Kwalitatief product maken</label><br>
                 <div>Oordeelvormend</div>
-                <input type="checkbox" class="competentie" id="comp3" name="creatief werken" value="creatief werken">
+                <input type="checkbox" class="competentie filter" id="comp3" name="creatief werken" value="creatief werken">
                 <label for="comp3">Creatief werken</label><br>
-                <input type="checkbox" class="competentie" id="comp4" name="kritisch oordelen" value="kritisch oordelen">
+                <input type="checkbox" class="competentie filter" id="comp4" name="kritisch oordelen" value="kritisch oordelen">
                 <label for="comp4">Kritisch oordelen</label><br>
                 <div>Communicatief</div>
-                <input type="checkbox" class="competentie" id="comp5" name="samenwerken" value="samenwerken">
+                <input type="checkbox" class="competentie filter" id="comp5" name="samenwerken" value="samenwerken">
                 <label for="comp5">Samenwerken</label><br>
-                <input type="checkbox" class="competentie" id="comp6" name="boodschap overbrengen" value="boodschap overbrengen">
+                <input type="checkbox" class="competentie filter" id="comp6" name="boodschap overbrengen" value="boodschap overbrengen">
                 <label for="comp6">Boodschap overbrengen</label><br>
                 <div>Flexibel</div>
-                <input type="checkbox" class="competentie" id="comp7" name="plannen" value="plannen">
+                <input type="checkbox" class="competentie filter" id="comp7" name="plannen" value="plannen">
                 <label for="comp7">Plannen</label><br>
-                <input type="checkbox" class="competentie" id="comp8" name="aanpassingsvermogen" value="aanpassingsvermogen">
+                <input type="checkbox" class="competentie filter" id="comp8" name="aanpassingsvermogen" value="aanpassingsvermogen">
                 <label for="comp8">Aanpassingsvermogen</label><br>
                 <div>Zelflerend</div>
-                <input type="checkbox" class="competentie" id="comp9" name="pro-actief handelen" value="pro-actief handelen">
+                <input type="checkbox" class="competentie filter" id="comp9" name="pro-actief handelen" value="pro-actief handelen">
                 <label for="comp9">Pro-actief handelen</label><br>
-                <input type="checkbox" class="competentie" id="comp10" name="reflecteren" value="reflecteren">
+                <input type="checkbox" class="competentie filter" id="comp10" name="reflecteren" value="reflecteren">
                 <label for="comp10">Reflecteren</label><br>
                 <div>Alle competenties</div>
-                <input type="checkbox" id="allecompetenties" name="Alle competenties" value="Alle competenties" onclick="alleFilters('competentie', 'allecompetenties')">
+                <input type="checkbox" id="allecompetenties" class="filter" name="Alle competenties" value="Alle competenties" onclick="alleFilters('competentie', 'allecompetenties')">
                 <label for="allecompetenties">Alle competenties</label>
             </div>
             <button type="button" id="filterhboiButton" class="collapsibleFilter">HBO-i</button>
             <div class="collapsibleFilterContent" id="filterhboi">
                 <div>Architectuurlagen</div>
-                <input type="checkbox" class="hboiArch hboi" id="hboi1" name="Gebruikersinteractie" value="Gebruikersinteractie">
+                <input type="checkbox" class="hboiArch hboi filter" id="hboi1" name="Gebruikersinteractie" value="Gebruikersinteractie">
                 <label for="hboi1">Gebruikersinteractie</label><br>
-                <input type="checkbox" class="hboiArch hboi" id="hboi2" name="Organisatieprocessen" value="Organisatieprocessen">
+                <input type="checkbox" class="hboiArch hboi filter" id="hboi2" name="Organisatieprocessen" value="Organisatieprocessen">
                 <label for="hboi2">Organisatieprocessen</label><br>
-                <input type="checkbox" class="hboiArch hboi" id="hboi3" name="Infrastructuur" value="Infrastructuur">
+                <input type="checkbox" class="hboiArch hboi filter" id="hboi3" name="Infrastructuur" value="Infrastructuur">
                 <label for="hboi3">Infrastructuur</label><br>
-                <input type="checkbox" class="hboiArch hboi" id="hboi4" name="Software" value="Software">
+                <input type="checkbox" class="hboiArch hboi filter" id="hboi4" name="Software" value="Software">
                 <label for="hboi4">Software</label><br>
-                <input type="checkbox" class="hboiArch hboi" id="hboi5" name="Hardware interfacing" value="Hardware interfacing">
+                <input type="checkbox" class="hboiArch hboi filter" id="hboi5" name="Hardware interfacing" value="Hardware interfacing">
                 <label for="hboi5">Hardware interfacing</label><br>
                 <div>Fase</div>
-                <input type="checkbox" class="hboiFase hboi" id="hboi6" name="Analyseren" value=" analyseren">
+                <input type="checkbox" class="hboiFase hboi filter" id="hboi6" name="Analyseren" value=" analyseren">
                 <label for="hboi6">Analyseren</label><br>
-                <input type="checkbox" class="hboiFase hboi" id="hboi7" name="Adviseren" value=" adviseren">
+                <input type="checkbox" class="hboiFase hboi filter" id="hboi7" name="Adviseren" value=" adviseren">
                 <label for="hboi7">Adviseren</label><br>
-                <input type="checkbox" class="hboiFase hboi" id="hboi8" name="Ontwerpen" value=" ontwerpen">
+                <input type="checkbox" class="hboiFase hboi filter" id="hboi8" name="Ontwerpen" value=" ontwerpen">
                 <label for="hboi8">Ontwerpen</label><br>
-                <input type="checkbox" class="hboiFase hboi" id="hboi9" name="Realiseren" value=" realiseren">
+                <input type="checkbox" class="hboiFase hboi filter" id="hboi9" name="Realiseren" value=" realiseren">
                 <label for="hboi9">Realiseren</label><br>
-                <input type="checkbox" class="hboiFase hboi" id="hboi10" name="Manage & control" value="manage & control">
+                <input type="checkbox" class="hboiFase hboi filter" id="hboi10" name="Manage & control" value="manage & control">
                 <label for="hboi10">Manage & control</label><br>
                 <div>Niveau</div>
-                <input type="checkbox" class="hboiNiv hboi" id="hboi11" name="1" value=1>
+                <input type="checkbox" class="hboiNiv hboi filter" id="hboi11" name="1" value=1>
                 <label for="hboi11">1</label><br>
-                <input type="checkbox" class="hboiNiv hboi" id="hboi12" name="2" value=2>
+                <input type="checkbox" class="hboiNiv hboi filter" id="hboi12" name="2" value=2>
                 <label for="hboi12">2</label><br>
-                <input type="checkbox" class="hboiNiv hboi" id="hboi13" name="3" value=3>
+                <input type="checkbox" class="hboiNiv hboi filter" id="hboi13" name="3" value=3>
                 <label for="hboi13">3</label><br>
-                <input type="checkbox" class="hboiNiv hboi" id="hboi14" name="4" value=4>
+                <input type="checkbox" class="hboiNiv hboi filter" id="hboi14" name="4" value=4>
                 <label for="hboi14">4</label><br>
             </div>
             <button type="button" id="sorteerButton" class="collapsibleFilter">Sorteren</button>

@@ -27,6 +27,7 @@ function filtersAfChecken(classname, alleclassname, buttonid, jsonselector, zoek
     }
 }
 
+
 function urlParserIndex() {
     //possible maken om methods te gebruiken op standaard constant
     const urlParams = new URLSearchParams(window.location.search);
@@ -35,7 +36,11 @@ function urlParserIndex() {
         kenniskaart_id = urlParams.get('kenniskaart'),
         i,
         hboifilter = false,
-        toepassen = false;
+        toepassen = false,
+        filters = document.getElementsByClassName("filter");
+
+    //aantal voor filterresultaten neerzetten bij filter
+
 
     //alle waardes uit json toepassen op filters en zoekvelden
     if (zoekfilters["zoekterm"]) {
@@ -66,7 +71,7 @@ function urlParserIndex() {
         toepassen = true;
     }
 
-    if (zoekfilters["hboi"]["fase"].length >0) {
+    if (zoekfilters["hboi"]["fase"].length > 0) {
         filtersAfChecken("hboiFase", "", "", ["hboi", "fase"], zoekfilters);
         hboifilter = true;
         toepassen = true;
@@ -135,6 +140,12 @@ function addParam(key, value) {
         //naar url writen
         window.history.replaceState({}, '', `${location.pathname}?${urlParams}`);
     }
+}
+
+
+function readParam(key) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(key)
 }
 
 
