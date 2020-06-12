@@ -77,7 +77,6 @@ def serialize(query):
 @app.route('/api/toevoegen', methods=['POST'])
 def plaats_kenniskaart():
     data = request.json
-    print(data)
 
     kennistkaart = Kenniskaart(
         titel=data['titel'],
@@ -93,27 +92,15 @@ def plaats_kenniskaart():
     db.session.flush()  # Stuurt data naar database zonder permanent op te slaan, hierdoor kan hieronder de correcte kenniskaart.id gebruikt worden
 
     for rol in data['rollen']:
-        rol_relatie = Rol(
-            kenniskaart_id=kennistkaart.id,
-            rolnaam=rol,
-        )
+        rol_relatie = Rol(kenniskaart_id=kennistkaart.id, rolnaam=rol)
         db.session.add(rol_relatie)
 
     for competentie in data['competenties']:
-        competentie_relatie = Competentie(
-            kenniskaart_id=kennistkaart.id,
-            categorie=competentie['categorie'],
-            competentie=competentie['competentie'],
-        )
+        competentie_relatie = Competentie(kenniskaart_id=kennistkaart.id, categorie=competentie['categorie'], competentie=competentie['competentie'])
         db.session.add(competentie_relatie)
 
     for hboi in data['hboi']:
-        hboi_relatie = Hboi(
-            kenniskaart_id=kennistkaart.id,
-            architectuurlaag=hboi['architectuurlaag'],
-            fase=hboi['fase'],
-            niveau=hboi['niveau'],
-        )
+        hboi_relatie = Hboi(kenniskaart_id=kennistkaart.id, architectuurlaag=hboi['architectuurlaag'], fase=hboi['fase'], niveau=hboi['niveau'])
         db.session.add(hboi_relatie)
 
     db.session.commit()
@@ -124,18 +111,16 @@ def plaats_kenniskaart():
 @app.route('/api/ophalen/kenniskaart/<kenniskaart_id>', methods=['GET'])
 def vraag_kenniskaart(kenniskaart_id):
     kenniskaart = serialize(Kenniskaart.query.filter_by(id=kenniskaart_id).all())[0]
+    rollen, competenties, hbois = [], [], []
 
-    rollen = []
     for rol in Rol.query.with_entities(Rol.rolnaam).filter_by(kenniskaart_id=kenniskaart_id).all():
         rollen.append(rol[0])
     kenniskaart.update({'rollen': rollen})
 
-    competenties = []
     for competentie in Competentie.query.with_entities(Competentie.categorie, Competentie.competentie).filter_by(kenniskaart_id=kenniskaart['id']).all():
         competenties.append(dict(zip(['categorie', 'competentie'], competentie)))
     kenniskaart.update({'competenties': competenties})
 
-    hbois = []
     for hboi in Hboi.query.with_entities(Hboi.architectuurlaag, Hboi.fase, Hboi.niveau).filter_by(kenniskaart_id=kenniskaart['id']).all():
         hbois.append(dict(zip(['architectuurlaag', 'fase', 'niveau'], hboi)))
     kenniskaart.update({'hboi': hbois})
@@ -157,35 +142,44 @@ def vraag_recente_kenniskaarten():
 def filter_kenniskaarten():
     data = request.json
 
-    baseJoin = 'join('
-    baseFilter = ')'
+    base = 'Kenniskaart.query.join('
+    filters = ')'
 
     if len(data['rollen']) > 0:
-        baseJoin += 'Rol, '
-        baseRol = '.filter(or_('
+        base += 'Rol, '
+        rollen = '.filter(or_('
         for rol in data['rollen']:
-            baseRol += 'Rol.rolnaam=="' + rol + '", '
-        baseFilter += baseRol + '))'
+            rollen += 'Rol.rolnaam=="' + rol + '", '
+        filters += rollen + '))'
 
     if len(data['competenties']) > 0:
-        baseJoin += 'Competentie, '
+        base += 'Competentie, '
+        competenties = '.filter(or_('
         for competentie in data['competenties']:
-            baseFilter += '.filter(Competentie.competentie=="' + competentie + '")'
+            competenties += 'Competentie.competentie=="' + competentie + '", '
+        filters += competenties + '))'
 
     if len(data['hboi']['architectuurlaag']) > 0 or len(data['hboi']['fase']) > 0 or len(data['hboi']['niveau']) > 0:
-        baseJoin += 'Hboi, '
+        base += 'Hboi, '
+        hbois = '.filter(or_('
         for veld in data['hboi']:
             if len(data['hboi'][veld]):
                 for i in data['hboi'][veld]:
                     if type(i) == str:
-                        baseFilter += '.filter(Hboi.' + veld + '=="' + i + '")'
+                        hbois += 'Hboi.' + veld + '=="' + i + '", '
                     else:
-                        baseFilter += '.filter(Hboi.' + veld + '==' + str(i) + ')'
+                        hbois += 'Hboi.' + veld + '==' + str(i) + ', '
+        filters += hbois + '))'
 
-    query1 = 'Kenniskaart.query.' + baseJoin + baseFilter + f'.filter(zoekveld.ilike("{data["zoekterm"]}")).all()'
-    query2 = 'Kenniskaart.query.' + baseJoin + baseFilter + f'.filter(zoekveld.ilike("%" + "{data["zoekterm"]}" + "%")).all()'
+    if data['soorteer'] == 'aflopend':
+        soorteer = '.order_by(db.desc(Kenniskaart.datetime)'
+    else:
+        soorteer = '.order_by(db.asc(Kenniskaart.datetime)'
 
-    velden_list = [Kenniskaart.titel, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld, Kenniskaart.bronnen]
+    query1 = base + filters + f'.filter(zoekveld.ilike("{data["zoekterm"]}"))' + soorteer + '.all()'
+    query2 = base + filters + f'.filter(zoekveld.ilike("%" + "{data["zoekterm"]}" + "%"))' + soorteer + '.all()'
+
+    velden_list = [Kenniskaart.titel, Kenniskaart.auteur, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld, Kenniskaart.bronnen]
     kenniskaarten_exact, kenniskaarten_inclusief = [], []
 
     for zoekveld in velden_list:
@@ -227,6 +221,7 @@ def wijzig_kenniskaart(kenniskaart_id):
                 Rol.query.filter_by(kenniskaart_id=kenniskaart_id, rolnaam=rol[0]).delete()
     elif rollen_huidig[0] not in data['rollen']:
         Rol.query.filter_by(kenniskaart_id=kenniskaart_id, rolnaam=rollen_huidig[0]).delete()
+
     for rol in data['rollen']:
         if Rol.query.filter_by(kenniskaart_id=kenniskaart_id, rolnaam=rol) is None:
             rol_nieuw = Rol(kenniskaart_id=kenniskaart_id, rolnaam=rol)
@@ -239,6 +234,7 @@ def wijzig_kenniskaart(kenniskaart_id):
                 Competentie.query.filter_by(kenniskaart_id=kenniskaart_id, categorie=competentie[0], competentie=competentie[1]).delete()
     elif dict(zip(['categorie', 'competentie'], competenties_huidig)) not in data['competenties']:
         Competentie.query.filter_by(kenniskaart_id=kenniskaart_id, categorie=competenties_huidig[0], competentie=competenties_huidig[1]).delete()
+
     for competentie in data['competenties']:
         if Competentie.query.filter_by(kenniskaart_id=kenniskaart_id, categorie=competentie['categorie'], competentie=competentie['competentie']) is None:
             competentie_nieuw = Competentie(kenniskaart_id=kenniskaart_id, categorie=competentie['categorie'], competentie=competentie['competentie'])
@@ -251,6 +247,7 @@ def wijzig_kenniskaart(kenniskaart_id):
                 Hboi.query.filter_by(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi[0], fase=hboi[1], niveau=hboi[2]).delete()
     elif dict(zip(['architectuurlaag', 'fase', 'niveau'], hboi_huidig)) not in data['hboi']:
         Hboi.query.filter_by(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi_huidig[0], fase=hboi_huidig[1], niveau=hboi_huidig[2]).delete()
+
     for hboi in data['hboi']:
         if Hboi.query.filter_by(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi['architectuurlaag'], fase=hboi['fase'], niveau=hboi['niveau']) is None:
             hboi_nieuw = Hboi(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi['architectuurlaag'], fase=hboi['fase'], niveau=hboi['niveau'])
