@@ -44,13 +44,11 @@ for (i = 0; i < competentieFilters.length; i++) {
 
 //event listeners toevoegen voor alle hboi filters
 const hboiFilters = document.getElementsByClassName("hboi")
-for (i = 0; i < competentieFilters.length; i++) {
+for (i = 0; i < hboiFilters.length; i++) {
     hboiFilters[i].addEventListener("click", function () {
         kenniskaartenZoeken();
     })
 }
-
-
 
 function areAllBoxesChecked(classNameCheckboxes, alleCheckboxID) {
     //checkt of alle checkboxes gecheckd zijn zodat de "alle ..." ook gecheckt wordt
@@ -110,11 +108,10 @@ function kenniskaartenZoeken() {
         "competenties": selectedFilters("competentie"),
         "hboi": {
             "architectuurlaag": selectedFilters("hboiArch"),
-            "fase": selectedFilters("hboiAct"),
+            "fase": selectedFilters("hboiFase"),
             "niveau": selectedFilters("hboiNiv")
         }
     }
-    // deleteParam("filters");
     addParam("filters", JSON.stringify(zoekfilters));
     fetch(`${ip}/api/ophalen/zoeken`, {
         method: "POST",

@@ -72,6 +72,7 @@ function geenZoekResultaten() {
 
 function fetchRecent() {
     //haalt de 5 laatst toegevoegde kaarten op en toont deze
+    console.log("recente kenniskaarten ophalen");
     fetch(`${ip}/api/ophalen/recent`)
         .then(function (response) {
             response.json().then(function (data) {

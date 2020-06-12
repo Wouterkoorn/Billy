@@ -17,13 +17,13 @@ function filtersAfChecken(classname, alleclassname, buttonid, jsonselector, zoek
         areAllBoxesChecked(classname, alleclassname);
     }
     catch(error) {
-        console.error(error)
+        // console.error(error)
     }
     try {
         document.getElementById(buttonid).click();
     }
     catch (error) {
-        console.error(error)
+        // console.error(error)
     }
 }
 
@@ -34,16 +34,18 @@ function urlParserIndex() {
     let zoekfilters = JSON.parse(urlParams.get('filters')),
         kenniskaart_id = urlParams.get('kenniskaart'),
         i,
-        hboifilter = false;
+        hboifilter = false,
+        toepassen = false;
 
-    console.log(zoekfilters)
-
+    //alle waardes uit json toepassen op filters en zoekvelden
     if (zoekfilters["zoekterm"]) {
         document.getElementById("searchBar").value = zoekfilters["zoekterm"];
+        toepassen = true;
     }
 
     if (zoekfilters["rollen"].length > 0) {
         filtersAfChecken("rol", "allerollen", "filterRolButton", ["rollen"], zoekfilters);
+        toepassen = true;
     }
 
     if (zoekfilters["competenties"].length > 0) {
@@ -55,21 +57,40 @@ function urlParserIndex() {
         }
         areAllBoxesChecked("competentie", "allecompetenties");
         document.getElementById("filterCompetentieButton").click();
+        toepassen = true;
     }
 
     if (zoekfilters["hboi"]["architectuurlaag"].length > 0) {
         filtersAfChecken("hboiArch", "", "", ["hboi", "architectuurlaag"], zoekfilters);
         hboifilter = true;
+        toepassen = true;
     }
 
     if (zoekfilters["hboi"]["fase"].length >0) {
         filtersAfChecken("hboiFase", "", "", ["hboi", "fase"], zoekfilters);
         hboifilter = true;
+        toepassen = true;
     }
 
-    if (zoekfilters["hboi"]["fase"].length > 0) {
+    if (zoekfilters["hboi"]["niveau"].length > 0) {
         filtersAfChecken("hboiNiv", "", "", ["hboi", "niveau"], zoekfilters);
-        hboifilter = true;
+        let elements = document.getElementsByClassName("hboiNiv"),
+            lijstNiveaus = [];
+        for (i = 0; i < zoekfilters["hboi"]["niveau"].length; i++) {
+            lijstNiveaus.push(`${zoekfilters["hboi"]["niveau"][i]}`);
+        }
+        for (i = 0; i < elements.length; i++) {
+            if (lijstNiveaus.includes(elements[i].value)) {
+                elements[i].checked = true;
+            }
+        }
+        areAllBoxesChecked("competentie", "allecompetenties");
+        document.getElementById("filterCompetentieButton").click();
+        toepassen = true;
+    }
+
+    if (!toepassen) {
+        fetchRecent();
     }
 
     if (hboifilter) {
