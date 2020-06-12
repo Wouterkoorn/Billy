@@ -1,1 +1,1 @@
-window.ip = "http://localhost";
+// window.ip = "http://localhost";

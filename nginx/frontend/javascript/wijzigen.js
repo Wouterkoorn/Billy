@@ -3,6 +3,4 @@ function kenniskaartWijzigen() {
     const id = document.getElementsByClassName("popupContent")[0].getAttribute("id");
     //todo kenniskaart data ophalen op toevoegen.html
 
-}
-
-
+};
