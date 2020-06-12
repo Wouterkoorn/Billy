@@ -104,6 +104,11 @@ button:hover {
   float: right;
 }
 
+.wijzigenB {
+  background-color: #03A0D2;
+  float: right;
+}
+
 /* Add padding to container elements */
 .toevoegBody {
   padding: 16px;
