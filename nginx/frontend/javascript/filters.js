@@ -110,22 +110,20 @@ function kenniskaartenZoeken() {
         body: JSON.stringify(zoekfilters)
     })
         .then((response) => {
-            if (response === "Go fuck yourself") {
-                geenZoekresultaten();
-            }
-            else {
-                response.json().then(function (data) {
-                    deleteChildren(document.getElementsByClassName("kennniskaartencontainer")[0]);
+            response.json().then(function (data) {
+                if (data.length === 0) {
+                    geenZoekResultaten();
+                }
+                else {
+                    deleteChildren(document.getElementsByClassName('kenniskaartencontainer')[0]);
                     data.forEach(function (item, index) {
                         maakKenniskaarten(item, index)
                     })
+                    addEventListeners();
+                }
+            })
+                .catch(function (error) {
+                    console.error(error);
                 })
-                    .then(function () {
-                        addEventListeners();
-                    })
-                    .catch(function (error) {
-                        console.error(error);
-                    })
-            }
         })
 }

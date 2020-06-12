@@ -11,7 +11,14 @@ function urlParserIndex() {
     if (zoekfilters["zoekterm"]) {
         document.getElementById("searchBar").value = zoekfilters["zoekterm"];
     }
-    // if (zoekfilters[""])
+    // if (zoekfilters["rol"]) {
+    //     let elements = document.getElementsByClassName("rol");
+    //     for (i = 0; i < elements.length; i++) {
+    //         if (elements[i] === zoekfilters["rol"][i]) {
+    //
+    //         }
+    //     }
+    // }
 
 
 

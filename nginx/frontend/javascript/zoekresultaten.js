@@ -48,13 +48,25 @@ function maakKenniskaarten(item, index) {
     kenniskaartBestemming[0].appendChild(kenniskaart);
     var kenniskaartlocatie = document.getElementsByClassName("kenniskaart");
 
-    makeImg(kenniskaartlocatie[index], "kenniskaart-foto", '../css/fotos/placeholder.jpeg');
-    makeElement(kenniskaartlocatie[index], "kenniskaart-datum", formatDateTime(item["datetime"]), "div");
+    // makeImg(kenniskaartlocatie[index], "kenniskaart-foto", '../css/fotos/placeholder.jpeg');
+    if (item["dateTime"]) {
+        makeElement(kenniskaartlocatie[index], "kenniskaart-datum", formatDateTime(item["datetime"]), "div");
+    }
     makeElement(kenniskaartlocatie[index], "kenniskaart-titel", item["titel"], "H3");
     makeElement(kenniskaartlocatie[index], "kenniskaart-what", item["what"], "div");
     // item["tags"].forEach(function (item) {           item["what"].slice(0, 150) + "..."
     //   makeElement(kenniskaartlocatie[index], "kenniskaart-tags", item, "div")
     // });
+}
+
+
+function geenZoekResultaten() {
+    deleteChildren(document.getElementsByClassName('kenniskaartencontainer')[0]);
+    const item = {
+        "titel": "Geen zoekresultaten gevonden",
+        "what": "Er zijn helaas geen zoekresultaten gevonden. Als u met andere zoektermen zoekt heeft u misschien meer geluk."
+    };
+    maakKenniskaarten(item, 0);
 }
 
 
