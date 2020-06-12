@@ -1,29 +1,21 @@
-function urlParser() {
-
-}
-
 
 function urlParserIndex() {
-    //todo search
     //todo filters
-    //todo kenniskaart
     //possible maken om methods te gebruiken op standaard constant
     const urlParams = new URLSearchParams(window.location.search);
 
-    let zoekquery = urlParams.get('search'),
-        filters = urlParams.get('filters'),
-        kenniskaart_id = urlParams.get('kenniskaart');
+    let zoekfilters = JSON.parse(urlParams.get('filters')),
+        kenniskaart_id = urlParams.get('kenniskaart'),
+        i;
 
-
-
-    if (zoekquery) {
-        document.getElementById("searchBar").value = zoekquery;
-        document.getElementById("searchButton").click();
+    if (zoekfilters["zoekterm"]) {
+        document.getElementById("searchBar").value = zoekfilters["zoekterm"];
     }
-    if (filters) {
-        //todo filters selecten op site en daarna "toepassen" op zoekresultaten als die gedaan zijn
-        console.log(filters);
-    }
+    // if (zoekfilters[""])
+
+
+
+
     if (kenniskaart_id) {
         popupTonen(kenniskaart_id);
     }

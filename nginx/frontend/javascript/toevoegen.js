@@ -59,9 +59,6 @@ function kenniskaart_toevoegen() {
                 return response;
             }
         })
-        // .catch(function (error) {
-        //     return error
-        // })
     //todo verander komende alert in popup op index.html
     alert('uw kenniskaartje is toegevoegd');
 	window.location.replace(`${ip}/index.html`);

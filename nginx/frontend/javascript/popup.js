@@ -80,15 +80,11 @@ function popupTonen(kenniskaart_id) {
                 }
 
                 for (i = 0; i < data["competenties"].length; i++) {
-                    let contentString = "";
-                    contentString = contentString.concat(data["competenties"][i]["categorie"], " ", data["competenties"][i]["competentie"]);
-                    makeElement(document.getElementById("popupCompetentie"), "competentieContainer", contentString, "p");
+                    makeElement(document.getElementById("popupCompetentie"), "competentieContainer", `${data["competenties"][i]["categorie"]} ${data["competenties"][i]["competentie"]}`, "p");
                 }
 
                 for (i = 0; i < data["hboi"].length; i++) {
-                    let contentString = "";
-                    contentString = contentString.concat(data["hboi"][i]["architectuurlaag"], " ", data["hboi"][i]["fase"], " ", data["hboi"][i]["niveau"]);
-                    makeElement(document.getElementById("popupHBOI"), "hboiContainer", contentString, "p");
+                    makeElement(document.getElementById("popupHBOI"), "hboiContainer", `${data["hboi"][i]["architectuurlaag"]} ${data["hboi"][i]["fase"]} ${data["hboi"][i]["niveau"]}`, "p");
                 }
 
                 document.getElementsByClassName("popupContent")[0].setAttribute("id", data["id"])
@@ -120,5 +116,4 @@ function popupTonen(kenniskaart_id) {
                 })
             })
         })
-
 }

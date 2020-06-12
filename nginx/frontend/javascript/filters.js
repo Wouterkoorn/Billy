@@ -72,86 +72,60 @@ function alleFilters(classNameCheckboxes, alleCheckboxID) {
 }
 
 
-function filterFilters(filterlijst, category) {
-    //returnd een string met alleen de aangeklikte filters bij een category in de juiste format
-    let filters = "";
-    for (i = 0; i < filterlijst.length; i++) {
-        if (filterlijst[i].checked === true) {
-            // console.log(filterlijst[i], true);
-            // console.log(`${filterlijst[i].value}`.concat(`.${category};`));
-            filters = filters + `${filterlijst[i].value}`.concat(`.${category};`);
+function selectedFilters(classname) {
+    //returnd een lijst met alleen de aangeklikte filters bij een category in de juiste format
+    const elements = document.getElementsByClassName(classname);
+    let selected = [];
+    for (i = 0; i < elements.length; i++) {
+        if (elements[i].checked) {
+            if (classname === "hboiNiv") {
+                selected.push(Number(elements[i].value))
+            }
+            else {
+                selected.push(elements[i].value)
+            }
         }
     }
-    return filters;
+    return selected
 }
 
 
-function filtersToepassen() {
+function kenniskaartenZoeken() {
     //haalt alle geselecteerde filters op en past deze toe inclusief zoekterm als die is gebruikt.
-    const rolfilters = document.getElementsByClassName("rol"),
-        competentiefilters = document.getElementsByClassName("competentie"),
-        hboifilters = document.getElementsByClassName("hboi");
-    let selectedFilters = "";
-    //todo verbeteren van de namen zodat het de documentatie volgt.
-
-    //checken of alle ... is aangeklikt
-    if (document.getElementById("allerollen").checked && document.getElementById("allecompetenties").checked) {
-        selectedFilters = selectedFilters + "Alle rollen.rol;Alle Competenties.competentie;";
-        selectedFilters = selectedFilters + filterFilters(hboifilters, "hboi");
+    let zoekfilters = {
+        "zoekterm": document.getElementById("searchBar").value,
+        "rollen": selectedFilters("rol"),
+        "competenties": selectedFilters("competentie"),
+        "hboi": {
+            "architectuurlaag": selectedFilters("hboiArch"),
+            "fase": selectedFilters("hboiAct"),
+            "niveau": selectedFilters("hboiNiv")
+        }
     }
-    else if (document.getElementById("allerollen").checked) {
-        selectedFilters = selectedFilters + "Alle rollen.rol;";
-        selectedFilters = selectedFilters + filterFilters(competentiefilters, "competentie");
-    }
-    else if (document.getElementById("allecompetenties").checked) {
-        selectedFilters = selectedFilters + filterFilters(rolfilters, "rol");
-        selectedFilters = selectedFilters + "Alle competenties.competentie;";
-    }
-    else {
-        selectedFilters = selectedFilters + filterFilters(rolfilters, "rol");
-        selectedFilters = selectedFilters + filterFilters(competentiefilters, "competentie");
-        selectedFilters = selectedFilters + filterFilters(hboifilters, "hboi");
-    }
-
-    addParam('filters', selectedFilters);
-    console.log(selectedFilters);
-    console.log(zoekterm);
-    //checken of er al is gezocht. Zo ja pas filters toe op resultaten van zoekterm
-    //todo zoekterm veranderen naar paramater
-    if (zoekterm != null) {
-        //wat is exacte api call
-        fetch(`${ip}/api/filter/${selectedFilters}`)
-            .then(function (response) {
+    // deleteParam("filters");
+    addParam("filters", JSON.stringify(zoekfilters));
+    fetch(`${ip}/api/ophalen/zoeken`, {
+        method: "POST",
+        headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+        body: JSON.stringify(zoekfilters)
+    })
+        .then((response) => {
+            if (response === "Go fuck yourself") {
+                geenZoekresultaten();
+            }
+            else {
                 response.json().then(function (data) {
-                    cleanupKenniskaarten();
+                    deleteChildren(document.getElementsByClassName("kennniskaartencontainer")[0]);
                     data.forEach(function (item, index) {
-                        maakKenniskaarten(item, index);
+                        maakKenniskaarten(item, index)
                     })
                 })
-            .then(function () {
-                addEventListeners();
-            })
-            .catch(function (error) {
-                console.error(error);
-            })
-        })
-    }
-    else {
-        //wat is exacte api call?
-        fetch(`${ip}/api/zoekfilter/${selectedFilters}`)
-            .then(function (response) {
-                response.json().then(function (data) {
-                    cleanupKenniskaarten();
-                    data.forEach(function (item, index) {
-                        maakKenniskaarten(item, index);
+                    .then(function () {
+                        addEventListeners();
                     })
-                })
-            .then(function () {
-                addEventListeners();
-            })
-            .catch(function (error) {
-                console.log(error);
-            })
+                    .catch(function (error) {
+                        console.error(error);
+                    })
+            }
         })
-    }
 }

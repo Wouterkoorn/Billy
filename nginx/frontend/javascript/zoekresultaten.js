@@ -1,11 +1,3 @@
-function clearOldResults(elementClassName) {
-    //zoekt alle kenniskaarten op en verwijderd ze
-    const element = document.getElementsByClassName(elementClassName);
-    // console.log(element, element.length);
-    while (element.length > 0) {
-        element[0].remove();
-    }
-}
 
 
 function formatDateTime(unformatedDatum) {
@@ -66,60 +58,12 @@ function maakKenniskaarten(item, index) {
 }
 
 
-function cleanupKenniskaarten() {
-  var kenniskaartenSection = document.getElementsByClassName('kenniskaartencontainer');
-  console.log(kenniskaartenSection.firstElementChild);
-  // kenniskaartenSection.innerHTML = '';
-  while(kenniskaartenSection) {
-    var element = document.getElementsByClassName('kenniskaart');
-    kenniskaartenSection.removeChild(element);
-  }
-}
-
-
-function fetchZoeken() {
-    //verwijderd oude resultaten en haalt nieuwe resultaten op in json format. Roept Daarna de functie aan om de resultaten te maken.
-    clearOldResults("kenniskaart"); //hetzelfde als cleanupKenniskaarten() functie
-
-    //todo remove this and replace by URL paramaters
-    window.zoekterm = document.getElementById('searchBar').value;
-
-    console.log(document.getElementById('searchBar').value);
-
-    if (document.getElementById('searchBar').value) {
-        addParam('search', document.getElementById('searchBar').value);
-    }
-    else {
-        deleteParam('search');
-        fetchRecent();
-        return
-    }
-
-    fetch(`${ip}/api/ophalen/zoeken/${document.getElementById('searchBar').value}`)
-        .then(function (response) {
-            //todo filters toepassen als die geselecteerd zijn
-            response.json().then(function (data) {//response omzetten in json zodat javascript het kan gebruiken in de functie erna
-                data.forEach(function (item, index) {
-                    // cleanupKenniskaarten();
-                    maakKenniskaarten(item, index);
-                })
-            })
-                //todo gebruiker vermelden dat er niks is gevonden als er geen resultaten zijn.
-                .then(function () {
-                    addEventListeners();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
-        })
-}
-
-
 function fetchRecent() {
     //haalt de 5 laatst toegevoegde kaarten op en toont deze
     fetch(`${ip}/api/ophalen/recent`)
         .then(function (response) {
             response.json().then(function (data) {
+                deleteChildren(document.getElementsByClassName("kennniskaartencontainer")[0]);
                 data.forEach(function (item, index) {
                     maakKenniskaarten(item, index);
                 })
@@ -131,7 +75,6 @@ function fetchRecent() {
                     console.log(error);
                 })
         })
-
 }
 
 
@@ -141,6 +84,6 @@ const zoekveld = document.getElementById("searchBar");
 zoekveld.addEventListener('keydown', function (event) {
     switch (event.key) {
         case "Enter":
-            fetchZoeken();
+            kenniskaartenZoeken();
     }
-});
+})
