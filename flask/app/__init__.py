@@ -111,31 +111,26 @@ def plaats_kenniskaart():
 @app.route('/api/ophalen/kenniskaart/<kenniskaart_id>', methods=['GET'])
 def vraag_kenniskaart(kenniskaart_id):
     kenniskaart = serialize(Kenniskaart.query.filter_by(id=kenniskaart_id).all())[0]
-    rollen, competenties, hbois = [], [], []
 
-    for rol in Rol.query.with_entities(Rol.rolnaam).filter_by(kenniskaart_id=kenniskaart_id).all():
-        rollen.append(rol[0])
-    kenniskaart.update({'rollen': rollen})
+    kenniskaart.update({'rollen': [rol[0] for rol in Rol.query.with_entities(Rol.rolnaam).filter_by(kenniskaart_id=kenniskaart_id).all()]})
 
-    for competentie in Competentie.query.with_entities(Competentie.categorie, Competentie.competentie).filter_by(kenniskaart_id=kenniskaart['id']).all():
-        competenties.append(dict(zip(['categorie', 'competentie'], competentie)))
-    kenniskaart.update({'competenties': competenties})
+    competenties = Competentie.query.with_entities(Competentie.categorie, Competentie.competentie).filter_by(kenniskaart_id=kenniskaart['id']).all()
+    kenniskaart.update({'competenties': [dict(zip(['categorie', 'competentie'], competentie)) for competentie in competenties]})
 
-    for hboi in Hboi.query.with_entities(Hboi.architectuurlaag, Hboi.fase, Hboi.niveau).filter_by(kenniskaart_id=kenniskaart['id']).all():
-        hbois.append(dict(zip(['architectuurlaag', 'fase', 'niveau'], hboi)))
-    kenniskaart.update({'hboi': hbois})
+    hbois = Hboi.query.with_entities(Hboi.architectuurlaag, Hboi.fase, Hboi.niveau).filter_by(kenniskaart_id=kenniskaart['id']).all()
+    kenniskaart.update({'hboi': [dict(zip(['architectuurlaag', 'fase', 'niveau'], hboi)) for hboi in hbois]})
 
     return jsonify(kenniskaart), 200
 
 
 @app.route('/api/ophalen/recent', methods=['GET'])
 def vraag_recente_kenniskaarten():
-    kenniskaarten = []
-    for kenniskaart in Kenniskaart.query.with_entities(
-            Kenniskaart.id, Kenniskaart.titel, Kenniskaart.what, Kenniskaart.datetime).order_by(db.desc(Kenniskaart.datetime)).limit(5).all():
-        kenniskaarten.append(dict(zip(['id', 'titel', 'what', 'datetime'], kenniskaart)))
+    kenniskaarten = Kenniskaart.query.with_entities(Kenniskaart.id, Kenniskaart.titel, Kenniskaart.what, Kenniskaart.datetime).order_by(
+        db.desc(Kenniskaart.datetime)).limit(5).all()
 
-    return jsonify(kenniskaarten), 200
+    kenniskaartendict = [dict(zip(['id', 'titel', 'what', 'datetime'], kenniskaart)) for kenniskaart in kenniskaarten]
+
+    return jsonify(kenniskaartendict), 200
 
 
 @app.route('/api/ophalen/zoeken', methods=['POST'])
@@ -171,13 +166,13 @@ def filter_kenniskaarten():
                         hbois += 'Hboi.' + veld + '==' + str(i) + ', '
         filters += hbois + '))'
 
-    if data['soorteer'] == 'aflopend':
-        soorteer = '.order_by(db.desc(Kenniskaart.datetime)'
+    if data['sorteer'] == 'aflopend':
+        sorteer = '.order_by(db.desc(Kenniskaart.datetime))'
     else:
-        soorteer = '.order_by(db.asc(Kenniskaart.datetime)'
+        sorteer = '.order_by(db.asc(Kenniskaart.datetime))'
 
-    query1 = base + filters + f'.filter(zoekveld.ilike("{data["zoekterm"]}"))' + soorteer + '.all()'
-    query2 = base + filters + f'.filter(zoekveld.ilike("%" + "{data["zoekterm"]}" + "%"))' + soorteer + '.all()'
+    query1 = base + filters + f'.filter(zoekveld.ilike("{data["zoekterm"]}"))' + sorteer + '.all()'
+    query2 = base + filters + f'.filter(zoekveld.ilike("%" + "{data["zoekterm"]}" + "%"))' + sorteer + '.all()'
 
     velden_list = [Kenniskaart.titel, Kenniskaart.auteur, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld, Kenniskaart.bronnen]
     kenniskaarten_exact, kenniskaarten_inclusief = [], []
@@ -198,6 +193,32 @@ def filter_kenniskaarten():
     kenniskaarten_exact.extend(kenniskaarten_inclusief)
 
     return jsonify(kenniskaarten_exact), 200
+
+
+@app.route('/api/ophalen/filteraantallen')
+def vraag_filter_aantallen():
+    filtersRol = [rol[0] for rol in Rol.query.with_entities(Rol.rolnaam).distinct()]
+    filtersCategorie = [categorie[0] for categorie in Competentie.query.with_entities(Competentie.categorie).distinct()]
+    filtersCompetenie = [competentie[0] for competentie in Competentie.query.with_entities(Competentie.competentie).distinct()]
+    filtersArchitectuurlaag = [architectuurlaag[0] for architectuurlaag in Hboi.query.with_entities(Hboi.architectuurlaag).distinct()]
+    filtersFase = [fase[0] for fase in Hboi.query.with_entities(Hboi.fase).distinct()]
+    filtersNiveau = [niveau[0] for niveau in Hboi.query.with_entities(Hboi.niveau).distinct()]
+
+    filteraantallen = {}
+    for filter in filtersRol:
+        filteraantallen.update({filter: Rol.query.filter_by(rolnaam=filter).count()})
+    for filter in filtersCategorie:
+        filteraantallen.update({filter: Competentie.query.filter_by(categorie=filter).count()})
+    for filter in filtersCompetenie:
+        filteraantallen.update({filter: Competentie.query.filter_by(competentie=filter).count()})
+    for filter in filtersArchitectuurlaag:
+        filteraantallen.update({filter: Hboi.query.filter_by(architectuurlaag=filter).count()})
+    for filter in filtersFase:
+        filteraantallen.update({filter: Hboi.query.filter_by(fase=filter).count()})
+    for filter in filtersNiveau:
+        filteraantallen.update({str(filter): Hboi.query.filter_by(niveau=filter).count()})
+
+    return jsonify(filteraantallen), 200
 
 
 @app.route('/api/wijzigen/kenniskaart/<kenniskaart_id>', methods=['PATCH'])
@@ -259,7 +280,7 @@ def wijzig_kenniskaart(kenniskaart_id):
 
 @app.route('/api/verwijderen/kenniskaart/<kenniskaart_id>', methods=['DELETE'])
 def verwijder_kenniskaart(kenniskaart_id):
-    Rol.query.filter(kenniskaart_id=kenniskaart_id).delete()
+    Rol.query.filter_by(kenniskaart_id=kenniskaart_id).delete()
     Competentie.query.filter_by(kenniskaart_id=kenniskaart_id).delete()
     Hboi.query.filter_by(kenniskaart_id=kenniskaart_id).delete()
     Kenniskaart.query.filter_by(id=kenniskaart_id).delete()
