@@ -125,12 +125,12 @@ def vraag_kenniskaart(kenniskaart_id):
 
 @app.route('/api/ophalen/recent', methods=['GET'])
 def vraag_recente_kenniskaarten():
-    kenniskaarten = Kenniskaart.query.with_entities(Kenniskaart.id, Kenniskaart.titel, Kenniskaart.what, Kenniskaart.datetime).order_by(
+    query = Kenniskaart.query.with_entities(Kenniskaart.id, Kenniskaart.titel, Kenniskaart.what, Kenniskaart.datetime).order_by(
         db.desc(Kenniskaart.datetime)).limit(5).all()
 
-    kenniskaartendict = [dict(zip(['id', 'titel', 'what', 'datetime'], kenniskaart)) for kenniskaart in kenniskaarten]
+    kenniskaarten = [dict(zip(['id', 'titel', 'what', 'datetime'], kenniskaart)) for kenniskaart in query]
 
-    return jsonify(kenniskaartendict), 200
+    return jsonify(kenniskaarten), 200
 
 
 @app.route('/api/ophalen/zoeken', methods=['POST'])
@@ -178,9 +178,9 @@ def filter_kenniskaarten():
     kenniskaarten_exact, kenniskaarten_inclusief = [], []
 
     for zoekveld in velden_list:
-        exact_zoekvraag = serialize(eval(query1))
-        if len(exact_zoekvraag) > 0:
-            for kenniskaart in exact_zoekvraag:
+        zoekvraag_exact = serialize(eval(query1))
+        if len(zoekvraag_exact) > 0:
+            for kenniskaart in zoekvraag_exact:
                 if kenniskaart not in kenniskaarten_exact and kenniskaart not in kenniskaarten_inclusief:
                     kenniskaarten_exact.append(kenniskaart)
 
@@ -236,41 +236,28 @@ def wijzig_kenniskaart(kenniskaart_id):
     ))
 
     rollen_huidig = Rol.query.with_entities(Rol.rolnaam).filter_by(kenniskaart_id=kenniskaart_id).all()
-    if type(rollen_huidig) == list:
-        for rol in rollen_huidig:
-            if rol[0] not in data['rollen']:
-                Rol.query.filter_by(kenniskaart_id=kenniskaart_id, rolnaam=rol[0]).delete()
-    elif rollen_huidig[0] not in data['rollen']:
-        Rol.query.filter_by(kenniskaart_id=kenniskaart_id, rolnaam=rollen_huidig[0]).delete()
-
+    for rol in rollen_huidig:
+        if rol[0] not in data['rollen']:
+            Rol.query.filter_by(kenniskaart_id=kenniskaart_id, rolnaam=rol[0]).delete()
     for rol in data['rollen']:
-        if Rol.query.filter_by(kenniskaart_id=kenniskaart_id, rolnaam=rol) is None:
-            rol_nieuw = Rol(kenniskaart_id=kenniskaart_id, rolnaam=rol)
-            db.session.add(rol_nieuw)
+        if Rol.query.filter_by(kenniskaart_id=kenniskaart_id, rolnaam=rol).count() == 0:
+            db.session.add(Rol(kenniskaart_id=kenniskaart_id, rolnaam=rol))
 
     competenties_huidig = Competentie.query.with_entities(Competentie.categorie, Competentie.competentie).filter_by(kenniskaart_id=kenniskaart_id).all()
-    if type(competenties_huidig) == list:
-        for competentie in competenties_huidig:
-            if dict(zip(['categorie', 'competentie'], competentie)) not in data['competenties']:
-                Competentie.query.filter_by(kenniskaart_id=kenniskaart_id, categorie=competentie[0], competentie=competentie[1]).delete()
-    elif dict(zip(['categorie', 'competentie'], competenties_huidig)) not in data['competenties']:
-        Competentie.query.filter_by(kenniskaart_id=kenniskaart_id, categorie=competenties_huidig[0], competentie=competenties_huidig[1]).delete()
-
+    for competentie in competenties_huidig:
+        if dict(zip(['categorie', 'competentie'], competentie)) not in data['competenties']:
+            Competentie.query.filter_by(kenniskaart_id=kenniskaart_id, categorie=competentie[0], competentie=competentie[1]).delete()
     for competentie in data['competenties']:
-        if Competentie.query.filter_by(kenniskaart_id=kenniskaart_id, categorie=competentie['categorie'], competentie=competentie['competentie']) is None:
+        if Competentie.query.filter_by(kenniskaart_id=kenniskaart_id, categorie=competentie['categorie'], competentie=competentie['competentie']).count() == 0:
             competentie_nieuw = Competentie(kenniskaart_id=kenniskaart_id, categorie=competentie['categorie'], competentie=competentie['competentie'])
             db.session.add(competentie_nieuw)
 
     hboi_huidig = Hboi.query.with_entities(Hboi.architectuurlaag, Hboi.fase, Hboi.niveau).filter_by(kenniskaart_id=kenniskaart_id).all()
-    if type(hboi_huidig) == list:
-        for hboi in hboi_huidig:
-            if dict(zip(['architectuurlaag', 'fase', 'niveau'], hboi)) not in data['hboi']:
-                Hboi.query.filter_by(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi[0], fase=hboi[1], niveau=hboi[2]).delete()
-    elif dict(zip(['architectuurlaag', 'fase', 'niveau'], hboi_huidig)) not in data['hboi']:
-        Hboi.query.filter_by(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi_huidig[0], fase=hboi_huidig[1], niveau=hboi_huidig[2]).delete()
-
+    for hboi in hboi_huidig:
+        if dict(zip(['architectuurlaag', 'fase', 'niveau'], hboi)) not in data['hboi']:
+            Hboi.query.filter_by(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi[0], fase=hboi[1], niveau=hboi[2]).delete()
     for hboi in data['hboi']:
-        if Hboi.query.filter_by(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi['architectuurlaag'], fase=hboi['fase'], niveau=hboi['niveau']) is None:
+        if Hboi.query.filter_by(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi['architectuurlaag'], fase=hboi['fase'], niveau=hboi['niveau']).count() == 0:
             hboi_nieuw = Hboi(kenniskaart_id=kenniskaart_id, architectuurlaag=hboi['architectuurlaag'], fase=hboi['fase'], niveau=hboi['niveau'])
             db.session.add(hboi_nieuw)
 
