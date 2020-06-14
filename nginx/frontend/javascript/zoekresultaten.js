@@ -1,5 +1,3 @@
-
-
 function formatDateTime(unformatedDatum) {
     //zet de datum format van mariadb om naar de gewenste datumformat voor JS met een uitgeschreven maand ipv cijfer
     var datum = new Date(unformatedDatum);
@@ -76,17 +74,16 @@ function fetchRecent() {
     fetch(`${ip}/api/ophalen/recent`)
         .then(function (response) {
             response.json().then(function (data) {
-                deleteChildren(document.getElementsByClassName("kennniskaartencontainer")[0]);
-                data.forEach(function (item, index) {
-                    maakKenniskaarten(item, index);
-                })
-            })
-                .then(function () {
+                if (data.length === 0) {
+                    geenZoekResultaten();
+                } else {
+                    deleteChildren(document.getElementsByClassName("kennniskaartencontainer"));
+                    data.forEach(function (item, index) {
+                        maakKenniskaarten(item, index);
+                    })
                     addEventListeners();
-                })
-                .catch(function (error) {
-                    console.log(error);
-                })
+                }
+            })
         })
 }
 

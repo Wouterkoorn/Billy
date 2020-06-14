@@ -64,8 +64,8 @@ function popupTonen(kenniskaart_id) {
     let popup = document.getElementById("popupContainer");
     fetch(`${ip}/api/ophalen/kenniskaart/${kenniskaart_id}`)
         .then(function (response) {
-            response.json().then( function (data) {
-                // console.log(response, data);
+            response.json().then(data => {
+                console.log(response, data);
                 //todo pop-up oude data verwijderen
                 deleteChildren(document.getElementById("popupRollen"));
                 deleteChildren(document.getElementById("popupCompetentie"));
