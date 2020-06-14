@@ -226,10 +226,10 @@ function urlParserIndex() {
         }
 
         if (zoekfilters["sorteer"]) {
-            if (zoekfilters["sorteer"] === "oplopend") {
+            if (zoekfilters["sorteer"] === "aflopend") {
+                document.getElementById("sorteer1").selectedIndex = 0;
+            } else if (zoekfilters["sorteer"] === "oplopend") {
                 document.getElementById("sorteer1").selectedIndex = 1;
-            } else if (zoekfilters["sorteer"] === "aflopend") {
-                document.getElementById("sorteer1").selectedIndex = 2;
             }
             document.getElementById("sorteer1").value = zoekfilters["sorteer"];
             document.getElementById("sorteerButton").click();
