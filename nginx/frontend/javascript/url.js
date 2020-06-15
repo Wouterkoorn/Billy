@@ -240,8 +240,6 @@ function urlParserIndex() {
             document.getElementById("filterhboiButton").click();
         }
 
-        //kenniskaart popup openen als een kenniskaart id is meegegeven
-
     } catch (typeError) {
         console.log("There were no zoekfilters selected.")
     }
@@ -256,7 +254,10 @@ function urlParserIndex() {
         console.log(`Geen kenniskaart aangegeven in url.`)
     }
 
-    if (!toepassen) {
+    if (toepassen) {
+        console.log("kenniskaarten ophalen met zoekfilters")
+        kenniskaartenZoeken();
+    } else {
         fetchRecent();
     }
 }
