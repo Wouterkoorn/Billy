@@ -1,4 +1,4 @@
-function kenniskaart_toevoegen() {
+function kenniskaartDatabase(apiCall, method) {
     /*Voegt alle data die is ingevuld bij de template samen in een json variable en verstuurd deze naar de backend.
     Geeft na een succesvolle operatie een alert dat het gelukt is.
     */
@@ -46,14 +46,21 @@ function kenniskaart_toevoegen() {
     }
 
     console.log(dataKenniskaart);
-    fetch(`${ip}/api/toevoegen`, {
-        method: 'POST',
+    console.log(`${ip}/api${apiCall}`);
+    fetch(`${ip}/api${apiCall}`, {
+        method: method,
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
         body: JSON.stringify(dataKenniskaart)
     })
         .then((response) => {
+            console.log(response);
             if (response["status"] === 200) {
-                alert('uw kenniskaartje is toegevoegd');
+                if (apiCall === "/toevoegen") {
+                    alert("Uw kenniskaarte is toegevoegd.")
+                }
+                else if (apiCall.includes("/wijzigen/kenniskaart/")) {
+                    alert(`Uw kenniskaartje ${dataKenniskaart["titel"]} is gewijzigd.`)
+                }
                 window.location.replace(`${ip}`);
             }
             try {
