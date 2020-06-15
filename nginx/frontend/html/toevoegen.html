@@ -18,12 +18,9 @@
 
     <nav>
       <ul>
-        <li>
-          <a href="../index.html">Home</a>
-        </li>
-        <li>
-          <a href="toevoegenTest.html">Toevoegen</a>
-        </li>
+        <li><a href="../index.html">Home</a></li>
+
+        <li><a href="toevoegen.html">Toevoegen</a></li>
 
       </ul>
     </nav>
@@ -39,7 +36,7 @@
             </div>
 
             <div class="grid-item item3">
-              <input type="text" id="auteur" value="" placeholder="Voeg een auteur">
+              <input type="text" id="formAuteur" value="" placeholder="Voeg een auteur">
             </div>
 
             <div class="grid-item item4">
@@ -69,16 +66,16 @@
             <label for="competentie">Competentie</label><br>
               <div id="competentieContainer" class="selectL">
                 <select class="toevoegenCompetentie" id="toevoegenCompetentie" name="Competentie">
-                  <option value="Vakbekwaam, juiste kennis ontwikkelen">Vakbekwaam, juiste kennis ontwikkelen</option>
-                  <option value="Vakbekwaam, kwalitatief product maken">Vakbekwaam, kwalitatief product maken</option>
-                  <option value="Oordeelvormend, creatief werken">Oordeelvormend, creatief werken</option>
-                  <option value="Oordeelvormend, kritisch oordelen">Oordeelvormend, kritisch oordelen</option>
-                  <option value="Communicatief, samenwerken">Communicatief, samenwerken</option>
-                  <option value="Communicatief, boodschap overbrengen">Communicatief, boodschap overbrengen</option>
-                  <option value="Flexibel, plannen">Flexibel, plannen</option>
-                  <option value="Flexibel, aanpassingsvermogen">Flexibel, aanpassingsvermogen</option>
-                  <option value="Zelflerend, pro-actief handelen">Zelflerend, pro-actief handelen</option>
-                  <option value="Zelflerend, reflecteren">Zelflerend, reflecteren</option>
+                  <option value="Vakbekwaam;juiste kennis ontwikkelen">Vakbekwaam, juiste kennis ontwikkelen</option>
+                  <option value="Vakbekwaam;kwalitatief product maken">Vakbekwaam, kwalitatief product maken</option>
+                  <option value="Oordeelvormend;creatief werken">Oordeelvormend, creatief werken</option>
+                  <option value="Oordeelvormend;kritisch oordelen">Oordeelvormend, kritisch oordelen</option>
+                  <option value="Communicatief;samenwerken">Communicatief, samenwerken</option>
+                  <option value="Communicatief;boodschap overbrengen">Communicatief, boodschap overbrengen</option>
+                  <option value="Flexibel;plannen">Flexibel, plannen</option>
+                  <option value="Flexibel;aanpassingsvermogen">Flexibel, aanpassingsvermogen</option>
+                  <option value="Zelflerend;pro-actief handelen">Zelflerend, pro-actief handelen</option>
+                  <option value="Zelflerend;reflecteren">Zelflerend, reflecteren</option>
                 </select>
 
                 <button class="plusButton" type="button" id="extraCompetentie" onclick="extra_select(toevoegenCompetentie)">+</button>
@@ -113,18 +110,18 @@
                     </select>
 
                     <select class="toevoegenActiviteiten" name="Activiteiten">
-                      <option value=" analyseren">Analyseren</option>
-                      <option value=" adviseren">Adviseren</option>
-                      <option value=" ontwerpen">Ontwerpen</option>
-                      <option value=" realiseren">Realiseren</option>
-                      <option value=" manage & control">Manage & control</option>
+                      <option value="analyseren">Analyseren</option>
+                      <option value="adviseren">Adviseren</option>
+                      <option value="ontwerpen">Ontwerpen</option>
+                      <option value="realiseren">Realiseren</option>
+                      <option value="manage & control">Manage & control</option>
                     </select>
 
                     <select class="toevoegenNiveau" name="Niveau">
-                      <option value=" 1">1</option>
-                      <option value=" 2">2</option>
-                      <option value=" 3">3</option>
-                      <option value=" 4">4</option>
+                      <option value="1">1</option>
+                      <option value="2">2</option>
+                      <option value="3">3</option>
+                      <option value="4">4</option>
                     </select>
 
                   </div>
@@ -133,8 +130,10 @@
 
               </div>
 
-            <label for="voorbeelden">Voorbeelden</label><br>
-            <textarea  name="voorbeelden" placeholder="Geef een voorbeeld/voorbeelden" style="height: 150px"></textarea>
+            <label for="formVoorbeeld">Voorbeelden</label><br>
+            <textarea  name="voorbeelden" id="formVoorbeeld" placeholder="Geef een voorbeeld/voorbeelden" style="height: 150px"></textarea><br>
+            <label for="formBronnen">Bronnen</label><br>
+            <textarea  name="bronnen" id="formBronnen" placeholder="Bron(nen)" style="height: 150px"></textarea>
 
           </div>
         </fieldset>
