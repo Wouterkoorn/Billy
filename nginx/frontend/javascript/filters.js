@@ -1,21 +1,21 @@
 //alle collapsible filters
-const collapsibles = document.getElementsByClassName("collapsibleFilter"),
-    filters = document.getElementsByClassName("filter");
+const collapsibles = document.getElementsByClassName("collapsibleFilter");
 let alleRollenChecked = false,
     alleCompetentiesChecked = false;
 
-
-
+let i;
 //eventlistener toevoegen aan alle collapsibles die de filter laat in of uitklappen.
 for (i = 0; i < collapsibles.length; i++) {
-    collapsibles[i].addEventListener("click", function (element) {
+    collapsibles[i].addEventListener("click", function(element) {
         let filter = element.target;
         let content = filter.nextElementSibling;
         if (content.style.display === "none") {
             content.style.display = "block";
-        } else if (content.style.display === "block") {
+        }
+        else if (content.style.display === "block") {
             content.style.display = "none";
-        } else {
+        }
+        else {
             content.style.display = "block";
         }
     })
@@ -25,9 +25,8 @@ for (i = 0; i < collapsibles.length; i++) {
 //event listeners toevoegen voor alle rol filters
 const rollenFilters = document.getElementsByClassName("rol");
 for (i = 0; i < rollenFilters.length; i++) {
-    rollenFilters[i].addEventListener("click", function () {
+    rollenFilters[i].addEventListener("click", function(){
         areAllBoxesChecked("rol", "allerollen");
-        kenniskaartenZoeken();
     })
 }
 
@@ -37,47 +36,8 @@ const competentieFilters = document.getElementsByClassName("competentie");
 for (i = 0; i < competentieFilters.length; i++) {
     competentieFilters[i].addEventListener("click", function () {
         areAllBoxesChecked("competentie", "allecompetenties");
-        kenniskaartenZoeken();
     })
 }
-
-
-//event listeners toevoegen voor alle hboi filters
-const hboiFilters = document.getElementsByClassName("hboi")
-for (i = 0; i < hboiFilters.length; i++) {
-    hboiFilters[i].addEventListener("click", function () {
-        kenniskaartenZoeken();
-    })
-}
-
-
-document.getElementById("sorteer1").addEventListener("click", function () {
-    kenniskaartenZoeken();
-})
-
-
-fetch(`${ip}/api/ophalen/filteraantallen`) //filter aantallen ophalen en tonen
-    .then(response => {
-        if (response["status"] === 200) {
-            response.json().then(filteraantallen => {
-                for (i = 0; i < filters.length; i++) {
-                    try {
-                        if (filteraantallen[filters[i].value]) {
-                            filters[i].nextElementSibling.innerText = filters[i].value.concat(` (${filteraantallen[filters[i].value]})`);
-                        }
-                        // filters[i].appendChild(document.createTextNode(filters[i].value.concat(` (${filteraantallen[filters[i].value]})`)))
-                        // console.log(document.createTextNode(filters[i].value.concat(` (${filteraantallen[filters[i].value]})`)))
-                    } catch (error) {
-                        console.error(error)
-                        // console.log(`Geen waarde ontvangen voor het aantal resultaten dat de filter ${filters[i].value} zou ontvangen.`);
-                    }
-                }
-            })
-        }
-        else {
-            console.error(`The filteraantallen request responded with something other than`)
-        }
-    })
 
 
 function areAllBoxesChecked(classNameCheckboxes, alleCheckboxID) {
@@ -103,7 +63,8 @@ function alleFilters(classNameCheckboxes, alleCheckboxID) {
         for (i = 0; i < checkboxen.length; i++) {
             checkboxen[i].checked = true;
         }
-    } else {
+    }
+    else {
         for (i = 0; i < checkboxen.length; i++) {
             checkboxen[i].checked = false;
         }
@@ -119,7 +80,8 @@ function selectedFilters(classname) {
         if (elements[i].checked) {
             if (classname === "hboiNiv") {
                 selected.push(Number(elements[i].value))
-            } else {
+            }
+            else {
                 selected.push(elements[i].value)
             }
         }
@@ -136,11 +98,11 @@ function kenniskaartenZoeken() {
         "competenties": selectedFilters("competentie"),
         "hboi": {
             "architectuurlaag": selectedFilters("hboiArch"),
-            "fase": selectedFilters("hboiFase"),
+            "fase": selectedFilters("hboiAct"),
             "niveau": selectedFilters("hboiNiv")
-        },
-        "sorteer": document.getElementById("sorteer1").value
+        }
     }
+    // deleteParam("filters");
     addParam("filters", JSON.stringify(zoekfilters));
     fetch(`${ip}/api/ophalen/zoeken`, {
         method: "POST",
@@ -151,7 +113,8 @@ function kenniskaartenZoeken() {
             response.json().then(function (data) {
                 if (data.length === 0) {
                     geenZoekResultaten();
-                } else {
+                }
+                else {
                     deleteChildren(document.getElementsByClassName('kenniskaartencontainer')[0]);
                     data.forEach(function (item, index) {
                         maakKenniskaarten(item, index)

@@ -10,7 +10,7 @@
 </head>
 
 
-<body onload="urlParserWijzigen()">
+<body>
   <header>
     <a class="header-brand" href="../index.html">
       <img src="../css/fotos/billy-logo.png" alt="facebook icon">
@@ -31,7 +31,7 @@
 
   <main>
     <div class="toevoegBody">
-      <form class="modal-" id="toevoegen">
+      <form class="modal-" id="toevoegen" method="POST">
         <fieldset>
           <div class="toevoegUp">
             <div class="grid-item item1">
@@ -47,7 +47,7 @@
             </div>
 
             <div class="grid-item item5">
-              <button  class="Button toevoegenB" type="button" id="toevoegenButton" onclick="kenniskaartDatabase('/toevoegen', 'POST')">Toevoegen</button>
+              <button  class="Button toevoegenB" type="submit" id="toevoegenButton" onclick="kenniskaart_toevoegen()">Toevoegen</button>
             </div>
 
           </div>
@@ -140,8 +140,9 @@
         </fieldset>
     </div>
   </main>
-  <script type="text/javascript" src="../javascript/globalVariables.js"></script>
-  <script type="text/javascript" src="../javascript/toevoegen.js"></script>
-  <script type="text/javascript" src="../javascript/url.js"></script>
+    <script type="text/javascript" src="../javascript/globalVariables.js"></script>
+    <script type="text/javascript" src="../javascript/toevoegen.js"></script>
+    <script type="text/javascript" src="javascript/wijzigen.js"></script>
+
 </body>
 </html>
