@@ -5,7 +5,7 @@ header {
 }
 
 header .header-brand {
-  font-family: 'Avenir';
+  font-family: catamaran;
   font-size: 24px;
   font-weight: 900;
   text-shadow: 2px 2px 5px #ddd;
@@ -31,8 +31,7 @@ header nav ul li {
 }
 
 header nav ul li a {
-  font-family: 'Avenir';
+  font-family: catamaran;
   font-size: 16px;
   color: #111;
-  text-decoration: none;
 }
