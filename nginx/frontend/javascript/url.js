@@ -233,6 +233,7 @@ function urlParserIndex() {
             }
             document.getElementById("sorteer1").value = zoekfilters["sorteer"];
             document.getElementById("sorteerButton").click();
+            toepassen = true;
         }
 
         //if any of hboi filters were selected => open hboi filter menu
@@ -245,7 +246,7 @@ function urlParserIndex() {
     }
 
     try {
-        kenniskaart_id = urlParams.get('kenniskaart');
+        let kenniskaart_id = urlParams.get('kenniskaart');
         if (kenniskaart_id) {
             console.log(`Kenniskaart ${kenniskaart_id} wordt geopend`);
             popupTonen(kenniskaart_id);
