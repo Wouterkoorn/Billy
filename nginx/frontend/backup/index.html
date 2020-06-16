@@ -5,46 +5,36 @@
 <title>kenniskaart</title>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
 </head>
 
 
 <body>
 <header>
+    <a class="header-brand" href="index.html">
+        <img src="../css/fotos/billy-logo.png">
+    </a>
+
     <nav>
         <ul>
-            <li>
-                <a class="header-brand" href="index.html">
-                    <img src="css/fotos/billy-logo.png">
-                </a>
-            </li>
-
-            <li>
-                <a class="toevoegL" href="html/toevoegen.html">Toevoegen</a>
-            </li>
-
-            <li>
-                <a class="toevoegL" href="index.html">Home</a>
-            </li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="../html/toevoegen.html">Toevoegen</a></li>
         </ul>
     </nav>
 </header>
 
 
 <main>
-
     <section id="banner">
-        <div id="searchContainer" class="searchContainer">
-            <button class="zoekButton" id="searchButton" onclick="kenniskaartenZoeken()"><i class="fa fa-search"></i>
-                Search
+        <div id="searchContainer">
+            <button class="zoekbalk" id="searchButton" type="button" onclick="kenniskaartenZoeken()">
+                <img src="../css/fotos/search-icon.png" alt="Searchicon">
             </button>
-
-            <input class="zoekbalk" id="searchBar" type="text" title="Type in a category">
+            <input class="zoekbalk" id="searchBar" type="text" placeholder="Zoeken..." title="Type in a category">
         </div>
     </section>
-
     <div id="flexKenniskaartenFilterContainer">
+
         <div class="filtercontainer">
             <button type="button" id="filterRolButton" class="collapsibleFilter">Rol</button>
             <div class="collapsibleFilterContent" id="filterRol">
@@ -126,27 +116,27 @@
                        value="Hardware interfacing">
                 <label for="hboi5">Hardware interfacing</label><br>
                 <div>Fase</div>
-                <input type="radio" class="hboiFase hboi filter" id="hboi6" name="Fase" value=" analyseren">
+                <input type="checkbox" class="hboiFase hboi filter" id="hboi6" name="Analyseren" value="analyseren">
                 <label for="hboi6">Analyseren</label><br>
-                <input type="checkbox" class="hboiFase hboi filter" id="hboi7" name="Fase" value=" adviseren">
+                <input type="checkbox" class="hboiFase hboi filter" id="hboi7" name="Adviseren" value="adviseren">
                 <label for="hboi7">Adviseren</label><br>
-                <input type="checkbox" class="hboiFase hboi filter" id="hboi8" name="Fase" value=" ontwerpen">
+                <input type="checkbox" class="hboiFase hboi filter" id="hboi8" name="Ontwerpen" value="ontwerpen">
                 <label for="hboi8">Ontwerpen</label><br>
-                <input type="checkbox" class="hboiFase hboi filter" id="hboi9" name="Fase" value=" realiseren">
+                <input type="checkbox" class="hboiFase hboi filter" id="hboi9" name="Realiseren" value="realiseren">
                 <label for="hboi9">Realiseren</label><br>
-                <input type="checkbox" class="hboiFase hboi filter" id="hboi10" name="Fase" value="manage & control">
+                <input type="checkbox" class="hboiFase hboi filter" id="hboi10" name="Manage & control"
+                       value="manage & control">
                 <label for="hboi10">Manage & control</label><br>
                 <div>Niveau</div>
-                <input type="checkbox" class="hboiNiv hboi filter" id="hboi11" name="Niveau" value=1>
+                <input type="checkbox" class="hboiNiv hboi filter" id="hboi11" name="1" value=1>
                 <label for="hboi11">1</label><br>
-                <input type="checkbox" class="hboiNiv hboi filter" id="hboi12" name="Niveau" value=2>
+                <input type="checkbox" class="hboiNiv hboi filter" id="hboi12" name="2" value=2>
                 <label for="hboi12">2</label><br>
-                <input type="checkbox" class="hboiNiv hboi filter" id="hboi13" name="Niveau" value=3>
+                <input type="checkbox" class="hboiNiv hboi filter" id="hboi13" name="3" value=3>
                 <label for="hboi13">3</label><br>
-                <input type="checkbox" class="hboiNiv hboi filter" id="hboi14" name="Niveau" value=4>
+                <input type="checkbox" class="hboiNiv hboi filter" id="hboi14" name="4" value=4>
                 <label for="hboi14">4</label><br>
             </div>
-
             <button type="button" id="sorteerButton" class="collapsibleFilter">Sorteren</button>
             <div class="collapsibleFilterContent">
                 <label for="sorteer1">Datum</label>
@@ -168,24 +158,19 @@
 <section id="popupContainer">
     <div class="popupContent" id="">
         <div id="popupImageContainer">
-            <img src="css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
-
+            <img src="../css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
             <button id="popupCloseButton">X</button>
         </div>
-
         <H1 id="popupTitel"></H1>
-
-        <button onclick="kenniskaartVerwijderen()" id="popupVerwijderenButton"></button>
-
+        <button onclick="kenniskaartVerwijderen()" id="popupVerwijderenButton">
+            <!--            <img src="../css/fotos/prullenbak.jpg" id="popupVerwijderenFoto" alt="prullenbak">-->
+        </button>
         <button onclick="setParamsWijzigen()" type="button">Wijzigen</button>
-
         <div id="popupDatum"></div>
         <br>
-
         <div>Auteur</div>
         <div id="popupAuteur"></div>
         <br>
-
         <div>Rollen</div>
         <div id="popupRollen">
             <div>hallo1</div>
@@ -195,42 +180,58 @@
             <div>hallo5</div>
         </div>
         <br>
-
         <div>Competenties</div>
         <div id="popupCompetentie"></div>
         <br>
-
-        <div><h6>HBO-i</h6></div>
+        <div>HBO-i</div>
         <div id="popupHBOI"></div>
         <br>
-
         <div>What</div>
         <div id="popupWhat"></div>
         <br>
-
         <div>Why</div>
         <div id="popupWhy"></div>
         <br>
-
         <div>How</div>
         <div id="popupHow"></div>
         <br>
-
         <div>Voorbeeld</div>
         <div id="popupVoorbeeld"></div>
         <br>
-
         <div>Bronnen</div>
         <div id="popupBronnen"></div>
     </div>
 </section>
 
-<script type="text/javascript" src="javascript/globalVariables.js"></script>
-<script type="text/javascript" src="javascript/zoekresultaten.js"></script>
-<script type="text/javascript" src="javascript/popup.js"></script>
-<script type="text/javascript" src="javascript/filters.js"></script>
-<script type="text/javascript" src="javascript/url.js"></script>
-<script type="text/javascript" src="javascript/startup.js"></script>
+<footer>
+    <ul class="footer-main">
+        <div class="footer-main-lines"></div>
+        <li><a href="#">Hogeschool Utrecht</a></li>
+        <div class="footer-main-lines"></div>
+        <li><a href="#">Voltijd</a></li>
+        <div class="footer-main-lines"></div>
+        <li><a href="#">Meer HU sites</a></li>
+        <div class="footer-main-lines"></div>
+    </ul>
+    <div class="footer-sm">
+        <a href="#">
+            <img src="../css/fotos/facebook-logo.png" alt="facebook icon">
+        </a>
+        <a href="#">
+            <img src="../css/fotos/hu-logo.png" alt="facebook icon">
+        </a>
+        <a href="#">
+            <img src="../css/fotos/twitter-logo.png" alt="facebook icon">
+        </a>
+    </div>
+</footer>
+
+<script type="text/javascript" src="../javascript/globalVariables.js"></script>
+<script type="text/javascript" src="../javascript/zoekresultaten.js"></script>
+<script type="text/javascript" src="../javascript/popup.js"></script>
+<script type="text/javascript" src="../javascript/filters.js"></script>
+<script type="text/javascript" src="../javascript/url.js"></script>
+<script type="text/javascript" src="../javascript/startup.js"></script>
 
 </body>
 </html>
