@@ -1,48 +1,50 @@
 
 @media only screen and (min-width: 601px) {
-    .active {
-        background-color: #b3b3b3;
-    }
-  .filtercontainer {
-      min-width: 300px;
-      max-width: 400px;
-      height: auto;
-      /*border: 2px solid red;*/
-      order: 1;
-      flex-grow: 1;
+
+  .active {
+    background-color: #b3b3b3;
   }
-    .collapsibleFilter {
-        background-color: lightgray;
-        color: #444444;
-        cursor: pointer;
-        padding: 16px;
-        width: 100%;
-        max-width: 400px;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 19px;
-    }
-    .collapsibleFilter:hover {
-        background-color: #b3b3b3;
-    }
-    .collapsibleFilterContent {
-        max-width: inherit;
-        padding: 0 18px;
-        display: none;
-        overflow: hidden;
-        background-color: #f1f1f1;
-    }
-    #filterToepassenButton {
-        background-color: lightgray;
-        color: #444444;
-        cursor: pointer;
-        padding: 16px;
-        width: 100%;
-        max-width: 400px;
-        border: none;
-        text-align: left;
-        outline: none;
-        font-size: 19px;
-    }
+  .filtercontainer {
+    display: block;
+    font-family: 'Avenir';
+    min-width: 300px;
+    max-width: 400px;
+    height: auto;
+    order: 1;
+    flex-grow: 1;
+    background-color: white;
+  }
+  .collapsibleFilter {
+    background-color: lightgray;
+    color: #444444;
+    cursor: pointer;
+    padding: 16px;
+    width: 100%;
+    max-width: 400px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 19px;
+  }
+  .collapsibleFilter:hover {
+    background-color: #b3b3b3;
+  }
+  .collapsibleFilterContent {
+    max-width: inherit;
+    padding: 0 18px;
+    display: none;
+    overflow: hidden;
+  }
+  #filterToepassenButton {
+    background-color: lightgray;
+    color: #444444;
+    cursor: pointer;
+    padding: 16px;
+    width: 100%;
+    max-width: 400px;
+    border: none;
+    text-align: left;
+    outline: none;
+    font-size: 19px;
+  }
 }
