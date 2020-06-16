@@ -171,8 +171,8 @@ def filter_kenniskaarten():
     else:
         sorteer = '.order_by(db.asc(Kenniskaart.datetime))'
 
-    query1 = base + filters + f'.filter(zoekveld.ilike("{data["zoekterm"]}"))' + sorteer + '.all()'
-    query2 = base + filters + f'.filter(zoekveld.ilike("%" + "{data["zoekterm"]}" + "%"))' + sorteer + '.all()'
+    query1 = base + filters + f""".filter(zoekveld.ilike("{data["zoekterm"]}"))""" + sorteer + '.all()'
+    query2 = base + filters + f""".filter(zoekveld.ilike("%" + "{data["zoekterm"]}" + "%"))""" + sorteer + '.all()'
 
     velden_list = [Kenniskaart.titel, Kenniskaart.auteur, Kenniskaart.what, Kenniskaart.why, Kenniskaart.how, Kenniskaart.voorbeeld, Kenniskaart.bronnen]
     kenniskaarten_exact, kenniskaarten_inclusief = [], []
