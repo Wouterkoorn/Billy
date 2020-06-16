@@ -88,7 +88,7 @@ function extra_select(select) {
     // deleteButton.setAttribute("onclick", "delete_select(element)");
     container.appendChild(deleteButton);
 
-    select.parentElement.appendChild(container);
+    select.parentElement.parentElement.appendChild(container);
 
     deleteButton.addEventListener("click", function (element) {
         element.target.parentElement.remove();

@@ -233,6 +233,7 @@ function urlParserIndex() {
             }
             document.getElementById("sorteer1").value = zoekfilters["sorteer"];
             document.getElementById("sorteerButton").click();
+            toepassen = true;
         }
 
         //if any of hboi filters were selected => open hboi filter menu
@@ -240,14 +241,12 @@ function urlParserIndex() {
             document.getElementById("filterhboiButton").click();
         }
 
-        //kenniskaart popup openen als een kenniskaart id is meegegeven
-
     } catch (typeError) {
         console.log("There were no zoekfilters selected.")
     }
 
     try {
-        kenniskaart_id = urlParams.get('kenniskaart');
+        let kenniskaart_id = urlParams.get('kenniskaart');
         if (kenniskaart_id) {
             console.log(`Kenniskaart ${kenniskaart_id} wordt geopend`);
             popupTonen(kenniskaart_id);
@@ -256,7 +255,10 @@ function urlParserIndex() {
         console.log(`Geen kenniskaart aangegeven in url.`)
     }
 
-    if (!toepassen) {
+    if (toepassen) {
+        console.log("kenniskaarten ophalen met zoekfilters")
+        kenniskaartenZoeken();
+    } else {
         fetchRecent();
     }
 }
