@@ -1,11 +1,14 @@
-.kenniskaartencontainer {
-  background-color: #f1f1f1;
-   /*margin: 6px 0 6px 0;*/
-}
 body {
   font-family: 'Avenir', sans-serif;
 }
 
+.kenniskaartencontainer {
+  background-color: #f1f1f1;
+  order: 2;
+  flex-grow: 2;
+  display: flex;
+  flex-direction: column;
+}
 
 .kenniskaart {
   border-style: solid;
@@ -13,20 +16,20 @@ body {
   border-color: #E1E1E1;
   margin: 5px 15px;
   padding: 1px 3px 1px 3px;
-  /*border: #111111;*/
   background-color: white;
   box-shadow: 5px 5px 2px lightgray;
 }
 
 .kenniskaart-datum {
-  /*font-family: "Lucida Sans", sans-serif;*/
+  font-family: "Avenir", sans-serif;
   font-size: 13px;
   color: red;
 }
 
 .kenniskaart-titel {
-  /*font-family: "Lucida Sans", sans-serif;*/
+  font-family: "Avenir", sans-serif;
   padding: 3px;
+  margin: 0;
 }
 
 .kenniskaart-what {
@@ -61,7 +64,6 @@ body {
   .kenniskaart {
     text-align: left;
     height: 130px;
-    /*width: 60%;*/
     min-width: 550px;
     position: relative;
     display: inline-block;
@@ -89,9 +91,7 @@ body {
    }
    .kenniskaart-what {
      overflow: hidden;
-     /*white-space: nowrap;*/
-     /*text-overflow: ellipsis;*/
-     height: 31px; /* 55px = 3 lines, 31px = 2 lines & 12px = 1 line*/
+     height: 90px;
    }
 }
 
