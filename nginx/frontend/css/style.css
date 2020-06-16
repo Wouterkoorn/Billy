@@ -92,12 +92,18 @@ body {
 } */
 
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 550px) {
   header .grids {
     margin: 0;
     text-align: left;
     padding: 0px 20px 0 30px;
     border-right: 3px solid #111;
     float: left
+  }
+
+  #mainContainer {
+    width: 100%;
+    margin: 0;
+    top: 500px;
   }
 }

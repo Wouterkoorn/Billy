@@ -5,22 +5,28 @@
 <title>kenniskaart</title>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css%22%3E">
+  <link rel="stylesheet" type="text/css" href="../css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
 
 <body onload="urlParserWijzigen()">
   <header>
-    <a class="header-brand" href="../index.html">
-      <img src="../css/fotos/billy-logo.png" alt="facebook icon">
-    </a>
-
     <nav>
       <ul>
-        <li><a href="../index.html">Home</a></li>
+        <li>
+          <a class="header-brand" href="index2.html">
+            <img src="../css/fotos/billy-logo.png" >
+          </a>
+        </li>
 
-        <li><a href="toevoegen.html">Toevoegen</a></li>
+        <li>
+          <a class="toevoegL" href="../html/toevoegen.html">Toevoegen</a>
+        </li>
+        
+        <li>
+          <a class="toevoegL" href="../index2.html">Home</a>
+        </li>
 
       </ul>
     </nav>
@@ -32,19 +38,19 @@
         <fieldset>
           <div class="toevoegUp">
             <div class="grid-item item1">
-              <input type="file" id="up" name="img" accept="image/*">
+              <input  type="file" id="up" name="img" accept="image/*">
             </div>
 
             <div class="grid-item item3">
-              <input type="text" id="formAuteur" value="" placeholder="Voeg een auteur">
+              <input class="toevoegI" type="text" id="formAuteur" value="" placeholder="Voeg een auteur">
             </div>
 
             <div class="grid-item item4">
-              <input type="text" id="formTitel" name="" value="" placeholder="Voeg een Titel" required>
+              <input class="toevoegI" type="text" id="formTitel" name="" value="" placeholder="Voeg een Titel" required>
             </div>
 
             <div class="grid-item item5">
-              <button  class="Button toevoegenB" type="button" id="toevoegenButton" onclick="kenniskaartDatabase('/toevoegen', 'POST')">Toevoegen</button>
+              <button  class="Button toevoegenB " type="button" id="toevoegenButton" onclick="kenniskaartDatabase('/toevoegen', 'POST')">Toevoegen</button>
             </div>
 
           </div>
@@ -54,16 +60,16 @@
         <fieldset>
           <div class="toevoegDown">
 
-            <label for="what">What</label><br>
+            <label class="toevoegL" for="what">What</label><br>
             <textarea  id="formWhat" name="what" placeholder="What" style="height: 150px" required></textarea><br>
 
-            <label for="why">Why</label><br>
+            <label class="toevoegL" for="why">Why</label><br>
             <textarea  id="formWhy" name="why" placeholder="Why" style="height: 150px" required></textarea><br>
 
-            <label for="how">How</label><br>
+            <label class="toevoegL" for="how">How</label><br>
             <textarea  id="formHow" name="how" placeholder="formHow" style="height: 150px" required></textarea><br>
 
-            <label for="competentie">Competentie</label><br>
+            <label class="toevoegL" for="competentie">Competentie</label><br>
               <div id="competentieContainer" class="selectL">
                 <select class="toevoegenCompetentie" id="toevoegenCompetentie" name="Competentie">
                   <option value="Vakbekwaam;juiste kennis ontwikkelen">Vakbekwaam, juiste kennis ontwikkelen</option>
@@ -82,7 +88,7 @@
               </div><br>
 
 
-            <label for="rol">Rol</label><br>
+            <label class="toevoegL" for="rol">Rol</label><br>
               <div id="rolContainer" class="selectL">
                 <select class="toevoegenRol" id="toevoegenRol" name="Rol">
                     <option value="Product owner">Product owner</option>
@@ -98,7 +104,7 @@
                 <button class="plusButton" type="button" id="extraRol" onclick="extra_select(toevoegenRol)">+</button>
               </div><br>
 
-            <label for="hboi">HBO-I</label><br>
+            <label class="toevoegL" for="hboi">HBO-I</label><br>
               <div id="hboiContainer">
                   <div id="formhboi" class="hboiS">
                     <select class="toevoegenArchitectuurlagen" name="Architectuurlagen">
@@ -130,9 +136,10 @@
 
               </div>
 
-            <label for="formVoorbeeld">Voorbeelden</label><br>
+            <label class="toevoegL" for="formVoorbeeld">Voorbeelden</label><br>
             <textarea  name="voorbeelden" id="formVoorbeeld" placeholder="Geef een voorbeeld/voorbeelden" style="height: 150px"></textarea><br>
-            <label for="formBronnen">Bronnen</label><br>
+
+            <label class="toevoegL" for="formBronnen">Bronnen</label><br>
             <textarea  name="bronnen" id="formBronnen" placeholder="Bron(nen)" style="height: 150px"></textarea>
 
           </div>

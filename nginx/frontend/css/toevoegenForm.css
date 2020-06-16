@@ -50,11 +50,13 @@ body {
   grid-row: 1;
   position: relative;
 }
-
+.toevoegL {
+  font-weight: 900;
+}
 
 
 /* Full-width input fields */
-input[type=text], input[type=date], textarea, select {
+input .toevoegL [type=text], input[type=date], textarea, select {
   width: 90%;
   padding: 15px;
   margin: 5px 0 22px 0;
@@ -63,8 +65,17 @@ input[type=text], input[type=date], textarea, select {
   background: #f1f1f1;
 }
 
+.toevoegI {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
 /* Add a background color when the inputs get focus */
-input[type=text]:focus, input[type=date]:focus, textarea:focus,select:focus{
+input .toevoegL [type=text]:focus, input[type=date]:focus, textarea:focus,select:focus{
   background-color: #F9F9F9;
   outline: none;
 }
@@ -97,16 +108,19 @@ button:hover {
   border: none;
   cursor: pointer;
   opacity: 0.9;
+  text-align: center;
 }
 
 .toevoegenB {
   background-color: #03A0D2;
   float: right;
+  text-align: center;
 }
 
 .wijzigenB {
   background-color: #03A0D2;
   float: right;
+
 }
 
 /* Add padding to container elements */
@@ -211,15 +225,6 @@ tr:nth-child(even) {
   .item1, .item3, .item4, .item5 {
     width: 100%;
   }
-  header .navbar, #inloggen, .navmenu {
-    display: flex;
-    flex-direction: column;
-  }
-  * {
-    max-width: 100%;
-    text-align: justify;
-  }
-
 }
 
 @media screen and (max-width: 881px) {
@@ -243,5 +248,28 @@ tr:nth-child(even) {
   .item1, .item3, .item4, .item5 {
     flex-direction: column;
     width: 100%;
+  }
+
+}
+
+@media screen and (max-width: 550px) {
+  .toevoegenB, input[Type=text], input[Type=textarea], select, textarea{
+    width: 100%;
+    margin: 0px;
+
+  }
+  .toevoegL {
+    display: inline-block;
+    padding: 8px 10px 0px 10px;
+    margin: 0px;
+  }
+
+  .hboiS {
+    flex-direction:column ;
+  }
+  .selectL {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 2;
   }
 }
