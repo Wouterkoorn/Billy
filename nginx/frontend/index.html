@@ -167,61 +167,72 @@
 
 <section id="popupContainer">
     <div class="popupContent" id="">
-        <div id="popupImageContainer">
-            <img src="css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
+        <div class="kaartUp" id="popupImageContainer">
+            <div class="grid-item stuk1">
+                <img src="../css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
+            </div>
 
-            <button id="popupCloseButton">X</button>
+            <div class="grid-kaart stuk2">
+                <button id="popupCloseButton" onclick="closeKenniskaartPopUp()">X</button>
+            </div>
+
+            <div class="grid-kaart stuk3">
+                <H1 id="popupTitel"></H1>
+            </div>
+
+            <div class="grid-kaart stuk4">
+                <button class="Button verwijderB" id="popupVerwijderenButton" onclick="kenniskaartVerwijderen()">
+                    Verwijderen
+                </button>
+            </div>
+
+            <div class="grid-kaart stuk5">
+                <button class="Button toevoegenB" id="popupWijzigenButton" onclick="setParamsWijzigen()">Wijzigen
+                </button>
+            </div>
+
+            <div class="grid-kaart stuk6">
+                <H1 id="popupDatum"></H1>
+            </div>
+            <br>
+
+            <div class="grid-kaart stuk7">
+                <H1 id="popupAuteur"></H1>
+            </div>
+
         </div>
 
-        <H1 id="popupTitel"></H1>
+        <div class="kaartDown">
+            <div>HBO-i</div>
+            <div id="popupHBOI"></div>
+            <br>
 
-        <button onclick="kenniskaartVerwijderen()" id="popupVerwijderenButton"></button>
+            <div>Vaardigheid</div>
+            <div id="popupCompetentie"></div>
+            <br>
 
-        <button onclick="setParamsWijzigen()" type="button">Wijzigen</button>
+            <div>Rol</div>
+            <div id="popupRollen"></div>
+            <br>
 
-        <div id="popupDatum"></div>
-        <br>
+            <div>What</div>
+            <div id="popupWhat"></div>
+            <br>
 
-        <div>Auteur</div>
-        <div id="popupAuteur"></div>
-        <br>
+            <div>Why</div>
+            <div id="popupWhy"></div>
+            <br>
+<div class="popupContent" id="">
+            <div>How</div>
+            <div id="popupHow"></div>
+            <br>
 
-        <div>Rollen</div>
-        <div id="popupRollen">
-            <div>hallo1</div>
-            <div>hallo2</div>
-            <div>hallo3</div>
-            <div>hallo4</div>
-            <div>hallo5</div>
+            <div>Voorbeeld</div>
+            <div id="popupVoorbeeld"></div>
+
+            <div>Bronnen</div>
+            <div id="popupBronnen"></div>
         </div>
-        <br>
-
-        <div>Competenties</div>
-        <div id="popupCompetentie"></div>
-        <br>
-
-        <div><h6>HBO-i</h6></div>
-        <div id="popupHBOI"></div>
-        <br>
-
-        <div>What</div>
-        <div id="popupWhat"></div>
-        <br>
-
-        <div>Why</div>
-        <div id="popupWhy"></div>
-        <br>
-
-        <div>How</div>
-        <div id="popupHow"></div>
-        <br>
-
-        <div>Voorbeeld</div>
-        <div id="popupVoorbeeld"></div>
-        <br>
-
-        <div>Bronnen</div>
-        <div id="popupBronnen"></div>
     </div>
 </section>
 
