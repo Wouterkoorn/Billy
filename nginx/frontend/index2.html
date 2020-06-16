@@ -149,63 +149,61 @@
 
 
 <section id="popupContainer">
-    <div class="popupContent" id="">
-        <div id="popupImageContainer">
-            <img src="css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
-
-            <button id="popupCloseButton">X</button>
-        </div>
-
-        <H1 id="popupTitel"></H1>
-
-        <button onclick="kenniskaartVerwijderen()" id="popupVerwijderenButton"></button>
-
-        <button onclick="setParamsWijzigen()" type="button">Wijzigen</button>
-
-        <div id="popupDatum"></div>
-        <br>
-
-        <div>Auteur</div>
-        <div id="popupAuteur"></div>
-        <br>
-
-        <div>Rollen</div>
-        <div id="popupRollen">
-            <div>hallo1</div>
-            <div>hallo2</div>
-            <div>hallo3</div>
-            <div>hallo4</div>
-            <div>hallo5</div>
-        </div>
-        <br>
-
-        <div>Competenties</div>
-        <div id="popupCompetentie"></div>
-        <br>
-
-        <div><h6>HBO-i</h6></div>
-        <div id="popupHBOI"></div>
-        <br>
-
-        <div>What</div>
-        <div id="popupWhat"></div>
-        <br>
-
-        <div>Why</div>
-        <div id="popupWhy"></div>
-        <br>
-
-        <div>How</div>
-        <div id="popupHow"></div>
-        <br>
-
-        <div>Voorbeeld</div>
-        <div id="popupVoorbeeld"></div>
-        <br>
-
-        <div>Bronnen</div>
-        <div id="popupBronnen"></div>
+  <div class="popupContent" id="">
+    <div class="kaartUp" id="popupImageContainer">
+      <div class="grid-item stuk1">
+      <img src="../css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
     </div>
+
+    <div class="grid-kaart stuk2">
+      <button id="popupCloseButton" onclick="closeKenniskaartPopUp()">X</button>
+    </div>
+
+    <div class="grid-kaart stuk3">
+      <H1 id="popupTitel">Titel</H1>
+    </div>
+
+    <div class="grid-kaart stuk4">
+      <button class="Button verwijderB" id="popupVerwijderenButton" onclick="kenniskaartVerwijderen()" >Verwijderen</button>
+    </div>
+
+    <div class="grid-kaart stuk5">
+      <button class="Button toevoegenB"  id="popupWijzigenButton" onclick="kenniskaartWijzigen()" >Wijzigen</button>
+    </div>
+
+    <div class="grid-kaart stuk6">
+      <H1 id="datum">00/00/2020</H1>
+    </div><br>
+
+    <div class="grid-kaart stuk7">
+      <H1>Auteur van den Auteur</H1>
+    </div><br>
+
+    </div>
+
+    <div class="kaartDown">
+      <div>HBO-i</div>
+      <div id="popupHBO-i"></div><br>
+
+      <div>Vaardigheid</div>
+      <div id="popupVaardigheid">Hallo</div><br>
+
+      <div>Rol</div>
+      <div id="popupRol">Hallo</div><br>
+
+      <div>What</div>
+      <div id="popupWhat">test123123</div><br>
+
+      <div>Why</div>
+      <div id="popupWhy">test123123</div><br>
+
+      <div>How</div>
+      <div id="popupHow">TEST</div><br>
+
+      <div>Voorbeeld</div>
+      <div id="popupVoorbeeld"></div>
+    </div>
+  </div>
 </section>
 
 <script type="text/javascript" src="javascript/globalVariables.js"></script>
