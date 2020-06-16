@@ -1,71 +1,48 @@
-.active {
-  background-color: #b3b3b3;
-}
-
-.filtercontainer {
-  display: block;
-  font-family: 'Avenir';
-  min-width: 300px;
-  max-width: 400px;
-  height: auto;
-  /*border: 2px solid red;*/
-  order: 1;
-  flex-grow: 1;
-  background-color: #04a1d2 ;
-}
-
-.collapsibleFilter {
-  background-color: #ed0010;
-  color: #fff;
-  cursor: pointer;
-  padding: 14px 1px 14px 45px;
-  width: 100%;
-  max-width: 400px;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 19px;
-  font-weight: 900;
-  font-family: 'Avenir';
-}
-
-.collapsibleFilter:hover {
-  background-color: #ff0011;
-}
-
-.collapsibleFilterContent {
-  max-width: inherit;
-  padding: 0 18px;
-  display: none;
-  overflow: hidden;
-  color: white;
-  font-size: 17px;
-}
-
-#filterToepassenButton {
-  background-color: lightgray;
-  color: #ed0010;
-  cursor: pointer;
-  padding: 16px;
-  width: 100%;
-  max-width: 400px;
-  border: none;
-  text-align: left;
-  outline: none;
-  font-size: 19px;
-}
-
 
 @media only screen and (min-width: 601px) {
+    .active {
+        background-color: #b3b3b3;
+    }
   .filtercontainer {
-    display: block;
-    font-family: 'Avenir';
-    min-width: 300px;
-    max-width: 400px;
-    height: auto;
-    /*border: 2px solid red;*/
-    order: 1;
-    flex-grow: 1;
-    background-color: #04a1d2 ;
+      min-width: 300px;
+      max-width: 400px;
+      height: auto;
+      /*border: 2px solid red;*/
+      order: 1;
+      flex-grow: 1;
   }
+    .collapsibleFilter {
+        background-color: lightgray;
+        color: #444444;
+        cursor: pointer;
+        padding: 16px;
+        width: 100%;
+        max-width: 400px;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 19px;
+    }
+    .collapsibleFilter:hover {
+        background-color: #b3b3b3;
+    }
+    .collapsibleFilterContent {
+        max-width: inherit;
+        padding: 0 18px;
+        display: none;
+        overflow: hidden;
+        background-color: #f1f1f1;
+    }
+    #filterToepassenButton {
+        background-color: lightgray;
+        color: #444444;
+        cursor: pointer;
+        padding: 16px;
+        width: 100%;
+        max-width: 400px;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 19px;
+    }
 }
