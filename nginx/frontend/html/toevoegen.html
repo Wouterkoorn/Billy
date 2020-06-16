@@ -11,6 +11,7 @@
 
 
 <body onload="urlParserWijzigen()">
+
   <header>
     <nav>
       <ul>
@@ -28,126 +29,145 @@
           <a class="toevoegL" href="../index2.html">Home</a>
         </li>
 
-      </ul>
+        </ul>
     </nav>
-  </header>
+</header>
 
-  <main>
+<main>
     <div class="toevoegBody">
-      <form class="modal-" id="toevoegen">
-        <fieldset>
-          <div class="toevoegUp">
-            <div class="grid-item item1">
-              <input  type="file" id="up" name="img" accept="image/*">
-            </div>
+        <form class="modal-" id="toevoegen">
+            <fieldset>
+                <div class="toevoegUp">
+<!--                    <div class="grid-item item1">-->
+<!--                        <input type="file" id="up" name="img" accept="image/*">-->
+<!--                    </div>-->
 
-            <div class="grid-item item3">
-              <input class="toevoegI" type="text" id="formAuteur" value="" placeholder="Voeg een auteur">
-            </div>
+                    <div class="grid-item item4">
+                        <input type="text" id="formTitel" name="" value="" placeholder="Titel" required>
+                    </div>
 
-            <div class="grid-item item4">
-              <input class="toevoegI" type="text" id="formTitel" name="" value="" placeholder="Voeg een Titel" required>
-            </div>
-
-            <div class="grid-item item5">
-              <button  class="Button toevoegenB " type="button" id="toevoegenButton" onclick="kenniskaartDatabase('/toevoegen', 'POST')">Toevoegen</button>
-            </div>
-
-          </div>
-        </fieldset>
-        <br>
-
-        <fieldset>
-          <div class="toevoegDown">
-
-            <label class="toevoegL" for="what">What</label><br>
-            <textarea  id="formWhat" name="what" placeholder="What" style="height: 150px" required></textarea><br>
-
-            <label class="toevoegL" for="why">Why</label><br>
-            <textarea  id="formWhy" name="why" placeholder="Why" style="height: 150px" required></textarea><br>
-
-            <label class="toevoegL" for="how">How</label><br>
-            <textarea  id="formHow" name="how" placeholder="formHow" style="height: 150px" required></textarea><br>
-
-            <label class="toevoegL" for="competentie">Competentie</label><br>
-              <div id="competentieContainer" class="selectL">
-                <select class="toevoegenCompetentie" id="toevoegenCompetentie" name="Competentie">
-                  <option value="Vakbekwaam;juiste kennis ontwikkelen">Vakbekwaam, juiste kennis ontwikkelen</option>
-                  <option value="Vakbekwaam;kwalitatief product maken">Vakbekwaam, kwalitatief product maken</option>
-                  <option value="Oordeelvormend;creatief werken">Oordeelvormend, creatief werken</option>
-                  <option value="Oordeelvormend;kritisch oordelen">Oordeelvormend, kritisch oordelen</option>
-                  <option value="Communicatief;samenwerken">Communicatief, samenwerken</option>
-                  <option value="Communicatief;boodschap overbrengen">Communicatief, boodschap overbrengen</option>
-                  <option value="Flexibel;plannen">Flexibel, plannen</option>
-                  <option value="Flexibel;aanpassingsvermogen">Flexibel, aanpassingsvermogen</option>
-                  <option value="Zelflerend;pro-actief handelen">Zelflerend, pro-actief handelen</option>
-                  <option value="Zelflerend;reflecteren">Zelflerend, reflecteren</option>
-                </select>
-
-                <button class="plusButton" type="button" id="extraCompetentie" onclick="extra_select(toevoegenCompetentie)">+</button>
-              </div><br>
+                    <div class="grid-item item3">
+                        <input type="text" id="formAuteur" value="" placeholder="Auteur">
+                    </div>
 
 
-            <label class="toevoegL" for="rol">Rol</label><br>
-              <div id="rolContainer" class="selectL">
-                <select class="toevoegenRol" id="toevoegenRol" name="Rol">
-                    <option value="Product owner">Product owner</option>
-                    <option value="Business analyst">Business analyst</option>
-                    <option value="Front-end developer">Front-end developer</option>
-                    <option value="UX designer">UX designer</option>
-                    <option value="Cyber security & cloud">Cyber security & cloud</option>
-                    <option value="Back-end developer">Back-end developer</option>
-                    <option value="AI specialist">AI specialist</option>
-                    <option value="Alle rollen">Alle rollen</option>
-                </select>
+                </div>
+            </fieldset>
 
-                <button class="plusButton" type="button" id="extraRol" onclick="extra_select(toevoegenRol)">+</button>
-              </div><br>
+            <fieldset>
+                <div class="toevoegDown">
 
-            <label class="toevoegL" for="hboi">HBO-I</label><br>
-              <div id="hboiContainer">
-                  <div id="formhboi" class="hboiS">
-                    <select class="toevoegenArchitectuurlagen" name="Architectuurlagen">
-                      <option value="Gebruikersinteractie">Gebruikersinteractie</option>
-                      <option value="Organisatieprocessen">Organisatieprocessen</option>
-                      <option value="Infrastructuur">Infrastructuur</option>
-                      <option value="Software">Software</option>
-                      <option value="Hardware Interfacing">Hardware interfacing</option>
-                    </select>
+                    <label for="what">What</label><br>
+                    <textarea id="formWhat" name="what" placeholder="What" style="height: 150px"
+                              required></textarea><br>
 
-                    <select class="toevoegenActiviteiten" name="Activiteiten">
-                      <option value="analyseren">Analyseren</option>
-                      <option value="adviseren">Adviseren</option>
-                      <option value="ontwerpen">Ontwerpen</option>
-                      <option value="realiseren">Realiseren</option>
-                      <option value="manage & control">Manage & control</option>
-                    </select>
+                    <label for="why">Why</label><br>
+                    <textarea id="formWhy" name="why" placeholder="Why" style="height: 150px" required></textarea><br>
 
-                    <select class="toevoegenNiveau" name="Niveau">
-                      <option value="1">1</option>
-                      <option value="2">2</option>
-                      <option value="3">3</option>
-                      <option value="4">4</option>
-                    </select>
+                    <label for="how">How</label><br>
+                    <textarea id="formHow" name="how" placeholder="How" style="height: 150px"
+                              required></textarea><br>
 
-                  </div>
+                    <label for="competentie">Competentie</label><br>
+                    <div id="competentieContainer" class="selectL">
+                        <div class="toevoegenExtraSelect">
+                            <select class="toevoegenCompetentie" id="toevoegenCompetentie" name="Competentie">
+                                <option value="Vakbekwaam;juiste kennis ontwikkelen">Vakbekwaam, juiste kennis ontwikkelen
+                                </option>
+                                <option value="Vakbekwaam;kwalitatief product maken">Vakbekwaam, kwalitatief product maken
+                                </option>
+                                <option value="Oordeelvormend;creatief werken">Oordeelvormend, creatief werken</option>
+                                <option value="Oordeelvormend;kritisch oordelen">Oordeelvormend, kritisch oordelen</option>
+                                <option value="Communicatief;samenwerken">Communicatief, samenwerken</option>
+                                <option value="Communicatief;boodschap overbrengen">Communicatief, boodschap overbrengen
+                                </option>
+                                <option value="Flexibel;plannen">Flexibel, plannen</option>
+                                <option value="Flexibel;aanpassingsvermogen">Flexibel, aanpassingsvermogen</option>
+                                <option value="Zelflerend;pro-actief handelen">Zelflerend, pro-actief handelen</option>
+                                <option value="Zelflerend;reflecteren">Zelflerend, reflecteren</option>
+                            </select>
 
-                  <button class="plusButton" type="button" id="extrahboi" onclick="extra_select(formhboi)">+</button>
+                            <button class="plusButton" type="button" id="extraCompetentie"
+                                    onclick="extra_select(toevoegenCompetentie)">+
+                            </button>
+                        </div>
+                    </div>
+                    <br>
 
-              </div>
 
-            <label class="toevoegL" for="formVoorbeeld">Voorbeelden</label><br>
-            <textarea  name="voorbeelden" id="formVoorbeeld" placeholder="Geef een voorbeeld/voorbeelden" style="height: 150px"></textarea><br>
+                    <label for="rol">Rol</label><br>
+                    <div id="rolContainer" class="selectL">
+                        <div class="toevoegenExtraSelect">
+                            <select class="toevoegenRol" id="toevoegenRol" name="Rol">
+                                <option value="Product owner">Product owner</option>
+                                <option value="Business analyst">Business analyst</option>
+                                <option value="Front-end developer">Front-end developer</option>
+                                <option value="UX designer">UX designer</option>
+                                <option value="Cyber security & cloud">Cyber security & cloud</option>
+                                <option value="Back-end developer">Back-end developer</option>
+                                <option value="AI specialist">AI specialist</option>
+                                <option value="Alle rollen">Alle rollen</option>
+                            </select>
 
-            <label class="toevoegL" for="formBronnen">Bronnen</label><br>
-            <textarea  name="bronnen" id="formBronnen" placeholder="Bron(nen)" style="height: 150px"></textarea>
+                            <button class="plusButton" type="button" id="extraRol" onclick="extra_select(toevoegenRol)">+
+                            </button>
+                        </div>
+                    </div>
+                    <br>
 
-          </div>
-        </fieldset>
+                    <label for="hboi">HBO-I</label><br>
+                    <div id="hboiContainer" class="selectL">
+                        <div class="toevoegenExtraSelect">
+                            <div id="formhboi" class="hboiS">
+
+                                <select class="toevoegenArchitectuurlagen hboiselect" name="Architectuurlagen">
+                                    <option value="Gebruikersinteractie">Gebruikersinteractie</option>
+                                    <option value="Organisatieprocessen">Organisatieprocessen</option>
+                                    <option value="Infrastructuur">Infrastructuur</option>
+                                    <option value="Software">Software</option>
+                                    <option value="Hardware Interfacing">Hardware interfacing</option>
+                                </select>
+
+                                <select class="toevoegenActiviteiten hboiselect" name="Activiteiten">
+                                    <option value="analyseren">Analyseren</option>
+                                    <option value="adviseren">Adviseren</option>
+                                    <option value="ontwerpen">Ontwerpen</option>
+                                    <option value="realiseren">Realiseren</option>
+                                    <option value="manage & control">Manage & control</option>
+                                </select>
+
+                                <select class="toevoegenNiveau hboiselect" name="Niveau">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                </select>
+
+                            </div>
+                            <button class="plusButton" type="button" id="extrahboi" onclick="extra_select(formhboi)">+
+                            </button>
+                        </div>
+
+                    </div>
+
+                    <label for="formVoorbeeld">Voorbeelden</label><br>
+                    <textarea name="voorbeelden" id="formVoorbeeld" placeholder="Voorbeeld(en)"
+                              style="height: 150px"></textarea><br>
+                    <label for="formBronnen">Bronnen</label><br>
+                    <textarea name="bronnen" id="formBronnen" placeholder="Bron(nen)" style="height: 150px"></textarea>
+
+                    <button class="Button" type="button" id="toevoegenButton"
+                            onclick="kenniskaartDatabase('/toevoegen', 'POST')">Kenniskaart toevoegen
+                    </button>
+                </div>
+            </fieldset>
+
+
+        </form>
     </div>
-  </main>
-  <script type="text/javascript" src="../javascript/globalVariables.js"></script>
-  <script type="text/javascript" src="../javascript/toevoegen.js"></script>
-  <script type="text/javascript" src="../javascript/url.js"></script>
+</main>
+<script type="text/javascript" src="../javascript/globalVariables.js"></script>
+<script type="text/javascript" src="../javascript/toevoegen.js"></script>
+<script type="text/javascript" src="../javascript/url.js"></script>
 </body>
 </html>
