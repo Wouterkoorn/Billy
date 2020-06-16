@@ -56,8 +56,11 @@ document.getElementById("sorteer1").addEventListener("click", function () {
 })
 
 
-fetch(`${ip}/api/ophalen/filteraantallen`) //filter aantallen ophalen en tonen
+console.log("filteraantallen ophalen");
+try {
+   fetch(`${ip}/api/ophalen/filteraantallen`) //filter aantallen ophalen en tonen
     .then(response => {
+
         if (response["status"] === 200) {
             response.json().then(filteraantallen => {
                 for (i = 0; i < filters.length; i++) {
@@ -78,6 +81,10 @@ fetch(`${ip}/api/ophalen/filteraantallen`) //filter aantallen ophalen en tonen
             console.error(`The filteraantallen request responded with something other than`)
         }
     })
+} catch (error) {
+    console.error(error);
+}
+
 
 
 function areAllBoxesChecked(classNameCheckboxes, alleCheckboxID) {
