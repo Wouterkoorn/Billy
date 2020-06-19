@@ -38,6 +38,7 @@ function makeImg(locatie, classnaam, imageInDiv) {
 
 
 function maakKenniskaarten(item, index) {
+    console.log(item);
     //maakt een kenniskaart volgens de json uit de variabele item
     var kenniskaartBestemming = document.getElementsByClassName("kenniskaartencontainer");
     var kenniskaart = document.createElement('div');
@@ -47,7 +48,7 @@ function maakKenniskaarten(item, index) {
     var kenniskaartlocatie = document.getElementsByClassName("kenniskaart");
 
     // makeImg(kenniskaartlocatie[index], "kenniskaart-foto", '../css/fotos/placeholder.jpeg');
-    if (item["dateTime"]) {
+    if (item["datetime"] != null) {
         makeElement(kenniskaartlocatie[index], "kenniskaart-datum", formatDateTime(item["datetime"]), "div");
     }
     makeElement(kenniskaartlocatie[index], "kenniskaart-titel", item["titel"], "H3");

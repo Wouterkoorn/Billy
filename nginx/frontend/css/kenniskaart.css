@@ -28,9 +28,13 @@ body {
 }
 
 .kenniskaart-titel {
+  width: 85%;
+  text-overflow: clip;
   font-family: "Avenir", sans-serif;
   padding: 3px;
   margin: 0;
+  overflow: hidden;
+  max-height: 25px;
 }
 
 .kenniskaart-what {
@@ -77,7 +81,7 @@ body {
     height: 130px;
   }
   .kenniskaart-datum {
-    padding: 20px 0 0 0;
+    padding: 10px 0 0 0;
     position: absolute;
     right: 15px;
     top: 0;
