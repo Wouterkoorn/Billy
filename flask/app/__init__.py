@@ -195,7 +195,7 @@ def filter_kenniskaarten():
     return jsonify(kenniskaarten_exact), 200
 
 
-@app.route('/api/ophalen/filteraantallen')
+@app.route('/api/ophalen/filteraantallen', methods=['GET'])
 def vraag_filter_aantallen():
     filtersRol = [rol[0] for rol in Rol.query.with_entities(Rol.rolnaam).distinct()]
     filtersCategorie = [categorie[0] for categorie in Competentie.query.with_entities(Competentie.categorie).distinct()]
