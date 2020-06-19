@@ -13,6 +13,7 @@ for (i = 0; i < collapsibles.length; i++) {
         let content = filter.nextElementSibling;
         if (content.style.display === "none") {
             content.style.display = "block"; //uitklappen
+            // content.previousElementSibling.style.
         } else if (content.style.display === "block") {
             content.style.display = "none"; //inklappen
         } else {
