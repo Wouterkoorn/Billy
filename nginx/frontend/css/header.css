@@ -29,21 +29,29 @@ header nav ul li {
   padding: 0 16px;
   opacity: 1;
 }
-header nav ul li .toevoegL:hover {
+/* header nav ul li .toevoegL:hover {
   background-color: #00a1e1;
   color: white;
-}
-header nav ul li .toevoegL:hover:not(.toevoegL) {
+} */
+
+/* header nav ul li .toevoegL:hover:not(.toevoegL) {
   background-color: #03a0d2;
-}
+} */
 header .toevoegL {
   color: black;
   height: 100%;
   float: right;
   margin: 5px 5px;
+  border: none;
+  outline: none;
 }
 
-header nav ul li a {
+header .active, a.toevoegL:hover {
+  color: white;
+  background-color: #00a1e1;
+}
+
+/* header nav ul li a {
   font-family: 'Avenir';
   font-weight: 500;
   font-size: 19px;
@@ -53,8 +61,9 @@ header nav ul li a {
   display: block;
   text-align: center;
   padding: 14px 16px;
-  transition: 0.4s;
-}
+  transition: 0.3s;
+} */
+
 
 @media only screen and (max-width: 550px) {
 
