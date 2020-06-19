@@ -7,33 +7,35 @@
   .filtercontainer {
     display: block;
     font-family: 'Avenir';
-    min-width: 300px;
-    max-width: 400px;
+    min-width: 350px;
+    max-width: 350px;
     height: auto;
     order: 1;
     flex-grow: 1;
-    background-color: white;
+    /*background-color: white;*/
   }
   .collapsibleFilter {
-    background-color: lightgray;
-    color: #444444;
+    background-color: #00a1e1;
+    color: #fff;
     cursor: pointer;
     padding: 16px;
     width: 100%;
-    max-width: 400px;
+    max-width: 350px;
     border: none;
     text-align: left;
     outline: none;
-    font-size: 19px;
+    font-size: 22px;
+    font-weight: 501;
   }
   .collapsibleFilter:hover {
-    background-color: #b3b3b3;
+    background-color: #00a1e1de;
   }
   .collapsibleFilterContent {
     max-width: inherit;
     padding: 0 18px;
     display: none;
     overflow: hidden;
+    background-color: white;
   }
   #filterToepassenButton {
     background-color: lightgray;
