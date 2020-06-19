@@ -51,7 +51,7 @@ header .active, a.toevoegL:hover {
   background-color: #00a1e1;
 }
 
-/* header nav ul li a {
+header nav ul li a {
   font-family: 'Avenir';
   font-weight: 500;
   font-size: 19px;
@@ -62,7 +62,7 @@ header .active, a.toevoegL:hover {
   text-align: center;
   padding: 14px 16px;
   transition: 0.3s;
-} */
+}
 
 
 @media only screen and (max-width: 550px) {
