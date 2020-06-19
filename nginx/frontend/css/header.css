@@ -46,9 +46,12 @@ header .toevoegL {
   outline: none;
 }
 
-header .active, a.toevoegL:hover {
+header a.toevoegL:hover {
   color: white;
   background-color: #00a1e1;
+}
+header .active {
+  border-bottom: 3px solid red;
 }
 
 header nav ul li a {
