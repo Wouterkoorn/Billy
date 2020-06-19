@@ -25,7 +25,7 @@
             </li>
 
             <li>
-                <a class="toevoegL" href="http://billy.hu-open-ict.nl/">Home</a>
+                <a class="toevoegL" href="index.html">Home</a>
             </li>
         </ul>
     </nav>
@@ -49,8 +49,8 @@
 
     <div id="flexKenniskaartenFilterContainer">
         <div class="filtercontainer">
-            <button type="button" id="filterRolButton" class="collapsibleFilter">Rol</button>
-            <div class="collapsibleFilterContent" id="filterRol">
+            <button type="button" id="filterRolButton" class="collapsibleFilter minimal">Rol<div class=""></div></button>
+            <div class="collapsibleFilterContent " id="filterRol">
                 <input type="checkbox" class="rol filter" id="rol1" name="Product owner" value="Product owner">
                 <label for="rol1">Product owner</label><br>
                 <input type="checkbox" class="rol filter" id="rol2" name="Business analyst" value="Business analyst">
@@ -72,7 +72,7 @@
                        onclick="alleFilters('rol', 'allerollen')">
                 <label for="allerollen">Alle rollen</label>
             </div>
-            <button type="button" id="filterCompetentieButton" class="collapsibleFilter">Competentie</button>
+            <button type="button" id="filterCompetentieButton" class="collapsibleFilter minimal">Competentie</button>
             <div class="collapsibleFilterContent" id="filterCompetentie">
                 <div>Vakbekwaam</div>
                 <input type="checkbox" class="competentie filter" id="comp1" name="juiste kennis ontwikkelen"
@@ -111,7 +111,7 @@
                        value="Alle competenties" onclick="alleFilters('competentie', 'allecompetenties')">
                 <label for="allecompetenties">Alle competenties</label>
             </div>
-            <button type="button" id="filterhboiButton" class="collapsibleFilter">HBO-i</button>
+            <button type="button" id="filterhboiButton" class="collapsibleFilter minimal">HBO-i</button>
             <div class="collapsibleFilterContent" id="filterhboi">
                 <div>Architectuurlagen</div>
                 <input type="checkbox" class="hboiArch hboi filter" id="hboi1" name="Gebruikersinteractie"
@@ -150,7 +150,7 @@
                 <label for="hboi14">4</label><br>
             </div>
 
-            <button type="button" id="sorteerButton" class="collapsibleFilter">Sorteren</button>
+            <button type="button" id="sorteerButton" class="collapsibleFilter minimal">Sorteren</button>
             <div class="collapsibleFilterContent">
                 <label for="sorteer1">Datum</label>
                 <select id="sorteer1" name="datum">
@@ -172,7 +172,6 @@
     <div class="popupContent" id="">
         <div class="kaartUp" id="popupImageContainer">
             <div class="grid-item stuk1">
-                <img src="../css/fotos/placeholder.jpeg" id="popupFoto" alt="placeholder">
             </div>
 
             <div class="grid-kaart stuk2">
@@ -206,35 +205,35 @@
         </div>
 
         <div class="kaartDown">
-            <div>HBO-i</div>
+            <div class="kopjes">HBO-i</div>
             <div id="popupHBOI"></div>
             <br>
 
-            <div>Vaardigheid</div>
+            <div class="kopjes">Vaardigheid</div>
             <div id="popupCompetentie"></div>
             <br>
 
-            <div>Rol</div>
+            <div class="kopjes">Rol</div>
             <div id="popupRollen"></div>
             <br>
 
-            <div>What</div>
+            <div class="kopjes">What</div>
             <div id="popupWhat"></div>
             <br>
 
-            <div>Why</div>
+            <div class="kopjes">Why</div>
             <div id="popupWhy"></div>
             <br>
-            <div class="popupContent" id="">
-                <div>How</div>
-                <div id="popupHow"></div>
-                <br>
+            <div class="popupContentIn" id="">
+              <div class="kopjes">How</div>
+              <div id="popupHow"></div>
+              <br>
 
-                <div>Voorbeeld</div>
-                <div id="popupVoorbeeld"></div>
+              <div class="kopjes">Voorbeeld</div>
+              <div id="popupVoorbeeld"></div>
 
-                <div>Bronnen</div>
-                <div id="popupBronnen"></div>
+              <div class="kopjes">Bronnen</div>
+              <div id="popupBronnen"></div>
             </div>
         </div>
 </section>

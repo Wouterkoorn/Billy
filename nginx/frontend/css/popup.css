@@ -11,21 +11,23 @@
     height: 100%;
 }
 #popupCloseButton {
-    position: absolute;
-    top: 0;
-    right: 0;
-    border: none;
-    cursor: pointer;
-    background-color: transparent;
-    color: #1daad7;
-    padding: 0px 5px 0px 5px;
-    margin-bottom: 10px;
-    width: 28px;
-    opacity: 0.9;
-  	font-size: 30px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #000000;
+  padding: 0px 5px 0px 5px;
+  margin-bottom: 10px;
+  width: 17px;
+  opacity: 0.9;
+	font-size: 15px;
+  transition: 0.3s;
 }
 #popupCloseButton:hover {
-    background-color: black;
+  background-color: black;
+  color: white;
 }
 
 #datum {
@@ -41,6 +43,7 @@
   height: 250px;
   background-repeat: no-repeat;
   background-position: center;
+  margin-left: 5px;
 }
 
 .stuk2 {
@@ -116,6 +119,7 @@
   overflow: auto; /* er voor zorgen dat scrollen werkt */
   background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.5);
+  transition: 0.3s;
 }
 
 .popupContent {
@@ -127,17 +131,27 @@
 }
 
 #popupTitel {
-  /*float: left;*/
+  font-size: 136%;
+  text-align: -webkit-center;
 }
 #popupDatum {
   float: right;
+  color: #ef1a28;
 }
 .verwijderB {
   float: left;
   background-color: #ed0010;
+  transition: 0.4s;
 }
+.verwijderB:hover {
+  opacity: 0.6;
+}
+
 #popupVerwijderenFoto {
   max-width: 100%;
+}
+.kopjes {
+  font-weight: 700;
 }
 
 

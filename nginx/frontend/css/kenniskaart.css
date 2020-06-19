@@ -55,6 +55,7 @@ body {
     word-wrap: break-word;
   }
   .kenniskaartencontainer {
+    width:70%;
     order: 2;
     flex-grow: 2;
     display: flex;

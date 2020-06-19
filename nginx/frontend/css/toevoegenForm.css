@@ -27,6 +27,9 @@ body {
     margin: auto;
     width: 100%;
 }
+#toevoegenButton:hover {
+  opacity: 0.6;
+}
 
 .toevoegUp {
     display: flex;
@@ -49,13 +52,13 @@ body {
 }
 
 /* Add a background color when the inputs get focus */
-input .toevoegL [type=text]:focus, input[type=date]:focus, textarea:focus,select:focus{
+#toevoegen input .toevoegL [type=text]:focus, input[type=date]:focus, #toevoegen textarea:focus,select:focus{
   background-color: #F9F9F9;
   outline: none;
 }
 
 
-input[type=text], textarea, select {
+#toevoegen input[type=text], #toevoegen textarea, select {
     width: 100%;
     padding: 15px;
     margin: 5px 0 22px 0;
@@ -78,8 +81,8 @@ input[type=text], textarea, select {
     font-size: 55px;
 }
 
-button:hover {
-    opacity: 1;
+.Button:hover {
+  opacity: 0.6;
 }
 
 /* Extra styles for the cancel button */
@@ -99,6 +102,7 @@ button:hover {
   background-color: #03A0D2;
   float: right;
   text-align: center;
+  transition: 0.4s;
 }
 
 .wijzigenB {
