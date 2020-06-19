@@ -57,3 +57,8 @@
   padding: 1px;
   margin: 0px;
 }
+
+#searchBar {
+  background-color: white;
+  padding: 0 10px;
+}

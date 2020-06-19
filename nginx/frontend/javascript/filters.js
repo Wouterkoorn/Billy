@@ -13,13 +13,10 @@ for (i = 0; i < collapsibles.length; i++) {
         let content = filter.nextElementSibling;
         if (content.style.display === "none") {
             content.style.display = "block"; //uitklappen
-            content.previousElementSibling.innerText = `v ${content.previousElementSibling.innerText.substring(2)}`;
         } else if (content.style.display === "block") {
             content.style.display = "none"; //inklappen
-            content.previousElementSibling.innerText = `> ${content.previousElementSibling.innerText.substring(2)}`;
         } else {
             content.style.display = "block"; //eerste keer uitklappen
-            content.previousElementSibling.innerText = `v ${content.previousElementSibling.innerText.substring(2)}`;
         }
     })
 }

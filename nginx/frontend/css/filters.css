@@ -55,24 +55,19 @@
     cursor: pointer;
     padding: 16px;
     width: 100%;
-    max-width: 350px;
+    /*max-width: 350px;*/
     border: none;
     text-align: left;
     outline: none;
 
     font-size: 19px;
-    transition: 0.3s;
+    transition: 0.2s;
   }
   .collapsibleFilter:hover {
-    background-color: #00a1e1;
+    /*background-color: #00a1e1;*/
     opacity: 0.8;
-=======
     font-size: 22px;
     font-weight: 501;
-  }
-  .collapsibleFilter:hover {
-    background-color: #00a1e1de;
-
   }
   .collapsibleFilterContent {
     max-width: inherit;
