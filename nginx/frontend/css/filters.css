@@ -47,7 +47,7 @@
     font-size: 19px;
     transition: 0.2s;
   }
-  .collapsibleFilter:{
+  .collapsibleFilter:hover{
     /*background-color: #00a1e1;*/
     opacity: 0.8;
     /*font-size: 20px;*/
@@ -58,6 +58,7 @@
     display: none;
     overflow: hidden;
     background-color: white;
+    padding-top: 5px;
   }
   #filterToepassenButton {
     background-color: lightgray;
