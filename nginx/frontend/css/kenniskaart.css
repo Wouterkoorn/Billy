@@ -3,7 +3,7 @@ body {
 }
 
 .kenniskaartencontainer {
-  width: 70%;
+  width: 75%;
   background-color: #f1f1f1;
   order: 2;
   flex-grow: 2;

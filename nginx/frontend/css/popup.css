@@ -41,10 +41,11 @@
 .stuk1 {
   grid-column: 1 / span 2;
   grid-row: 1;
-  background-image: url(https://haririjal.com.np/wp-content/uploads/2018/12/gallery_1245283-300x300.png);
+  background-image: url(../css/fotos/placeholder.jpeg);
   height: 250px;
   background-repeat: no-repeat;
   background-position: center;
+  background-size: contain;
   margin-left: 5px;
 }
 

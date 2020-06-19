@@ -4,17 +4,16 @@
   background-color: #f1f1f1;
   background-color: #fff;
   position: absolute;
-  top: 50%;
-  top: 24%;
+  top: 75%;
   left: 50%;
   display: flex;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   /overflow: hidden;/
   display: inline-flex;
-  flex-direction: row;
   flex-direction: row-reverse;
   flex-wrap: nowrap;
+  z-index: 1;
 }
 
 .container1 {
@@ -26,9 +25,8 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 20;
   overflow: visible;
-  position: unset;
+  position: absolute;
 }
 .zoekButton {
   background-color: white;
