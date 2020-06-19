@@ -23,34 +23,29 @@
     background-color: #00a1e1;
   }
   .filtercontainer {
+    padding: 6px;
     width: 25%;
     display: block;
     font-family: 'Avenir';
-
     color: #393939;
     height: auto;
     order: 1;
     flex-grow: 1;
-    /*background-color: white;*/
   }
   .collapsibleFilter {
     background-color: #00a1e1;
     color: #fff;
     cursor: pointer;
-    padding: 16px;
+    padding: 30px;
     width: 100%;
-    /*max-width: 350px;*/
     border: none;
     text-align: left;
     outline: none;
-
     font-size: 19px;
     transition: 0.2s;
   }
   .collapsibleFilter:hover{
-    /*background-color: #00a1e1;*/
     opacity: 0.8;
-    /*font-size: 20px;*/
   }
   .collapsibleFilterContent {
     max-width: inherit;
