@@ -40,6 +40,9 @@ body {
 .kenniskaart-what {
   word-break: break-word;
   padding: 0px 5px 3px 5px;
+  overflow: hidden;
+  text-overflow: clip;
+  max-height: 79px;
 }
 
 .kenniskaart-tags {
