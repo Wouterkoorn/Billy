@@ -11,6 +11,25 @@
     height: 100%;
 }
 #popupCloseButton {
+<<<<<<< HEAD
+  position: absolute;
+  top: 0;
+  right: 0;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+  color: #000000;
+  padding: 0px 5px 0px 5px;
+  margin-bottom: 10px;
+  width: 17px;
+  opacity: 0.9;
+	font-size: 15px;
+  transition: 0.3s;
+}
+#popupCloseButton:hover {
+  background-color: black;
+  color: white;
+=======
     position: absolute;
     top: 0;
     right: 0;
@@ -27,6 +46,7 @@
 #popupCloseButton:hover {
     /*background-color: black;*/
     font-weight: bold;
+>>>>>>> 20f0175197f47d1ade18002e6b0d5db91ecb979d
 }
 
 #datum {
@@ -42,6 +62,7 @@
   height: 250px;
   background-repeat: no-repeat;
   background-position: center;
+  margin-left: 5px;
 }
 
 .stuk2 {
@@ -119,26 +140,48 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+  /*popup in het midden zetten*/
 .popupContent {
-    /*popup in het midden zetten*/
-    position: relative;
-    margin: auto;
-    width: 75%;
-    min-height: 80%;
+  position: relative;
+  margin: auto;
+  width: 75%;
+  min-height: 80%;
+  -webkit-animation: fadeIn 0.6s;
+  animation: fadeIn 0.6s;
+}
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
 }
 
 #popupTitel {
-  /*float: left;*/
+  font-size: 136%;
+  text-align: -webkit-center;
 }
 #popupDatum {
   float: right;
+  color: #ef1a28;
 }
 .verwijderB {
   float: left;
   background-color: #ed0010;
+  transition: 0.4s;
 }
+.verwijderB:hover {
+  opacity: 0.6;
+}
+
 #popupVerwijderenFoto {
   max-width: 100%;
+}
+.kopjes {
+  font-weight: 700;
 }
 
 
