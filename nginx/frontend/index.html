@@ -12,22 +12,24 @@
 
 <body>
 <header>
-    <nav>
+    <nav action='onclick' id="menu">
         <ul>
-            <li>
-                <a class="header-brand" href="index.html">
-                    <img src="css/fotos/billy-logo.png">
-                </a>
-            </li>
+          <li>
+              <a class="toevoegL" href="html/toevoegen.html">Toevoegen</a>
+          </li>
 
-            <li>
-                <a class="toevoegL" href="html/toevoegen.html">Toevoegen</a>
-            </li>
+          <li>
+              <a class="toevoegL active" href="http://billy.hu-open-ict.nl/" active>Home</a>
+          </li>
 
-            <li>
-                <a class="toevoegL" href="http://billy.hu-open-ict.nl/">Home</a>
-            </li>
-        </ul>
+          <li>
+            <a class="header-brand" href="index.html">
+                <img src="css/fotos/billy-logo.png">
+            </a>
+          </li>
+
+
+        </ulclass>
     </nav>
 </header>
 
@@ -48,7 +50,7 @@
 
     <div id="flexKenniskaartenFilterContainer">
         <div class="filtercontainer">
-            <button type="button" id="filterRolButton" class="collapsibleFilter minimal">Rol<div class=""></div></button>
+            <button type="button" id="filterRolButton" class="collapsibleFilter minimal">Rol</button>
             <div class="collapsibleFilterContent " id="filterRol">
                 <input type="checkbox" class="rol filter" id="rol1" name="Product owner" value="Product owner">
                 <label for="rol1">Product owner</label><br>
