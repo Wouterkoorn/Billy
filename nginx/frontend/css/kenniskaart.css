@@ -68,7 +68,7 @@ body {
     flex-grow: 2;
     display: flex;
     flex-direction: column;
-
+    margin-top: -5px;
   }
   .kenniskaart {
     text-align: left;
