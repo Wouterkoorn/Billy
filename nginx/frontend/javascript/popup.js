@@ -3,7 +3,7 @@ function addEventListeners() {
         kenniskaarten = document.getElementsByClassName("kenniskaart"),
         i;
     //gaat alle kenniskaarten langs en doet voor ieder:
-    for (i = 0; i < kenniskaarten.length; i++) {
+    for (i=0; i < kenniskaarten.length; i++) {
         //event listener toevoegen
         kenniskaarten[i].addEventListener('click', function (element) {
             //juiste id ophalen
@@ -36,7 +36,8 @@ function kenniskaartVerwijderen() {
                     // verwijder kaart uit lijst in html zodat pagina of zoekresultaten niet opniew geladen hoeft te worden.
                     //todo toekomstige shareable urls checken of situatie toch niet om refresh vraagt van resultaten.
                     document.getElementById(id).remove();
-                } else {
+                }
+                else {
                     console.error(`The delete request responded with something other than status (ok) 200: `, response);
                 }
             })
