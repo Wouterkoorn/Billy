@@ -45,8 +45,8 @@ function kenniskaartDatabase(apiCall, method) {
         "bronnen": document.getElementById("formBronnen").value
     }
 
-    console.log(dataKenniskaart);
-    console.log(`${ip}/api${apiCall}`);
+    // console.log(dataKenniskaart);
+    // console.log(`${ip}/api${apiCall}`);
     fetch(`${ip}/api${apiCall}`, {
         method: method,
         headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},

@@ -45,7 +45,7 @@ function urlParserWijzigen() {
             .then(response => {
                 if (response["status"] === 200) {
                     response.json().then(data => {
-                        console.log(data)
+                        // console.log(data)
                         let knop = document.getElementById("toevoegenButton");
                         knop.innerText = "Kenniskaart wijzigen";
                         knop.setAttribute("onclick", `kenniskaartDatabase('/wijzigen/kenniskaart/${kenniskaart_id}', 'PATCH')`);
@@ -86,7 +86,7 @@ function urlParserWijzigen() {
                         }
                         let competentieSelects = document.getElementsByClassName("toevoegenCompetentie");
                         for (i = 0; i < data["competenties"].length; i++) {
-                            console.log(data["competenties"][i]["competentie"]);
+                            // console.log(data["competenties"][i]["competentie"]);
                             if (data["competenties"][i]["competentie"] === "juiste kennis ontwikkelen") {
                                 competentieSelects[i].selectedIndex = 0;
                             } else if (data["competenties"][i]["competentie"] === "kwalitatief product maken") {
@@ -145,7 +145,7 @@ function urlParserWijzigen() {
 
                         let hboiNivSelects = document.getElementsByClassName("toevoegenNiveau");
                         for (i = 0; data["hboi"].length; i++) {
-                            console.log(`niveau iteration: ${i} of ${data["hboi"].length}`);
+                            // console.log(`niveau iteration: ${i} of ${data["hboi"].length}`);
                             if (data["hboi"][i]["niveau"] === 1) {
                                 hboiNivSelects[i].selectedIndex = 0;
                             } else if (data["hboi"][i]["niveau"] === 2) {
